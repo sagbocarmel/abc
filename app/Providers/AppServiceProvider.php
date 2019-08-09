@@ -14,6 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        // register Swagger for api documentation
+        $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
     }
 
     /**
