@@ -14,20 +14,19 @@ class CreateMoyenneMatieresTable extends Migration
     public function up()
     {
         Schema::create('moyenne_matieres', function (Blueprint $table) {
-            $table->bigIncrements('idMoyenneMatiere')->nullable(false);
+            $table->bigIncrements('id');
             $table->string('periode',45)->nullable(false);
             $table->float('moyenneComposition')->nullable(false);
             $table->float('moyenneDevoir')->nullable(false);
             $table->float('moyenneInterrogation')->nullable(false);
             $table->float('moyenneInterroDevoirs')->nullable(false);
             $table->float('moyenneMatiere')->nullable(false);
-            $table->bigInteger('idClasse')->nullable(false);
-            $table->bigInteger('idMatiere')->nullable(false);
-            $table->bigInteger('idEleve')->nullable(false);
-            $table->foreign('idClasse')->references('idClasse')->on('classe');
-            $table->foreign('idMatiere')->references('idMatiere')->on('matiere');
-            $table->foreign('idEleve')->references('idEleve')->on('eleve');
-            $table->primary('idMoyenneMatiere');
+            $table->unsignedBigInteger('idClasse')->nullable(false);
+            $table->unsignedBigInteger('idMatiere')->nullable(false);
+            $table->unsignedBigInteger('idEleve')->nullable(false);
+            $table->foreign('idClasse')->references('id')->on('classes');
+            $table->foreign('idMatiere')->references('id')->on('matieres');
+            $table->foreign('idEleve')->references('id')->on('eleves');
             $table->timestamps();
         });
     }

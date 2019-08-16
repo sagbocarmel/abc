@@ -14,11 +14,10 @@ class CreateMatieresTable extends Migration
     public function up()
     {
         Schema::create('matieres', function (Blueprint $table) {
-            $table->bigIncrements('idMatiere');
+            $table->bigIncrements('id');
             $table->string('nom',45)->nullable(false);
             $table->string('description',255)->nullable(true);
             $table->string('type',45)->nullable(true);
-            $table->primary('idMatiere');
             $table->timestamps();
         });
     }

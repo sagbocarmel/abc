@@ -14,14 +14,13 @@ class CreateMoyennePeriodesTable extends Migration
     public function up()
     {
         Schema::create('moyenne_periodes', function (Blueprint $table) {
-            $table->bigIncrements('idMoyennePeriode')->nullable(false);
-            $table->bigInteger('idClasse')->nullable(false);
-            $table->bigInteger('idEleve')->nullable(false);
-            $table->foreign('idEleve')->references('idEleve')->on('eleve');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('idClasse')->nullable(false);
+            $table->unsignedBigInteger('idEleve')->nullable(false);
+            $table->foreign('idEleve')->references('id')->on('eleves');
             $table->float('moyenne')->nullable(false);
-            $table->foreign('idClasse')->references('idClasse')->on('classe');
+            $table->foreign('idClasse')->references('id')->on('classes');
             $table->string('mention',45)->nullable(true);
-            $table->primary('idMoyennePeriode');
             $table->timestamps();
         });
     }

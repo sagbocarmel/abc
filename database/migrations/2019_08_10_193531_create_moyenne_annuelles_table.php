@@ -14,16 +14,15 @@ class CreateMoyenneAnnuellesTable extends Migration
     public function up()
     {
         Schema::create('moyenne_annuelles', function (Blueprint $table) {
-            $table->bigIncrements('idMoyenneAnnuelle');
-            $table->bigInteger('idClasse')->nullable(false);
-            $table->bigInteger('idEleve')->nullable(false);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('idClasse')->nullable(false);
+            $table->unsignedBigInteger('idEleve')->nullable(false);
             $table->string('periode',45)->nullable(false);
             $table->float('moyenne')->nullable(false);
             $table->string('mention',45)->nullable(true);
             $table->string('decision',45)->nullable(true);
-            $table->foreign('idEleve')->references('idEleve')->on('eleve');
-            $table->foreign('idClasse')->references('idClasse')->on('classe');
-            $table->primary('idMoyenneAnnuelle');
+            $table->foreign('idEleve')->references('id')->on('eleves');
+            $table->foreign('idClasse')->references('id')->on('classes');
             $table->timestamps();
         });
     }

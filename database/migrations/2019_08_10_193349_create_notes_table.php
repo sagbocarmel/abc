@@ -14,10 +14,10 @@ class CreateNotesTable extends Migration
     public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->bigInteger('idEleve')->nullable(false);
-            $table->bigInteger('idEvaluation')->nullable(false);
-            $table->foreign('idEleve')->references('idEleve')->on('eleve');
-            $table->foreign('idEvaluation')->references('idEvaluation')->on('evaluation');
+            $table->unsignedBigInteger('idEleve')->nullable(false);
+            $table->unsignedBigInteger('idEvaluation')->nullable(false);
+            $table->foreign('idEleve')->references('id')->on('eleves');
+            $table->foreign('idEvaluation')->references('id')->on('evaluations');
             $table->float('notes')->nullable(false);
             $table->primary(['idEleve','idEvaluation']);
             $table->timestamps();

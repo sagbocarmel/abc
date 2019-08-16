@@ -4,22 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Roles extends Model
 {
     //
-    /**
-     * primary key associate with table roles
-     * @var string
-     */
-    protected $primaryKey = 'idRole';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-
+        'titre','description'
     ];
 
     /**

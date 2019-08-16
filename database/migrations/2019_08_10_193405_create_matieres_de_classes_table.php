@@ -14,12 +14,12 @@ class CreateMatieresDeClassesTable extends Migration
     public function up()
     {
         Schema::create('matieres_de_classes', function (Blueprint $table) {
-            $table->bigInteger('idClasse')->nullable(false);
-            $table->bigInteger('idMatiere')->nullable(false);
-            $table->bigInteger('idEnseignant')->nullable(false);
-            $table->foreign('idMatiere')->references('idMatiere')->on('matiere');
-            $table->foreign('idClasse')->references('idClasse')->on('classe');
-            $table->foreign('idEnseignant')->references('idEnseignant')->on('enseignant');
+            $table->unsignedBigInteger('idClasse')->nullable(false);
+            $table->unsignedBigInteger('idMatiere')->nullable(false);
+            $table->unsignedBigInteger('idEnseignant')->nullable(false);
+            $table->foreign('idMatiere')->references('id')->on('matieres');
+            $table->foreign('idClasse')->references('id')->on('classes');
+            $table->foreign('idEnseignant')->references('id')->on('enseignants');
             $table->primary(['idClasse','idMatiere']);
             $table->timestamps();
         });

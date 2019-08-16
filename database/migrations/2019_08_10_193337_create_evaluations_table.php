@@ -14,17 +14,16 @@ class CreateEvaluationsTable extends Migration
     public function up()
     {
         Schema::create('evaluations', function (Blueprint $table) {
-            $table->bigIncrements('idEvaluation')->nullable(false);
+            $table->bigIncrements('id');
             $table->string('titre',45)->nullable(false);
             $table->string('type',45)->nullable(false);
             $table->date('date')->nullable(false);
             $table->bigInteger('duree')->nullable(false);
             $table->string('periode',45)->nullable(false);
-            $table->bigInteger('idClasse')->nullable(false);
-            $table->bigInteger('idMatiere')->nullable(false);
-            $table->foreign('idClasse')->references('idClasse')->on('classe');
-            $table->foreign('idMatiere')->references('idMatiere')->on('matiere');
-            $table->primary('idEvaluation');
+            $table->unsignedBigInteger('idClasse')->nullable(false);
+            $table->unsignedBigInteger('idMatiere')->nullable(false);
+            $table->foreign('idClasse')->references('id')->on('classes');
+            $table->foreign('idMatiere')->references('id')->on('matieres');
             $table->timestamps();
         });
     }
