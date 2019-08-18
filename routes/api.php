@@ -12,18 +12,37 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::post('/abc/register', 'API\UserController@register');
-Route::post('/abc/login', 'API\UserController@login');
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page Not Found. If error persists, contact abc owner'], 404);
+});
+Route::post('abc/register', 'API\UserController@register');
+Route::post('abc/login', 'API\UserController@login');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::middleware('auth:api')->group( function () {
+    Route::get('abc/users',[
+        'uses' => 'API\UserController@getList',
+        'as' => 'list_users',
+        'middleware'=>'permissions',
+        'permissions' => ['READ']
+    ]);
+
+    Route::get('abc/user/{id}',[
+        'uses' => 'API\UserController@show',
+        'as' => 'user_with_id',
+        'middleware'=>'permissions',
+        'permissions' => ['READ']
+    ]);
 
 });
 
+
+
+Route::get('route','AcessController@permissions');
 
 
 

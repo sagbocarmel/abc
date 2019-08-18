@@ -10,5 +10,5 @@ class PermissionsDeRole extends Model
     /**
      * @var array
      */
-    protected $primaryKey = ['idPermission','idRole'];
+    protected $table = 'permissions_de_roles';
 }

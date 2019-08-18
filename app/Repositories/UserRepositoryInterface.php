@@ -11,5 +11,5 @@ namespace App\Repositories;
 
 interface UserRepositoryInterface
 {
-
+    public function find($id);
 }

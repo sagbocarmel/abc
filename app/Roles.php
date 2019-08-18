@@ -42,4 +42,8 @@ class Roles extends Model
     protected $casts = [
 
     ];
+
+    public function permissions(){
+        return $this->belongsToMany('\App\Permissions','permissions','idRole');
+    }
 }

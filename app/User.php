@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -36,4 +38,49 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function permissions()
+    {
+        $permis = DB::table('permissions_de_roles')
+            ->join('permissions', 'permissions_de_roles.idPermission', '=', 'permissions.id')
+            ->join('roles', 'permissions_de_roles.idRole', '=', 'roles.id')
+            ->select('permissions.titre')->where('roles.id',$this->idRole)
+            ->get();
+        return $permis;
+    }
+
+    public function hasAnyPermissions($permissions)
+    {
+        if(is_array($permissions))
+        {
+            foreach ($permissions as $permission)
+            {
+                if($this->hasPermission($permission))
+                {
+                    return true;
+                }
+            }
+        }
+        else if ($this->hasPermission($permissions))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function hasPermission($permission)
+    {
+        $permis = $this->permissions();
+
+        foreach ($permis as $permi)
+        {
+            if($permi->titre == $permission)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

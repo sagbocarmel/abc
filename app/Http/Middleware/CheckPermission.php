@@ -15,6 +15,17 @@ class CheckPermission
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if($request->user() == null)
+        {
+            return response('Accès Reffusé', 401);
+        }
+        $actions = $request->route()->getAction();
+        $permissions = isset($actions['permissions']) ? $actions['permissions']: null;
+
+        if($request->user()->hasAnyPermissions($permissions) || !$permissions)
+        {
+            return $next($request);
+        }
+        return response('Accès Reffusé', 401);
     }
 }

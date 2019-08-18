@@ -9,7 +9,23 @@
 namespace App\Repositories;
 
 
+use App\User;
+
 class UserRepository implements UserRepositoryInterface
 {
 
+    protected $user;
+    /**
+     * UserRepository constructor.
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+    public function find($id)
+    {
+        // TODO: Implement find() method.
+        return $this->user->findOrFail($id);
+    }
 }

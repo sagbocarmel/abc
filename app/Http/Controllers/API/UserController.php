@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\UserRequest;
+use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use \App\Http\Resources\Users as UserRessourceCollection;
+use \App\Http\Resources\User as UserRessource;
 
 /**
  * Class UserController
@@ -29,6 +33,15 @@ use Illuminate\Support\Facades\Validator;
  **/
 class UserController extends Controller
 {
+    protected $userRepository;
+    /**
+     * UserController constructor.
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     /**
         @OA\Post(
             path="/abc/login",
@@ -79,26 +92,8 @@ class UserController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(UserRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nom' => 'required',
-            'prenoms' => 'required',
-            'sexe' => 'required',
-            'email' => 'required|email',
-            'tel1' => 'required',
-            'password' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            $response = [
-                'success' => false,
-                'data' => 'Validation Error.',
-                'message' => $validator->errors()
-            ];
-            return response()->json($response, 404);
-        }
-
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
@@ -129,5 +124,111 @@ class UserController extends Controller
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
+    }
+
+    public function getList(){
+
+        $users = new UserRessourceCollection(User::all());
+
+        $response = [
+            'success' => true,
+            $users,
+            'message' => 'Users retrieved successfully.'
+        ];
+
+        if ($users == null)
+        {
+            $response = [
+                'success' => true,
+                $users,
+                'message' => 'No users.'
+            ];
+            return response()->json(['users'=>$response], 200);
+        }
+        return response()->json(['users'=>$response], 200);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+        $user = $this->userRepository->find($id);
+
+        $response = [
+            'success' => true,
+             $user,
+            'message' => 'User with id'.$id.' retrieved successfully.'
+        ];
+        return response()->json(['users'=>$response], 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

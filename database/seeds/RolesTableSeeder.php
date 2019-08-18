@@ -47,6 +47,16 @@ class RolesTableSeeder extends Seeder
         $role_user3->description = 'Accès niveau 4 de l\'établissement';
         $role_user3->save();
 
+        $role_userD0 = new Roles();
+        $role_userD0->titre = 'Dev0';
+        $role_userD0->description = 'Développeur ou Informaticien principale';
+        $role_userD0->save();
+
+        $role_userD1 = new Roles();
+        $role_userD1->titre = 'Dev1';
+        $role_userD1->description = 'Développeur ou Informaticien secondaire';
+        $role_userD1->save();
+
         $role_userP = new Roles();
         $role_userP->titre = 'Parent';
         $role_userP->description = 'Parent (Papa, Maman ou tuteur) de l\'élève';
@@ -61,16 +71,6 @@ class RolesTableSeeder extends Seeder
         $role_userEl->titre = 'Eleve';
         $role_userEl->description = 'Elèves d\'un établissement';
         $role_userEl->save();
-
-        $role_userD0 = new Roles();
-        $role_userD0->titre = 'Dev0';
-        $role_userD0->description = 'Développeur ou Informaticien principale';
-        $role_userD0->save();
-
-        $role_userD1 = new Roles();
-        $role_userD1->titre = 'Dev1';
-        $role_userD1->description = 'Développeur ou Informaticien secondaire';
-        $role_userD1->save();
 
     }
 }

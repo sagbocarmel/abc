@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Permissions;
+use App\PermissionsDeRole;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AcessController extends Controller
 {
@@ -71,4 +75,5 @@ class AcessController extends Controller
     public function controllerAcces(){
 
     }
+
 }
