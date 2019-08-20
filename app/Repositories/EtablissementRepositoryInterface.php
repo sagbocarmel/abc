@@ -9,7 +9,12 @@
 namespace App\Repositories;
 
 
+use App\Etablissement;
+
 interface EtablissementRepositoryInterface
 {
-
+    public function save(Array $inputs);
+    public function find($id);
+    public function update($id, Array $inputs);
+    public function delete($id);
 }

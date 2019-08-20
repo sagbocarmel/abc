@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class MoyenneMatiere extends Model
 {
     //
+    protected $table = '48c5m_moyenne_matieres';
     /**
      * @var string
      */
-    protected $primaryKey = 'idMoyenneMatiere';
 }

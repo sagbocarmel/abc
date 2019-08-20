@@ -13,7 +13,7 @@ class CreateEvaluationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluations', function (Blueprint $table) {
+        Schema::create('48c5m_evaluations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titre',45)->nullable(false);
             $table->string('type',45)->nullable(false);
@@ -22,8 +22,8 @@ class CreateEvaluationsTable extends Migration
             $table->string('periode',45)->nullable(false);
             $table->unsignedBigInteger('idClasse')->nullable(false);
             $table->unsignedBigInteger('idMatiere')->nullable(false);
-            $table->foreign('idClasse')->references('id')->on('classes');
-            $table->foreign('idMatiere')->references('id')->on('matieres');
+            $table->foreign('idClasse')->references('id')->on('48c5m_classes');
+            $table->foreign('idMatiere')->references('id')->on('48c5m_matieres');
             $table->timestamps();
         });
     }

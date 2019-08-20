@@ -13,7 +13,7 @@ class CreateParentElevesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parent_eleves', function (Blueprint $table) {
+        Schema::create('48c5m_parent_eleves', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom', 45)->nullable(false);
             $table->string('prenoms',100)->nullable(false);
@@ -24,7 +24,7 @@ class CreateParentElevesTable extends Migration
             $table->string('langueLocale', 45)->nullable(true);
             $table->string('profession',100)->nullable(true);
             $table->unsignedBigInteger('idUtilisateur')->nullable(false);
-            $table->foreign('idUtilisateur')->references('id')->on('users');
+            $table->foreign('idUtilisateur')->references('id')->on('48c5m_users');
             $table->timestamps();
         });
     }

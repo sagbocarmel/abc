@@ -10,5 +10,5 @@ class PermissionsDeRole extends Model
     /**
      * @var array
      */
-    protected $table = 'permissions_de_roles';
+    protected $table = '48c5m_permissions_de_roles';
 }

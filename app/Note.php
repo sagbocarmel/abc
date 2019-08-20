@@ -7,8 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     //
-    /**
-     * @var array
-     */
-    protected $primaryKey = ['idEleve','idEvaluation'];
+    protected $table = '48c5m_notes';
 }

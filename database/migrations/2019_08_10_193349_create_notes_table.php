@@ -13,13 +13,15 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('48c5m_notes', function (Blueprint $table) {
             $table->unsignedBigInteger('idEleve')->nullable(false);
             $table->unsignedBigInteger('idEvaluation')->nullable(false);
-            $table->foreign('idEleve')->references('id')->on('eleves');
-            $table->foreign('idEvaluation')->references('id')->on('evaluations');
+            $table->string('matriculeEleve',45)->nullable(false);
+            $table->foreign('idEvaluation')->references('id')->on('48c5m_evaluations');
+            $table->foreign('idEleve')->references('id')->on('48c5m_eleves');
+            $table->foreign('matriculeEleve')->references('matricule')->on('48c5m_eleves');
             $table->float('notes')->nullable(false);
-            $table->primary(['idEleve','idEvaluation']);
+            $table->primary(['idEleve','idEvaluation','matriculeEleve']);
             $table->timestamps();
         });
     }

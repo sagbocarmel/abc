@@ -30,7 +30,8 @@ class EtablissementsRequest extends FormRequest
             'type' => 'required',
             'nbPeriodesAnnee' => 'required',
             'methodeCalculMoyennes' => 'required',
-            'dateCreation' => 'required'
+            'dateCreation' => 'required',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }

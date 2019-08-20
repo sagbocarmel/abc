@@ -13,13 +13,13 @@ class CreateMatieresDeClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('matieres_de_classes', function (Blueprint $table) {
+        Schema::create('48c5m_matieres_de_classes', function (Blueprint $table) {
             $table->unsignedBigInteger('idClasse')->nullable(false);
             $table->unsignedBigInteger('idMatiere')->nullable(false);
             $table->unsignedBigInteger('idEnseignant')->nullable(false);
-            $table->foreign('idMatiere')->references('id')->on('matieres');
-            $table->foreign('idClasse')->references('id')->on('classes');
-            $table->foreign('idEnseignant')->references('id')->on('enseignants');
+            $table->foreign('idMatiere')->references('id')->on('48c5m_matieres');
+            $table->foreign('idClasse')->references('id')->on('48c5m_classes');
+            $table->foreign('idEnseignant')->references('id')->on('48c5m_enseignants');
             $table->primary(['idClasse','idMatiere']);
             $table->timestamps();
         });

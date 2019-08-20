@@ -13,7 +13,7 @@ class CreateEtablissementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('etablissements', function (Blueprint $table) {
+        Schema::create('48c5m_etablissements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom',50)->nullable(false);
             $table->text('description')->nullable(false);

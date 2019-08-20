@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permissions extends Model
 {
+    protected $table = '48c5m_permissions';
     /**
      * The attributes that are mass assignable.
      *

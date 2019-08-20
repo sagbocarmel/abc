@@ -13,13 +13,14 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable;
 
+    protected $table = '48c5m_users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nom', 'prenoms', 'sexe' ,'email','tel1','tel2','password','idRole','telephone'
+        'nom', 'prenoms', 'sexe' ,'email','tel1','tel2','password','idProfile','telephone'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -42,10 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function permissions()
     {
-        $permis = DB::table('permissions_de_roles')
-            ->join('permissions', 'permissions_de_roles.idPermission', '=', 'permissions.id')
-            ->join('roles', 'permissions_de_roles.idRole', '=', 'roles.id')
-            ->select('permissions.titre')->where('roles.id',$this->idRole)
+        $permis = DB::table('48c5m_permissions_de_roles')
+            ->join('48c5m_permissions', '48c5m_permissions_de_roles.idPermission', '=', '48c5m_permissions.id')
+            ->join('48c5m_roles', '48c5m_permissions_de_roles.idRole', '=', '48c5m_roles.id')
+            ->join('48c5m_profiles','48c5m_roles.id', '=', '48c5m_profiles.idRole')
+            ->select('48c5m_permissions.titre')->where('48c5m_profiles.id',$this->idProfile)
             ->get();
         return $permis;
     }

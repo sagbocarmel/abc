@@ -13,7 +13,7 @@ class CreateMoyenneMatieresTable extends Migration
      */
     public function up()
     {
-        Schema::create('moyenne_matieres', function (Blueprint $table) {
+        Schema::create('48c5m_moyenne_matieres', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('periode',45)->nullable(false);
             $table->float('moyenneComposition')->nullable(false);
@@ -24,9 +24,11 @@ class CreateMoyenneMatieresTable extends Migration
             $table->unsignedBigInteger('idClasse')->nullable(false);
             $table->unsignedBigInteger('idMatiere')->nullable(false);
             $table->unsignedBigInteger('idEleve')->nullable(false);
-            $table->foreign('idClasse')->references('id')->on('classes');
-            $table->foreign('idMatiere')->references('id')->on('matieres');
-            $table->foreign('idEleve')->references('id')->on('eleves');
+            $table->string('matricule',45)->nullable(false);
+            $table->foreign('matricule')->references('matricule')->on('48c5m_eleves');
+            $table->foreign('idClasse')->references('id')->on('48c5m_classes');
+            $table->foreign('idMatiere')->references('id')->on('48c5m_matieres');
+            $table->foreign('idEleve')->references('id')->on('48c5m_eleves');
             $table->timestamps();
         });
     }

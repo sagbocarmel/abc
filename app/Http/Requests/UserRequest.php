@@ -31,6 +31,7 @@ class UserRequest extends FormRequest
             'email' => 'required|email',
             'tel1' => 'required',
             'password' => 'required',
+            'idProfile' => 'required'
         ];
     }
 }

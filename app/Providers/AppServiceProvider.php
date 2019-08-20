@@ -18,65 +18,99 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
 
         $this->app->bind(
-            'App\Repositories\ClasseRepository',
-            'App\Repositories\ClasseRepositoryInterface'
+            'App\Repositories\ClasseRepositoryInterface',
+            'App\Repositories\ClasseRepository'
         );
         $this->app->bind(
-            'App\Repositories\ElevesRepository',
-            'App\Repositories\ElevesRepositoryInterface'
+            'App\Repositories\ElevesRepositoryInterface',
+            'App\Repositories\ElevesRepository'
         );
         $this->app->bind(
-            'App\Repositories\EnseignantRepository',
-            'App\Repositories\EnseignantRepositoryInterface'
+            'App\Repositories\EnseignantRepositoryInterface',
+            'App\Repositories\EnseignantRepository'
         );
         $this->app->bind(
-            'App\Repositories\EtablissementRepository',
-            'App\Repositories\EtablissementRepositoryInterface'
+            'App\Repositories\EtablissementRepositoryInterface',
+            'App\Repositories\EtablissementRepository'
         );
         $this->app->bind(
-            'App\Repositories\EvaluationRepository',
-            'App\Repositories\EvaluationRepositoryInterface'
+            'App\Repositories\EvaluationRepositoryInterface',
+            'App\Repositories\EvaluationRepository'
         );
         $this->app->bind(
-            'App\Repositories\MatieresRepository',
-            'App\Repositories\MatieresRepositoryInterface'
+            'App\Repositories\MatieresRepositoryInterface',
+            'App\Repositories\MatieresRepository'
         );
         $this->app->bind(
-            'App\Repositories\MoyenneAnnuelleRepository',
-            'App\Repositories\MoyenneAnnuelleRepositoryInterface'
+            'App\Repositories\MoyenneAnnuelleRepositoryInterface',
+            'App\Repositories\MoyenneAnnuelleRepository'
         );
         $this->app->bind(
-            'App\Repositories\MoyenneMatiereRepository',
-            'App\Repositories\MoyenneMatiereRepositoryInterface'
+            'App\Repositories\MoyenneMatiereRepositoryInterface',
+            'App\Repositories\MoyenneMatiereRepository'
         );
         $this->app->bind(
-            'App\Repositories\MoyennePeriodeRepository',
-            'App\Repositories\MoyennePeriodeRepositoryInterface'
+            'App\Repositories\MoyennePeriodeRepositoryInterface',
+            'App\Repositories\MoyennePeriodeRepository'
         );
         $this->app->bind(
-            'App\Repositories\NotesRepository',
-            'App\Repositories\NotesRepositoryInterface'
+            'App\Repositories\NotesRepositoryInterface',
+            'App\Repositories\NotesRepository'
         );
         $this->app->bind(
             'App\Repositories\ParentsRepository',
             'App\Repositories\ParentsRepositoryInterface'
         );
         $this->app->bind(
-            'App\Repositories\PermissionRepository',
-            'App\Repositories\PermissionRepositoryInterface'
+            'App\Repositories\PermissionRepositoryInterface',
+            'App\Repositories\PermissionRepository'
         );
         $this->app->bind(
-            'App\Repositories\PermissionsDeRoleRepository',
-            'App\Repositories\PermissionsDeRoleRepositoryInterface'
+            'App\Repositories\PermissionsDeRoleRepositoryInterface',
+            'App\Repositories\PermissionsDeRoleRepository'
+
         );
         $this->app->bind(
-            'App\Repositories\SectionsRepository',
-            'App\Repositories\SectionsRepositoryInterface'
+            'App\Repositories\SectionsRepositoryInterface',
+            'App\Repositories\SectionsRepository'
         );
         $this->app->bind(
             'App\Repositories\UserRepositoryInterface',
             'App\Repositories\UserRepository'
+        );
 
+        $this->app->bind(
+            'App\Repositories\UserRepositoryInterface',
+            'App\Repositories\UserRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Media\MediaRepositoryInterface',
+            'App\Repositories\Media\LogoRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Media\MediaRepositoryInterface',
+            'App\Repositories\Media\ImageRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Media\MediaRepositoryInterface',
+            'App\Repositories\Media\BulletinsRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Media\MediaRepositoryInterface',
+            'App\Repositories\Media\AudioRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Media\MediaRepositoryInterface',
+            'App\Repositories\Media\DocumentsRepository'
+        );
+        $this->app->bind(
+            '',
+            '\App\Repository\StringHelper\StringUtility'
         );
     }
 

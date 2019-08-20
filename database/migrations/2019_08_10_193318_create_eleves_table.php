@@ -13,8 +13,8 @@ class CreateElevesTable extends Migration
      */
     public function up()
     {
-        Schema::create('eleves', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('48c5m_eleves', function (Blueprint $table) {
+            $table->unsignedBigInteger('id')->unique()->nullable(false);
             $table->string('nom',45)->nullable(false);
             $table->string('prenoms',100)->nullable(false);
             $table->char('sexe')->nullable(false);
@@ -26,11 +26,12 @@ class CreateElevesTable extends Migration
             $table->string('nationalite',45)->nullable(true);
             $table->string('photo',255)->nullable(true);
             $table->string('infoSup',255)->nullable(true);
-            $table->string('matricule',255)->nullable(false);
+            $table->string('matricule',45)->unique()->nullable(false);
             $table->unsignedBigInteger('idUtilisateur')->nullable(false);
             $table->unsignedBigInteger('idClasse')->nullable(false);
-            $table->foreign('idUtilisateur')->references('id')->on('users');
-            $table->foreign('idClasse')->references('id')->on('classes');
+            $table->foreign('idUtilisateur')->references('id')->on('48c5m_users');
+            $table->foreign('idClasse')->references('id')->on('48c5m_classes');
+            $table->primary(['id','matricule']);
             $table->timestamps();
         });
     }

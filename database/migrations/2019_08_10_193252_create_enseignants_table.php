@@ -13,7 +13,7 @@ class CreateEnseignantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('enseignants', function (Blueprint $table) {
+        Schema::create('48c5m_enseignants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom',45)->nullable(false);
             $table->string('prenoms',100)->nullable(false);
@@ -30,7 +30,7 @@ class CreateEnseignantsTable extends Migration
             $table->string('mode',25)->nullable(true);
             $table->string('cv',255)->nullable(true);
             $table->unsignedBigInteger('idUtilisateur')->nullable(false);
-            $table->foreign('idUtilisateur')->references('id')->on('users');
+            $table->foreign('idUtilisateur')->references('id')->on('48c5m_users');
             $table->timestamps();
         });
     }

@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     //
+
+    protected $table = '48c5m_classes';
+
     /**
      * @var string
      */
-    protected $primaryKey = 'idClasse';
+    protected $primaryKey = 'id';
+
 }

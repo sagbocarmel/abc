@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     //
-    /**
-     * @var string
-     */
-    protected $primaryKey = 'idSection';
+
+    protected $table = '48c5m_sections';
 }
