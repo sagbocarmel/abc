@@ -26,7 +26,11 @@ class ClassesRequest extends FormRequest
         return [
             //
             'nom'=> 'required',
-            'idSection' => 'required'
+            'description' => '',
+            'section' => '',
+            'serie' => '',
+            'idSection' => 'required',
+            'idEtablissement' => 'required'
         ];
     }
 }

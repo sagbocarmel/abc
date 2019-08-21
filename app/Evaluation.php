@@ -9,7 +9,15 @@ class Evaluation extends Model
     //
     protected $table = '48c5m_evaluations';
 
-    /**
-     * @var string
-     */
+    protected $fillable = [
+        'titre', 'type', 'date', 'duree', 'periode', 'idClasse', 'idMatiere'
+    ];
+
+    public function classe(){
+        return $this->belongsTo('\App\Classe', 'idClasse');
+    }
+
+    public function matiere(){
+        return $this->belongsTo('\App\Matiere','idMatiere');
+    }
 }

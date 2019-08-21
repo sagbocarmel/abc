@@ -26,6 +26,7 @@ class RolesRequest extends FormRequest
         return [
             //
             'titre' => 'required',
+            'descriptio' => ''
         ];
     }
 }

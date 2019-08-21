@@ -25,7 +25,8 @@ class PermissionsRequest extends FormRequest
     {
         return [
             //
-            'titre' => 'required'
+            'titre' => 'required',
+            'description' => ''
         ];
     }
 }

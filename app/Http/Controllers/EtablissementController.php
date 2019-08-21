@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EtablissementsRequest;
 use App\Http\Resources\Etablissement;
+use App\Repositories\ClasseRepository;
 use App\Repositories\EtablissementRepository;
 use App\Repositories\Media\LogoRepository;
 use Carbon\Carbon;
@@ -14,26 +15,18 @@ class EtablissementController extends Controller
 {
      protected $etablissementRepository;
      protected $logoRepository;
+     protected $classeRepository;
 
     /**
      * EtablissementController constructor.
      * @param $etablissementRepository
      */
     public function __construct(EtablissementRepository $etablissementRepository,
-                                LogoRepository $logoRepository)
+                                LogoRepository $logoRepository,ClasseRepository $classeRepository)
     {
         $this->etablissementRepository = $etablissementRepository;
         $this->logoRepository = $logoRepository;
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+        $this->classeRepository = $classeRepository;
     }
 
     /**
@@ -162,4 +155,12 @@ class EtablissementController extends Controller
             'data' => $this->etablissementRepository->delete($id)
         ],200);
     }
+
+    public function allClasses($id){
+        return response()->json([
+            'data' => $this->classeRepository->findAllByEtablissement($id)
+        ],200);
+    }
+
+
 }

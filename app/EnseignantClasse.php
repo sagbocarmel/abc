@@ -8,4 +8,8 @@ class EnseignantClasse extends Model
 {
     //
     protected $table = '48c5m_enseignant_classes';
+
+    protected $fillable = [
+        'idClasse', 'idEnseignant'
+    ];
 }

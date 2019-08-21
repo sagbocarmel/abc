@@ -8,7 +8,8 @@ class MoyennePeriode extends Model
 {
     //
     protected $table = '48c5m_moyenne_periodes';
-    /**
-     * @var string
-     */
+
+    protected $fillable = [
+
+    ];
 }

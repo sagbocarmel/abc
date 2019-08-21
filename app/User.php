@@ -85,4 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function profile(){
+        return $this->belongsTo('\App\Profile','idProfile');
+    }
 }

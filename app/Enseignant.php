@@ -12,4 +12,13 @@ class Enseignant extends Model
      * @var string
      */
     protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'nom', 'prenoms', 'sexe', 'email', 'tel1', 'tel2', 'dateNaissance', 'adresse', 'nationalite', 'photo', 'infoSup',
+        'contactUrgence', 'mode', 'cv', 'idUtilisateur'
+    ];
+
+    public function user(){
+        return $this->belongsTo('\App\User','idUtilisateur');
+    }
 }

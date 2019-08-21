@@ -94,7 +94,7 @@ Route::middleware('auth:api')->group( function () {
             'permissions' => ['UPDATE']
         ]
     );
-    Route::post('abc/access/role/{id}',[
+    Route::post('abc/access/role',[
         'uses' => 'AccessController@createRole',
         'as' => 'new_role',
         'middleware'=>'permissions',
@@ -131,7 +131,7 @@ Route::middleware('auth:api')->group( function () {
             'permissions' => ['UPDATE']
         ]
     );
-    Route::post('abc/access/permission/{id}',[
+    Route::post('abc/access/permission',[
         'uses' => 'AccessController@createPermission',
         'as' => 'new_permission',
         'middleware'=>'permissions',
@@ -207,7 +207,7 @@ Route::middleware('auth:api')->group( function () {
     ]);
 
     Route::delete('abc/section/{id}',[
-        'uses' => 'SectionsController@delete',
+        'uses' => 'SectionsController@destroy',
         'as' => 'delete_section',
         'middleware'=>'permissions',
         'permissions' => ['DELETE']
@@ -215,37 +215,63 @@ Route::middleware('auth:api')->group( function () {
 
     //Notes ressources
 
-    Route::get('abc/notes',[
+    Route::get('abc/notes/eleve/{id}/{matricule}',[
             'uses' => 'NotesController@getNotes',
             'as' => 'notes',
             'middleware'=>'permissions',
             'permissions' => ['READ']
         ]
     );
-    Route::get('abc/notes/{id_eleve}/{id_evaluation}',[
+
+    Route::get('abc/notes/evaluation/{id}',[
+            'uses' => 'NotesController@getNotes',
+            'as' => 'notes',
+            'middleware'=>'permissions',
+            'permissions' => ['READ']
+        ]
+    );
+
+    Route::get('abc/notes/evaluation/{id}/{id_eleve}/{matricule}',[
+            'uses' => 'NotesController@getNotes',
+            'as' => 'notes',
+            'middleware'=>'permissions',
+            'permissions' => ['READ']
+        ]
+    );
+
+    Route::get('abc/notes/',[
+            'uses' => 'NotesController@getNotes',
+            'as' => 'notes',
+            'middleware'=>'permissions',
+            'permissions' => ['READ']
+        ]
+    );
+
+    Route::get('abc/note/{id_eleve}/{id_evaluation}',[
             'uses' => 'NotesController@show',
             'as' => 'note_with_id',
             'middleware'=>'permissions',
             'permissions' => ['READ']
         ]
     );
-    Route::put('abc/section/{id}',[
-            'uses' => 'SectionsController@update',
-            'as' => 'update_section',
+    Route::put('abc/note/{id}',[
+            'uses' => 'NotesController@update',
+            'as' => 'update_note',
             'middleware'=>'permissions',
             'permissions' => ['UPDATE']
         ]
     );
-    Route::post('abc/section',[
-        'uses' => 'SectionsController@create',
-        'as' => 'new_section',
+
+    Route::post('abc/note',[
+        'uses' => 'NotesController@create',
+        'as' => 'new_note',
         'middleware'=>'permissions',
         'permissions' => ['CREATE']
     ]);
 
-    Route::delete('abc/section/{id}',[
-        'uses' => 'SectionsController@delete',
-        'as' => 'delete_section',
+    Route::delete('abc/note/{id}',[
+        'uses' => 'NotesController@delete',
+        'as' => 'delete_note',
         'middleware'=>'permissions',
         'permissions' => ['DELETE']
     ]);
@@ -282,7 +308,7 @@ Route::middleware('auth:api')->group( function () {
     ]);
 
     Route::delete('abc/matiere/{id}',[
-        'uses' => 'MatieresController@delete',
+        'uses' => 'MatieresController@destroy',
         'as' => 'delete_matiere',
         'middleware'=>'permissions',
         'permissions' => ['DELETE']
@@ -363,6 +389,13 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
+    Route::get('abc/etablissement/{id}/classes',[
+        'uses' => 'EtablissementController@allClasses',
+        'as' => 'all_classe',
+        'middleware'=>'permissions',
+        'permissions' => ['READ']
+    ]);
+
     Route::get('abc/etablissement/{id}/users/list',[
         'uses' => 'EtablissementsController@getListUsers',
         'as' => 'etablissement_list_users',
@@ -370,15 +403,23 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['READ']
     ]);
 
-    //Evaluations ressources
+    //Evaluation ressources
 
-    Route::get('abc/evaluations',[
-            'uses' => 'EvaluationsController@getEvaluations',
+    Route::get('abc/classe/{id}/evaluations',[
+            'uses' => 'EvaluationsController@getEvaluationsByClasse',
             'as' => 'evaluations',
             'middleware'=>'permissions',
             'permissions' => ['READ']
         ]
     );
+    Route::get('abc/matiere/{id}/evaluations',[
+            'uses' => 'EvaluationsController@getEvaluationsByMatiere',
+            'as' => 'evaluations',
+            'middleware'=>'permissions',
+            'permissions' => ['READ']
+        ]
+    );
+
     Route::get('abc/evaluation/{id}',[
             'uses' => 'EvaluationsController@show',
             'as' => 'evaluation_with_id',
@@ -409,13 +450,22 @@ Route::middleware('auth:api')->group( function () {
 
     //Eleves ressources
 
-    Route::get('abc/eleves',[
+    Route::get('abc/etablissement/{id}/eleves',[
             'uses' => 'ElevesController@getEleves',
             'as' => 'eleves',
             'middleware'=>'permissions',
             'permissions' => ['READ']
         ]
     );
+
+    Route::get('abc/etablissement/{id}/classe/{id_classe}/eleves',[
+            'uses' => 'ElevesController@getEleves',
+            'as' => 'eleves',
+            'middleware'=>'permissions',
+            'permissions' => ['READ']
+        ]
+    );
+
     Route::get('abc/eleve/{id}',[
             'uses' => 'ElevesController@show',
             'as' => 'eleve_with_id',
@@ -423,6 +473,15 @@ Route::middleware('auth:api')->group( function () {
             'permissions' => ['READ']
         ]
     );
+
+    Route::get('abc/eleve/{matricule}',[
+            'uses' => 'ElevesController@show',
+            'as' => 'eleve_with_id',
+            'middleware'=>'permissions',
+            'permissions' => ['READ']
+        ]
+    );
+
     Route::put('abc/eleve/{id}',[
             'uses' => 'ElevesController@update',
             'as' => 'update_eleve',
@@ -430,6 +489,7 @@ Route::middleware('auth:api')->group( function () {
             'permissions' => ['UPDATE']
         ]
     );
+
     Route::post('abc/eleve',[
         'uses' => 'ElevesController@create',
         'as' => 'new_eleve',
@@ -444,7 +504,7 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Classes ressources
+    //Classe ressources
 
     Route::get('abc/classes',[
             'uses' => 'ClasseController@getClasses',
@@ -475,7 +535,7 @@ Route::middleware('auth:api')->group( function () {
     ]);
 
     Route::delete('abc/classe/{id}',[
-        'uses' => 'ClasseController@delete',
+        'uses' => 'ClasseController@destroy',
         'as' => 'delete_classe',
         'middleware'=>'permissions',
         'permissions' => ['DELETE']
@@ -483,40 +543,6 @@ Route::middleware('auth:api')->group( function () {
 
     //Moyenne Matieres
 
-    Route::get('abc/matieres',[
-            'uses' => 'MatieresController@getMatieres',
-            'as' => 'matieres',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
-        ]
-    );
-    Route::get('abc/matiere/{id}',[
-            'uses' => 'MatieresController@show',
-            'as' => 'matiere_with_id',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
-        ]
-    );
-    Route::put('abc/matiere/{id}',[
-            'uses' => 'MatieresController@update',
-            'as' => 'update_matiere',
-            'middleware'=>'permissions',
-            'permissions' => ['UPDATE']
-        ]
-    );
-    Route::post('abc/matiere',[
-        'uses' => 'MatieresController@create',
-        'as' => 'new_matiere',
-        'middleware'=>'permissions',
-        'permissions' => ['CREATE']
-    ]);
-
-    Route::delete('abc/matiere/{id}',[
-        'uses' => 'MatieresController@delete',
-        'as' => 'delete_matiere',
-        'middleware'=>'permissions',
-        'permissions' => ['DELETE']
-    ]);
 
     //Moyenne Periode
 

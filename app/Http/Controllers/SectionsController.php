@@ -39,7 +39,11 @@ class SectionsController extends Controller
     public function create(SectionsRequest $request)
     {
         //
-        $section = $this->sectionRepository->store($request->all());
+        $data = [
+            'titre' => $request->titre,
+            'description' => $request->description
+        ];
+        $section = $this->sectionRepository->store($data);
 
         return response()->json(['data'=> new Sections($section)],200);
     }
@@ -69,7 +73,7 @@ class SectionsController extends Controller
         //
         $this->sectionRepository->update($id,$request->all());
         return response()->json(['success' => true ,
-                'message' => 'Section mis à jourgit avec succès'], 200);
+                'message' => 'Section mis à jour avec succès'], 200);
     }
 
     /**
@@ -84,5 +88,10 @@ class SectionsController extends Controller
         $this->sectionRepository->delete($id);
         return response()->json(['success' => true ,
             'message' => 'Section supprimée avec succès'], 200);
+    }
+
+    public function getSections()
+    {
+        return response()->json(['data'=> $this->sectionRepository->findAll()], 200);
     }
 }

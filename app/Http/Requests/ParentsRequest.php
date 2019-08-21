@@ -28,6 +28,11 @@ class ParentsRequest extends FormRequest
             'nom' => 'required',
             'prenoms' => 'required',
             'sexe' => 'required',
+            'email' => '',
+            'tel1' => '',
+            'tel2' => '',
+            'langueLocale' => '',
+            'profession' => '',
             'idUtilisateur' => 'required'
         ];
     }

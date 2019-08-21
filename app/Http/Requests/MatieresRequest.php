@@ -25,7 +25,9 @@ class MatieresRequest extends FormRequest
     {
         return [
             //
-            'nom' => 'required'
+            'nom' => 'required',
+            'description' => '',
+            'type' => ''
         ];
     }
 }

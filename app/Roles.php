@@ -45,6 +45,10 @@ class Roles extends Model
     ];
 
     public function permissions(){
-        return $this->belongsToMany('\App\Permissions','permissions','idRole');
+        return $this->belongsToMany('\App\Permissions','48c5m_permissions_de_roles');
+    }
+
+    public function profiles(){
+        return $this->belongsToMany('\App\Profile', '48c5m_profiles');
     }
 }

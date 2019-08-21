@@ -15,4 +15,8 @@ class Permissions extends Model
     protected $fillable = [
         'titre','description'
     ];
+
+    public function roles(){
+        $this->belongsToMany('App\Roles', '48c5m_permissions_de_roles');
+    }
 }

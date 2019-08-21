@@ -11,5 +11,9 @@ namespace App\Repositories;
 
 interface MatieresRepositoryInterface
 {
-
+    public function store(Array $inputs);
+    public function update($id, Array $inputs);
+    public function find($id);
+    public function findAll();
+    public function delete($id);
 }

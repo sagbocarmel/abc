@@ -15,4 +15,8 @@ class Classe extends Model
      */
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'nom', 'description' , 'section', 'serie', 'idSection', 'idEtablissement'
+    ];
+
 }

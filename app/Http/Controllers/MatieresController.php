@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MatieresRequest;
+use App\Http\Resources\Matiere;
+use App\Http\Resources\Matieres;
+use App\Repositories\MatieresRepository;
 use Illuminate\Http\Request;
 
 class MatieresController extends Controller
 {
+    protected $matiereRepository;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * MatieresController constructor.
+     * @param $matiereRepository
      */
-    public function index()
+    public function __construct(MatieresRepository $matiereRepository)
     {
-        //
+        $this->matiereRepository = $matiereRepository;
     }
 
     /**
@@ -21,21 +26,19 @@ class MatieresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(MatieresRequest $request)
     {
         //
+        $data = [
+            'nom' => $request->nom,
+            'description' => $request->description,
+            'type' => $request->type
+        ];
+        $matiere = $this->matiereRepository->store($data);
+
+        return response()->json(['data'=> new Matiere($matiere)],200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -46,17 +49,7 @@ class MatieresController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json(['data'=> new Matiere($this->matiereRepository->find($id))],200);
     }
 
     /**
@@ -69,6 +62,9 @@ class MatieresController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->matiereRepository->update($id,$request->all());
+        return response()->json(['success' => true ,
+            'message' => 'Matière mis à jour avec succès'], 200);
     }
 
     /**
@@ -80,5 +76,12 @@ class MatieresController extends Controller
     public function destroy($id)
     {
         //
+        $this->matiereRepository->delete($id);
+        return response()->json(['success' => true ,
+            'message' => 'Matière supprimée avec succès'], 200);
+    }
+
+    public function getMatieres(){
+        return response()->json(['data'=> new Matieres($this->matiereRepository->findAll())],200);
     }
 }

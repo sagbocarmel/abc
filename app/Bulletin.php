@@ -8,4 +8,8 @@ class Bulletin extends Model
 {
     //
     protected $table = '48c5m_bulletins';
+
+    protected $fillable = [
+        'idEleve', 'matricule', 'idEtablissement'
+    ];
 }

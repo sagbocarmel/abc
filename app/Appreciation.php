@@ -8,4 +8,8 @@ class Appreciation extends Model
 {
     //
     protected $table = '48c5m_appreciations';
+
+    protected $fillable = [
+        'idEvaluation', 'idEleve', 'matricule'
+    ];
 }

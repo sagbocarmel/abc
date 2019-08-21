@@ -11,5 +11,11 @@ namespace App\Repositories;
 
 interface PermissionsDeRoleRepositoryInterface
 {
-
+     public function store(Array $inputs);
+     public function update($idRole,$idPermission,Array $inputs);
+     public function findByPermission($id);
+     public function findByRole($id);
+     public function find($idRole, $idPermission);
+     public function delete($idRole,$idPermission);
+     public function findAll();
 }

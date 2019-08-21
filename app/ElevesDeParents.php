@@ -8,4 +8,8 @@ class ElevesDeParents extends Model
 {
     //
     protected $table = '48c5m_eleves_de_parents';
+
+    protected $fillable = [
+        'idParent', 'idEleve'
+    ];
 }

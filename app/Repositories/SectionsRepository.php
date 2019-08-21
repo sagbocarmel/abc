@@ -27,13 +27,20 @@ class SectionsRepository implements SectionsRepositoryInterface
     public function store(array $inputs)
     {
         // TODO: Implement store() method.
-        return $this->section->save($inputs);
+        $this->section->titre = $inputs['titre'];
+        $this->section->description = $inputs['description'];
+        $this->section->save();
+        $section = $this->section;
+        return $section;
     }
 
     public function update($id, $inputs)
     {
         // TODO: Implement update() method.
-        Section::update($id,$inputs);
+        $section = Section::find($id);
+        $section->titre = $inputs['titre'];
+        $section->description = $inputs['description'];
+        $section->save();
     }
 
     public function find($id)

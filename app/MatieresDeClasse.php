@@ -8,7 +8,8 @@ class MatieresDeClasse extends Model
 {
     //
     protected $table = '48c5m_matieres_de_classes';
-    /**
-     * @var array
-     */
+
+    protected $fillable = [
+        'idClasse', 'idMatiere', 'idEnseignant'
+    ];
 }

@@ -11,5 +11,13 @@ namespace App\Repositories;
 
 interface ElevesRepositoryInterface
 {
-
+    public function store(Array $inputs);
+    public function updateById($id,Array $inputs);
+    public function updateByMatricule($matricule,Array $inputs);
+    public function findById($id);
+    public function findByMatricule($matricule);
+    public function deleteById($id);
+    public function deleteByMatricule($matricule);
+    public function findAll();
+    public function findAllByIdClasse($id);
 }

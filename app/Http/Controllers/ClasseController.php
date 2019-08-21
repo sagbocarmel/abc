@@ -2,39 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClassesRequest;
+use App\Http\Resources\Classe;
+use App\Http\Resources\Classes;
+use App\Repositories\ClasseRepository;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
 {
+    protected $classeRepository;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ClasseController constructor.
+     * @param $classeRepository
      */
-    public function index()
+    public function __construct(ClasseRepository $classeRepository)
     {
-        //
+        $this->classeRepository = $classeRepository;
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ClassesRequest $request)
     {
         //
-    }
+        $data = [
+            'nom' => $request->nom,
+            'description' => $request->description,
+            'section' => $request->section,
+            'serie' => $request->serie,
+            'idSection' => $request->idSection,
+            'idEtablissement' => $request->idEtablissement
+        ];
+        $classe = $this->classeRepository->store($data);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return response()->json(['data'=> new Classe($classe)],200);
     }
 
     /**
@@ -46,18 +52,9 @@ class ClasseController extends Controller
     public function show($id)
     {
         //
+        return response()->json(['data'=> new Classe($this->classeRepository->find($id))],200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -66,9 +63,12 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClassesRequest $request, $id)
     {
         //
+        $this->classeRepository->update($id,$request->all());
+        return response()->json(['success' => true ,
+            'message' => 'Classe mis à jour avec succès'], 200);
     }
 
     /**
@@ -80,5 +80,12 @@ class ClasseController extends Controller
     public function destroy($id)
     {
         //
+        $this->classeRepository->delete($id);
+        return response()->json(['success' => true ,
+            'message' => 'Classe supprimée avec succès'], 200);
+    }
+
+    public function getClasses(){
+        return response()->json(['data'=> new Classes($this->classeRepository->findAll())],200);
     }
 }
