@@ -11,5 +11,13 @@ namespace App\Repositories;
 
 interface MatieresRepositoryInterface
 {
+	public function create();
 
+	public static function getAll();
+
+	public function delete();
+
+	public static function find($id);
+
+	public function save();
 }

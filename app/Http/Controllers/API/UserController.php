@@ -87,7 +87,7 @@ class UserController extends Controller
             'sexe' => 'required',
             'email' => 'required|email',
             'tel1' => 'required',
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -108,7 +108,7 @@ class UserController extends Controller
         $response = [
             'success' => true,
             'data' => $success,
-            'message' => 'Utilisater  crée avec succès.'
+            'message' => 'Utilisateur  crée avec succès.'
         ];
 
         return response()->json($response, 200);

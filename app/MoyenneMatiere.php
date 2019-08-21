@@ -10,5 +10,10 @@ class MoyenneMatiere extends Model
     /**
      * @var string
      */
-    protected $primaryKey = 'idMoyenneMatiere';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = ['id','moyenneComposition','periode','moyenneDevoir','moyenneInterrogation','moyenneInterroDevoirs','MoyenneMatiere','idClasse','idMatiere','idEleve','periode'];
+
+    
 }

@@ -12,7 +12,7 @@ class MoyennesController extends Controller
     }
 
     public function updateMoyenneMatiere() {
-
+        
     }
 
     public function updateMoyennePeriode() {

@@ -24,7 +24,16 @@ Route::middleware('auth:api')->group( function () {
 
 });
 
+Route::post('/add','MatieresController@add');
 
+Route::put('/update','MatieresController@update');
 
+Route::post('/search','MatieresController@search');
 
+Route::delete('/delete','MatieresController@delete');
 
+Route::get('/getList','MatieresController@getList');
+
+Route::get('/getDetails/{id}','MatieresController@getDetails');
+
+Route::get('/count','MatieresController@count');
