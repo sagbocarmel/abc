@@ -28,4 +28,15 @@ class UserRepository implements UserRepositoryInterface
         // TODO: Implement find() method.
         return $this->user->findOrFail($id);
     }
+
+    public function findAll()
+    {
+        // TODO: Implement findAll() method.
+        return User::all();
+    }
+
+    public function update($id, array $inputs)
+    {
+
+    }
 }

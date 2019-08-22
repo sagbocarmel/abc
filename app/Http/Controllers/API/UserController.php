@@ -95,7 +95,6 @@ class UserController extends Controller
     public function register(UserRequest $request)
     {
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
 
         $success['token'] = $user->createToken('MyApp')->accessToken;
@@ -108,6 +107,18 @@ class UserController extends Controller
         ];
 
         return response()->json($response, 200);
+    }
+
+    public function registerNewUser(Array $data)
+    {
+        $input = $data;
+        $user = User::create($input);
+
+        $success['token'] = $user->createToken('MyApp')->accessToken;
+        $success['name'] = $user->email;
+        $success['id'] = $user->id;
+
+        return $success;
     }
 
     /**

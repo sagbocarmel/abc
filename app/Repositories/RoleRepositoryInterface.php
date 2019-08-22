@@ -14,6 +14,7 @@ interface RoleRepositoryInterface
     public function store(Array $inputs);
     public function update($id, Array $inputs);
     public function find($id);
+    public function findByRoleName($name);
     public function delete($id);
     public function findAll();
 }

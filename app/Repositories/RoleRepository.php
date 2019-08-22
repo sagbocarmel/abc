@@ -62,4 +62,10 @@ class RoleRepository implements RoleRepositoryInterface
 
         return Roles::all();
     }
+
+    public function findByRoleName($name)
+    {
+        // TODO: Implement findByRoleName() method.
+        return Roles::where('titre',$name)->first()->get();
+    }
 }

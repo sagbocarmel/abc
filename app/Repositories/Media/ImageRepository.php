@@ -9,6 +9,8 @@
 namespace App\Repositories\Media;
 
 
+use Illuminate\Support\Str;
+
 class ImageRepository implements MediaRepositoryInterface
 {
 
@@ -22,7 +24,7 @@ class ImageRepository implements MediaRepositoryInterface
             $extension = $file->getClientOriginalExtension();
 
             do {
-                $nom = Str::random(100000) .$name. '.' . $extension;
+                $nom = Str::random(100) .$name. '.' . $extension;
             } while(file_exists($chemin . '/' . $nom));
 
             if($file->move($chemin, $nom))

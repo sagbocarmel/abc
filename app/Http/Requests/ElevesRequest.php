@@ -37,7 +37,6 @@ class ElevesRequest extends FormRequest
             'photo' => 'image',
             'infoSup' => '',
             'matricule' => 'required',
-            'idUtilisateur' => 'required',
             'idClasse' => 'required'
         ];
     }

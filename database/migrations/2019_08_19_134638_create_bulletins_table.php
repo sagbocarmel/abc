@@ -21,6 +21,8 @@ class CreateBulletinsTable extends Migration
             $table->foreign('idEleve')->references('id')->on('48c5m_eleves');
             $table->unsignedBigInteger('idEtablissement')->nullable(false);
             $table->foreign('idEtablissement')->references('id')->on('48c5m_etablissements');
+            $table->string('periode',45)->nullable(false);
+            $table->string('bulletin',255)->nullable(false);
             $table->timestamps();
         });
     }

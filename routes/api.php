@@ -448,18 +448,10 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Eleves ressources
+    //Eleve ressources
 
-    Route::get('abc/etablissement/{id}/eleves',[
-            'uses' => 'ElevesController@getEleves',
-            'as' => 'eleves',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
-        ]
-    );
-
-    Route::get('abc/etablissement/{id}/classe/{id_classe}/eleves',[
-            'uses' => 'ElevesController@getEleves',
+    Route::get('abc/etablissement/classe/{id_classe}/eleves',[
+            'uses' => 'ElevesController@getElevesByClasse',
             'as' => 'eleves',
             'middleware'=>'permissions',
             'permissions' => ['READ']
@@ -474,15 +466,15 @@ Route::middleware('auth:api')->group( function () {
         ]
     );
 
-    Route::get('abc/eleve/{matricule}',[
-            'uses' => 'ElevesController@show',
-            'as' => 'eleve_with_id',
+    Route::get('abc/eleve/matricule/{matricule}',[
+            'uses' => 'ElevesController@showByMatricule',
+            'as' => 'eleve_with_matricule',
             'middleware'=>'permissions',
             'permissions' => ['READ']
         ]
     );
 
-    Route::put('abc/eleve/{id}',[
+    Route::post('abc/eleve/{id}/{matricule}',[
             'uses' => 'ElevesController@update',
             'as' => 'update_eleve',
             'middleware'=>'permissions',
@@ -498,8 +490,15 @@ Route::middleware('auth:api')->group( function () {
     ]);
 
     Route::delete('abc/eleve/{id}',[
-        'uses' => 'ElevesController@delete',
+        'uses' => 'ElevesController@destroy',
         'as' => 'delete_eleve',
+        'middleware'=>'permissions',
+        'permissions' => ['DELETE']
+    ]);
+
+    Route::delete('abc/etablissement/eleve/{matricule}',[
+        'uses' => 'ElevesController@destroyByMatricule',
+        'as' => 'delete_eleve_matricule',
         'middleware'=>'permissions',
         'permissions' => ['DELETE']
     ]);

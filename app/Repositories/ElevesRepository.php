@@ -29,6 +29,7 @@ class ElevesRepository implements ElevesRepositoryInterface
     public function store(array $inputs)
     {
         // TODO: Implement store() method.
+        $this->eleve->id =$inputs['id'];
         $this->eleve->nom = $inputs['nom'];
         $this->eleve->prenoms = $inputs['prenoms'];
         $this->eleve->sexe = $inputs['sexe'];
@@ -48,31 +49,11 @@ class ElevesRepository implements ElevesRepositoryInterface
         return $eleve;
     }
 
-    public function updateById($id, array $inputs)
-    {
-        // TODO: Implement updateById() method.
-        $this->eleve = Eleve::where('id',$id)->get();
-        $this->eleve->nom = $inputs['nom'];
-        $this->eleve->prenoms = $inputs['prenoms'];
-        $this->eleve->sexe = $inputs['sexe'];
-        $this->eleve->email = $inputs['email'];
-        $this->eleve->tel1 = $inputs['tel1'];
-        $this->eleve->tel2 = $inputs['tel2'];
-        $this->eleve->dateNaissance = $inputs['dateNaissance'];
-        $this->eleve->adresse = $inputs['adresse'];
-        $this->eleve->nationalite = $inputs['nationalite'];
-        $this->eleve->photo = $inputs['photo'];
-        $this->eleve->infoSup = $inputs['infoSup'];
-        $this->eleve->matricule = $inputs['matricule'];
-        $this->eleve->idUtilisateur = $inputs['idUtilisateur'];
-        $this->eleve->idClasse = $inputs['idClasse'];
-        $this->eleve->save();
-    }
 
-    public function updateByMatricule($matricule, array $inputs)
+    public function updateByMatricule($matricule, $id, array $inputs)
     {
         // TODO: Implement updateByMatricule() method.
-        $this->eleve = Eleve::where('matricule',$matricule)->get();
+        $this->eleve = Eleve::where('matricule',$matricule)->where('id',$id)->first();
         $this->eleve->nom = $inputs['nom'];
         $this->eleve->prenoms = $inputs['prenoms'];
         $this->eleve->sexe = $inputs['sexe'];
@@ -124,6 +105,6 @@ class ElevesRepository implements ElevesRepositoryInterface
     public function findAllByIdClasse($id)
     {
         // TODO: Implement findAllByIdClasse() method.
-        return Eleve::where('idClasse', $id);
+        return DB::table('48c5m_eleves')->where('idClasse',$id)->get();
     }
 }
