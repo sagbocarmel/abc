@@ -12,10 +12,6 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        //
-        $profil = new Profile();
-        $profil->idRole = 8;
-        $profil->idEtablissement = 1;
-        $profil->save();
+
     }
 }

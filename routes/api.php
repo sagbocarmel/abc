@@ -24,10 +24,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+|
+|
+|
+*/
 
 Route::middleware('auth:api')->group( function () {
-    //Users Ressources
 
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    |Users Ressources Routes
+    |
+    |
+    */
     Route::get('abc/users',[
         'uses' => 'API\UserController@getList',
         'as' => 'list_users',
@@ -35,9 +52,9 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['READ']
     ]);
 
-    Route::get('abc/user/{id}',[
+    Route::get('abc/user/{tel}',[
         'uses' => 'API\UserController@show',
-        'as' => 'user_with_id',
+        'as' => 'user_with_tel',
         'middleware'=>'permissions',
         'permissions' => ['READ']
     ]);
@@ -72,7 +89,15 @@ Route::middleware('auth:api')->group( function () {
         ]
     );
 
-    //Roles ressources
+    /*
+     |--------------------------------------------------------------------------
+     | API Routes
+     |--------------------------------------------------------------------------
+     |
+     | Roles ressources Routes
+     |
+     |
+     */
     Route::get('abc/access/roles',[
             'uses' => 'AccessController@getRoles',
             'as' => 'user_roles',
@@ -108,7 +133,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Permissions ressources
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Permissions ressources Routes
+    |
+    |
+    */
 
     Route::get('abc/access/permissions',[
             'uses' => 'AccessController@getPermissions',
@@ -145,8 +178,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Permissions and Roles ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    |Permissions and Roles ressources Routes
+    |
+    |
+    */
     Route::get('abc/access/roles/permissions',[
             'uses' => 'AccessController@getRolesPermissions',
             'as' => 'access',
@@ -177,7 +217,16 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Sections  ressources
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Sections  ressources Routes
+    |
+    |
+    */
     Route::get('abc/sections',[
             'uses' => 'SectionsController@getSections',
             'as' => 'sections',
@@ -213,8 +262,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Notes ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    |  Notes ressources Routes
+    |
+    |
+    */
     Route::get('abc/notes/eleve/{id}/{matricule}',[
             'uses' => 'NotesController@getNotes',
             'as' => 'notes',
@@ -276,9 +332,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-
-    //Matieres ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Matieres ressources Routes
+    |
+    |
+    */
     Route::get('abc/matieres',[
             'uses' => 'MatieresController@getMatieres',
             'as' => 'matieres',
@@ -314,8 +376,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Enseignants ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Enseignants ressources Routes
+    |
+    |
+    */
     Route::get('abc/enseignants',[
             'uses' => 'EnseignantsController@getEnseignants',
             'as' => 'enseignants',
@@ -351,8 +420,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Etablissements ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Etablissements ressources Routes
+    |
+    |
+    */
     Route::get('abc/etablissements',[
             'uses' => 'EtablissementController@getEtablissements',
             'as' => 'etablissements',
@@ -403,8 +479,16 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['READ']
     ]);
 
-    //Evaluation ressources
 
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    |  Evaluation ressources Routes
+    |
+    |
+    */
     Route::get('abc/classe/{id}/evaluations',[
             'uses' => 'EvaluationsController@getEvaluationsByClasse',
             'as' => 'evaluations',
@@ -448,8 +532,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Eleve ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Eleve ressources Routes
+    |
+    |
+    */
     Route::get('abc/etablissement/classe/{id_classe}/eleves',[
             'uses' => 'ElevesController@getElevesByClasse',
             'as' => 'eleves',
@@ -503,8 +594,15 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Classe ressources
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Classe ressources ressources Routes
+    |
+    |
+    */
     Route::get('abc/classes',[
             'uses' => 'ClasseController@getClasses',
             'as' => 'classes',
@@ -540,13 +638,37 @@ Route::middleware('auth:api')->group( function () {
         'permissions' => ['DELETE']
     ]);
 
-    //Moyenne Matieres
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Moyenne Matieres ressources Routes
+    |
+    |
+    */
 
 
-    //Moyenne Periode
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Moyenne Periode ressources Routes
+    |
+    |
+    */
 
-    //Moyenne Annuelles
-
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Moyenne Annuelles ressources Routes
+    |
+    |
+    */
     // template
     Route::get('abc/}',[
             'uses' => '@',

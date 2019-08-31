@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 
@@ -13,14 +12,14 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable;
 
-    protected $table = '48c5m_users';
+    protected $table = '48c5m_Utilisateur';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nom', 'prenoms', 'sexe' ,'email','tel1','tel2','password','idProfile','telephone'
+      'codeEtablissement',  'nom', 'prenoms', 'sexe' ,'email','tel','tel2','password','photo'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -87,5 +86,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profile(){
         return $this->belongsTo('\App\Profile','idProfile');
+    }
+
+    public function findForPassport($username)
+    {
+        return $this->where('tel', $username)->first();
     }
 }

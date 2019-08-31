@@ -7,9 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Appreciation extends Model
 {
     //
-    protected $table = '48c5m_appreciations';
+    protected $table = '48c5m_Appreciations';
 
     protected $fillable = [
-        'idEvaluation', 'idEleve', 'matricule'
+        'codeEtablissement',
+        'codeAnnee',
+        'matriculeEleve',
+        'niveau',
+        'codeClasse',
+        'codeMatiere',
+        'codeEvaluation',
+        'periode',
+        'appreciation',
+        'dateAppreciation'
     ];
 }

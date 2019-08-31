@@ -10,7 +10,4 @@ class Utilisateur extends Model
     /**
      * @var string
      */
-    protected $primaryKey = 'idUtilisateur';
-
-    
 }

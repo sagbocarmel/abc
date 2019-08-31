@@ -1,6 +1,7 @@
 <?php
 
-use App\Etablissement;
+
+use App\Models\Etablissement;
 use Illuminate\Database\Seeder;
 
 class EtablissementSeeder extends Seeder
@@ -14,11 +15,14 @@ class EtablissementSeeder extends Seeder
     {
         //
         $etablissement = new Etablissement();
+        $etablissement->numeroAutorisation = 'ABCSMPRINCIPALSCHOOL20192018LPHAPLATFORMEDATA';
         $etablissement->nom = 'Principale ABC SM';
         $etablissement->description = 'Administrateur des établissement';
-        $etablissement->type = 'Aucun , tout role';
-        $etablissement->nbPeriodesAnnee = 0;
-        $etablissement->methodeCalculMoyennes = 0;
+        $etablissement->type = 'Aucun, tout role';
+        $etablissement->statut = 'Etablissement fictif de managment générale';
+        $etablissement->adresse = 'abc.futurix.tech';
+        $etablissement->tel = 67811382;
+
         try {
             $etablissement->dateCreation = new DateTime();
         } catch (Exception $e) {

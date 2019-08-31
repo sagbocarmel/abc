@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
         //
         // register Swagger for api documentation
         $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
+        $this->app->register(\Reliese\Coders\CodersServiceProvider::class);
 
         $this->app->bind(
             'App\Repositories\ClasseRepositoryInterface',

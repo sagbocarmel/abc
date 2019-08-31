@@ -24,14 +24,15 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'codeEtablissement' => 'required',
             'nom' => 'required',
             'prenoms' => 'required',
             'sexe' => 'required',
             'email' => 'required|email',
-            'tel1' => 'required',
+            'tel' => 'required',
+            'tel2'=> '',
             'password' => 'required',
-            'idProfile' => 'required'
+            'photo' => 'image'
         ];
     }
 }
