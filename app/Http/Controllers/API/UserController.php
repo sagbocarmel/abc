@@ -19,7 +19,7 @@ use \App\Http\Resources\User as UserRessource;
 
 /**
     @OA\Info(
-        description="",
+        description="Ressource Utilisateur",
         version="1.0.0",
         title="ABC School Managment  App API",
      )
@@ -42,6 +42,25 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/abc/register",
+     *     tags={"register"},
+     *     summary="Register new user",
+     *     operationId="registerNewUser",
+     *     @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *      )
+     *     )
+     *     @OA\RequestBody(
+     *         description="Enregistrement d'un nouvel utilisateur",
+     *         required=true
+     *     )
+     * )
+     */
     /**
      * Register api
      * @param Request $request
@@ -66,61 +85,86 @@ class UserController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/abc/new/user",
+     *     tags={"register"},
+     *     summary="Register new user",
+     *     operationId="register",
+     *     @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *      )
+     *     )
+     *     @OA\RequestBody(
+     *         description="Enregistrement d'un nouvel utilisateur",
+     *         required=true
+     *     )
+     * )
+     */
+    /**
+     * abc/new/user
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function registerNewUser(Array $data)
     {
-        $input = $data;
-        $user = User::create($input);
+        $inputs = $data;
+        $inputs['password'] = bcrypt($inputs['password']);
+        $user = User::create($inputs);
 
         $success['token'] = $user->createToken('ABC')->accessToken;
-        $success['name'] = $user->email;
-        $success['id'] = $user->id;
+        $success['mail'] = $user->email;
+        $success['telephone'] = $user->tel;
 
-        return $success;
+        return response()->json($success,200);
     }
 
     /**
-    @OA\Post(
-    path="/abc/login",
-    tags={"Login"},
-    summary="Login",
-    operationId="login",
+        @OA\Post(
+            path="/abc/login",
+            tags={"Login"},
+            summary="Login",
+            operationId="login",
 
-    @OA\Parameter(
-    name="email",
-    in="query",
-    required=true,
-    @OA\Schema(
-    type="string"
-    )
-    ),
-    @OA\Parameter(
-    name="password",
-    in="query",
-    required=true,
-    @OA\Schema(
-    type="string"
-    )
-    ),
-    @OA\Response(
-    response=200,
-    description="Success",
-    @OA\MediaType(
-    mediaType="application/json",
-    )
-    ),
-    @OA\Response(
-    response=401,
-    description="Unauthorized"
-    ),
-    @OA\Response(
-    response=400,
-    description="Invalid request"
-    ),
-    @OA\Response(
-    response=404,
-    description="not found"
-    ),
-    )
+            @OA\Parameter(
+                name="email",
+                in="query",
+                required=true,
+                @OA\Schema(
+                    type="string"
+                )
+            ),
+            @OA\Parameter(
+                name="password",
+                in="query",
+                required=true,
+                @OA\Schema(
+                    type="string"
+                )
+            ),
+            @OA\Response(
+                response=200,
+                description="Success",
+                @OA\MediaType(
+                mediaType="application/json",
+            )
+            ),
+            @OA\Response(
+                response=401,
+                description="Unauthorized"
+            ),
+            @OA\Response(
+                response=400,
+                description="Invalid request"
+            ),
+            @OA\Response(
+                response=404,
+                description="not found"
+            ),
+        )
      **/
 
     /**
@@ -150,6 +194,10 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * abc/users
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getList(){
 
         $users = new UserRessourceCollection(User::all());
@@ -173,31 +221,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
         @OA\Post(
-            path="/abc/user/{id}",
-            tags={"Utilisateur aved le numeros tel"},
+            path="/abc/user/{tel}",
+            tags={"Utilisateur avec le numeros tel"},
             summary="findUtilisateur",
             operationId="show",
 
@@ -248,7 +274,8 @@ class UserController extends Controller
     public function show($tel)
     {
         //
-        $user = $this->userRepository->find($tel);
+        $user0 = Auth::user();
+        $user = $this->userRepository->find($tel, $user0->codeEtablissement);
 
         $response = [
             'success' => true,
@@ -258,37 +285,68 @@ class UserController extends Controller
         return response()->json(['users'=>$response], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. abc/user/{tel}
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tel)
     {
-        //
+        $user0 = Auth::user();
+        $inputs = $request->all();
+        $inputs['password'] = bcrypt($inputs['password']);
+        $user = $this->userRepository->update($tel, $user0->codeEtablissement, $inputs);
+
+        $response = [
+            'success' => true,
+            $user,
+            'message' => 'User with phone '.$tel.' updated successfully.'
+        ];
+        return response()->json(['users'=>$response], 200);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/abc/user/{tel}",
+     *     tags={"delUtilisateur"},
+     *     summary="Supprimer un utilisateur avec son numéros de téléphone",
+     *     description="Supprimer un utilisateur avec son numéros de téléphone",
+     *     operationId="destroy",
+     *     @OA\Parameter(
+     *         name="tel",
+     *         in="path",
+     *         required=true,
+     *         description="tel de l'utilisateur à supprimer de l'établissement actuel ",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *             minimum=8
+     *             maximum=8
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Telephone invalide"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Utilisateur non existant"
+     *     )
+     * ),
+     */
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($tel)
     {
-        //
+        $this->userRepository->delete($tel,Auth::user()->codeEtablissement);
+        return response()->json(['success' => true ,
+            'message' => 'Utilisateur supprimée avec succès'], 200);
     }
 }

@@ -47,45 +47,33 @@ Route::middleware('auth:api')->group( function () {
     */
     Route::get('abc/users',[
         'uses' => 'API\UserController@getList',
-        'as' => 'list_users',
-        'middleware'=>'permissions',
-        'permissions' => ['READ']
+        'as' => 'list_users'
     ]);
 
     Route::get('abc/user/{tel}',[
         'uses' => 'API\UserController@show',
-        'as' => 'user_with_tel',
-        'middleware'=>'permissions',
-        'permissions' => ['READ']
+        'as' => 'user_with_tel'
     ]);
 
     Route::get('abc/users/count',[
         'uses' => 'API\UserController@countUser',
-        'as' => 'user_number',
-        'middleware'=>'permissions',
-        'permissions' => ['READ']
+        'as' => 'user_number'
     ]);
 
     Route::post('abc/new/user',[
-        'uses' => 'API\UserController@create',
-        'as' => 'new_user',
-        'middleware'=>'permissions',
-        'permissions' => ['CREATE']
+        'uses' => 'API\UserController@registerNewUser',
+        'as' => 'new_user'
     ]);
 
-    Route::put('abc/user/{id}',[
+    Route::put('abc/user/{tel}',[
             'uses' => 'API\UserController@update',
-            'as' => 'update_user',
-            'middleware'=>'permissions',
-            'permissions' => ['UPDATE']
+            'as' => 'update_user'
         ]
     );
 
-    Route::delete('abc/user/{id}',[
+    Route::delete('abc/user/{tel}',[
             'uses' => 'API\UserController@delete',
-            'as' => 'delete_user',
-            'middleware'=>'permissions',
-            'permissions' => ['DELETE']
+            'as' => 'delete_user'
         ]
     );
 

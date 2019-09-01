@@ -11,7 +11,8 @@ namespace App\Repositories;
 
 interface UserRepositoryInterface
 {
-    public function find($id);
-    public function findAll();
-    public function update($id, Array $inputs);
+    public function find($tel, $etablissement);
+    public function findAll($etablissement);
+    public function update($tel, $etablissement, Array $inputs);
+    public function delete($tel, $etablissement);
 }
