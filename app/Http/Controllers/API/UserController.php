@@ -323,7 +323,7 @@ class UserController extends Controller
      *         @OA\Schema(
      *             type="integer",
      *             format="int64",
-     *             minimum=8
+     *             minimum=8,
      *             maximum=8
      *         )
      *     ),
