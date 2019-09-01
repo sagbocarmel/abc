@@ -54,7 +54,7 @@ class UserController extends Controller
      *      @OA\MediaType(
      *          mediaType="application/json",
      *      )
-     *     )
+     *     ),
      *     @OA\RequestBody(
      *         description="Enregistrement d'un nouvel utilisateur",
      *         required=true
