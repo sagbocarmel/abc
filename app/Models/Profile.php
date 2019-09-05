@@ -51,6 +51,6 @@ class Profile extends Eloquent
 
 	public function role()
 	{
-		return $this->belongsTo(\App\Models\Role::class, 'codeRole');
+		return $this->hasOne(\App\Models\Role::class, 'codeRole');
 	}
 }

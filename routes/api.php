@@ -418,53 +418,66 @@ Route::middleware('auth:api')->group( function () {
     |
     */
     Route::get('abc/etablissements',[
-            'uses' => 'EtablissementController@getEtablissements',
-            'as' => 'etablissements',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+            'uses' => 'EtablissementController@viewAny',
+             'middleware'=>['permissions', 'elements'],
+             'roles' => ['SuperAdmin'],
+             'acces' => ['S'],
+             'elts' => ['48c5m_Etablissement']
         ]
     );
 
     Route::get('abc/etablissement/{id}',[
             'uses' => 'EtablissementController@show',
             'as' => 'etablissement_with_id',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Etablissement']
         ]
     );
     Route::put('abc/etablissement/{id}',[
             'uses' => 'EtablissementController@update',
             'as' => 'update_etablissement',
-            'middleware'=>'permissions',
-            'permissions' => ['UPDATE']
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Etablissement']
         ]
     );
     Route::post('abc/etablissement',[
         'uses' => 'EtablissementController@create',
         'as' => 'new_etablissement',
-        'middleware'=>'permissions',
-        'permissions' => ['CREATE']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Etablissement']
     ]);
 
     Route::delete('abc/etablissement/{id}',[
         'uses' => 'EtablissementController@destroy',
         'as' => 'delete_etablissement',
-        'middleware'=>'permissions',
-        'permissions' => ['DELETE']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Etablissement']
     ]);
 
     Route::get('abc/etablissement/{id}/classes',[
         'uses' => 'EtablissementController@allClasses',
         'as' => 'all_classe',
-        'middleware'=>'permissions',
-        'permissions' => ['READ']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Etablissement']
     ]);
 
     Route::get('abc/etablissement/{id}/users/list',[
         'uses' => 'EtablissementsController@getListUsers',
         'as' => 'etablissement_list_users',
-        'middleware'=>'permissions',
-        'permissions' => ['READ']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Etablissement']
     ]);
 
 
@@ -539,17 +552,13 @@ Route::middleware('auth:api')->group( function () {
 
     Route::get('abc/eleve/{id}',[
             'uses' => 'ElevesController@show',
-            'as' => 'eleve_with_id',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+            'as' => 'eleve_with_id'
         ]
     );
 
     Route::get('abc/eleve/matricule/{matricule}',[
             'uses' => 'ElevesController@showByMatricule',
-            'as' => 'eleve_with_matricule',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+            'as' => 'eleve_with_matricule'
         ]
     );
 

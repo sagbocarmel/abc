@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\OtherUserRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\UtilisateurEtablissement;
 use App\Repositories\UserRepository;
 use App\Models\Utilisateur as User;
 use Illuminate\Http\Request;
@@ -19,13 +21,10 @@ use \App\Http\Resources\User as UserRessource;
 
 /**
     @OA\Info(
-        description="Ressource Utilisateur",
+        description="Ressource ABC API",
         version="1.0.0",
         title="ABC School Managment  App API",
-     )
- **/
-
-/**
+     ),
   @OA\SecurityScheme(
         securityScheme="OAUTH 2.0",
           type="http"
@@ -43,25 +42,6 @@ class UserController extends Controller
     }
 
     /**
-     * @OA\Post(
-     *     path="/abc/register",
-     *     tags={"register"},
-     *     summary="Register new user",
-     *     operationId="registerNewUser",
-     *     @OA\Response(
-     *      response=200,
-     *      description="Success",
-     *      @OA\MediaType(
-     *          mediaType="application/json",
-     *      )
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Enregistrement d'un nouvel utilisateur",
-     *         required=true
-     *     )
-     * )
-     */
-    /**
      * Register api
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -70,7 +50,21 @@ class UserController extends Controller
     {
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $userInput = [];
+        $userInput['nom'] = $input['nom'];
+        $userInput['prenoms'] = $input['prenoms'];
+        $userInput['sexe'] = $input['sexe'];
+        $userInput['email'] = $input['email'];
+        $userInput['tel'] = $input['tel'];
+        $userInput['tel2'] = $input['tel2'];
+        $userInput['password'] = $input['password'];
+        $userInput['photo'] = $input['photo'];
+
+        $user = User::create($userInput);
+        $userEtablissement = new UtilisateurEtablissement();
+        $userEtablissement->tel = $user->tel;
+        $userEtablissement->codeEtablissement = $input['codeEtablissement'];
+        $userEtablissement->save();
 
         $success['token'] = $user->createToken('ABC')->accessToken;
         $success['mail'] = $user->email;
@@ -88,12 +82,99 @@ class UserController extends Controller
     /**
      * @OA\Post(
      *     path="/abc/new/user",
-     *     tags={"register"},
-     *     summary="Register new user",
+     *     tags={"Register new User"},
+     *     summary="Register new user with User Resource",
      *     operationId="register",
+     *     @OA\Parameter(
+     *       name="codeEtablissement",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="codeEtablissementUtilisateur",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="nom",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="prenoms",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="sexe",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="email",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="tel",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="integer"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="tel2",
+     *      in="query",
+     *      required=false,
+     *       @OA\Schema(
+     *       type="integer"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="password",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="photo",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="image"
+     *       )
+     *       ),
      *     @OA\Response(
      *      response=200,
      *      description="Success",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *      )
+     *     ),
+     *     @OA\Response(
+     *      response=400,
+     *      description="Erreur",
      *      @OA\MediaType(
      *          mediaType="application/json",
      *      )
@@ -109,28 +190,56 @@ class UserController extends Controller
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
-    public function registerNewUser(Array $data)
+    public function registerNewUser(OtherUserRequest $request)
     {
-        $inputs = $data;
-        $inputs['password'] = bcrypt($inputs['password']);
-        $user = User::create($inputs);
+        if($this->userRepository->find($request->tel,$request->codeEtablissementUtilisateur) == null &&
+            $this->userRepository->find($request->tel, $request->codeEtablissement) == null){
+            $input = $request->all();
+            $input['password'] = bcrypt($input['password']);
+            $userInput = [];
+            $userInput['nom'] = $input['nom'];
+            $userInput['prenoms'] = $input['prenoms'];
+            $userInput['sexe'] = $input['sexe'];
+            $userInput['email'] = $input['email'];
+            $userInput['tel'] = $input['tel'];
+            $userInput['tel2'] = $input['tel2'];
+            $userInput['password'] = $input['password'];
+            $userInput['photo'] = $input['photo'];
 
-        $success['token'] = $user->createToken('ABC')->accessToken;
-        $success['mail'] = $user->email;
-        $success['telephone'] = $user->tel;
+            $user = User::create($userInput);
+            $userEtablissement = new UtilisateurEtablissement();
+            $userEtablissement->tel = $user->tel;
+            $userEtablissement->codeEtablissement = $input['codeEtablissementUtilisateur'];
+            $userEtablissement->save();
 
-        return response()->json($success,200);
+            $success['token'] = $user->createToken('ABC')->accessToken;
+            $success['mail'] = $user->email;
+            $success['telephone'] = $user->tel;
+            $success['codeEtablissementUtilisateur'] = $userEtablissement->codeEtablissement;
+            return response()->json(['data'=>$success,
+                'message' => 'New user created'],200);
+        }
+        return response()->json([
+            'errorMessage' => ' Utilisateur existant'],400);
     }
 
     /**
         @OA\Post(
             path="/abc/login",
-            tags={"Login"},
-            summary="Login",
+            tags={"Login user in"},
+            summary="Login user phone number and password to receive generated token",
             operationId="login",
 
             @OA\Parameter(
-                name="email",
+                name="tel",
+                in="query",
+                required=true,
+                @OA\Schema(
+                    type="string"
+                )
+            ),
+            @OA\Parameter(
+                name="codeEtablissement",
                 in="query",
                 required=true,
                 @OA\Schema(
@@ -180,11 +289,8 @@ class UserController extends Controller
         ];
         if (Auth::attempt([
             'tel' => $request->tel,
-            'password' => $request->password]) ||
-            [
-                'email' => $request->email,
-                'password' => $request->password]) {
-            $user = auth()->user();
+            'password' => $request->password])) {
+            $user = Auth::user();
             $success['token'] = $user->createToken('ABC')->accessToken;
 
             return response()->json(['success' => $success], 200);
@@ -221,12 +327,19 @@ class UserController extends Controller
     }
 
     /**
-        @OA\Post(
+        @OA\Get(
             path="/abc/user/{tel}",
-            tags={"Utilisateur avec le numeros tel"},
-            summary="findUtilisateur",
+            tags={"Find user using phone number"},
+            summary="Find in user resource a user with tel as id",
             operationId="show",
-
+            @OA\Parameter(
+                name="codeEtablissement",
+                in="query",
+                required=true,
+                @OA\Schema(
+                type="string"
+                )
+            ),
             @OA\Parameter(
                 name="tel",
                 in="query",
@@ -264,27 +377,123 @@ class UserController extends Controller
             ),
         )
      **/
-
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $tel
      * @return \Illuminate\Http\Response
      */
     public function show($tel)
     {
-        //
-        $user0 = Auth::user();
-        $user = $this->userRepository->find($tel, $user0->codeEtablissement);
+        $user = $this->userRepository->find($tel, request()->codeEtablissement);
 
+        if($user ==  null)
+        {
+            $response = [
+                'success' => true,
+                'message' => 'Aucun utilisateur trouvé'
+            ];
+            return response()->json(['users'=>$response], 200);
+        }
         $response = [
             'success' => true,
-             $user,
+            $user,
             'message' => 'User with phone '.$tel.' retrieved successfully.'
         ];
-        return response()->json(['users'=>$response], 200);
+        return response()->json(['data'=>$response], 200);
     }
 
+    /**
+     * @OA\Put(
+     *     path="/abc/user/{tel}",
+     *     tags={"update in resource Utilisateur"},
+     *     summary="Update user using his phone number",
+     *     operationId="update",
+     *     @OA\Parameter(
+     *       name="codeEtablissement",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="nom",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="prenoms",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="sexe",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="email",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="tel",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="integer"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="tel2",
+     *      in="query",
+     *      required=false,
+     *       @OA\Schema(
+     *       type="integer"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="password",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="string"
+     *       )
+     *       ),
+     *     @OA\Parameter(
+     *       name="photo",
+     *      in="query",
+     *      required=true,
+     *       @OA\Schema(
+     *       type="image"
+     *       )
+     *       ),
+     *     @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *      )
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Mis à jour d'un utilisateur",
+     *         required=true
+     *     )
+     * )
+     */
 
     /**
      * Update the specified resource in storage. abc/user/{tel}
@@ -295,16 +504,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $tel)
     {
-        $user0 = Auth::user();
         $inputs = $request->all();
         $inputs['password'] = bcrypt($inputs['password']);
-        $user = $this->userRepository->update($tel, $user0->codeEtablissement, $inputs);
+        $user = $this->userRepository->update($tel, $request->codeEtablissement, $inputs);
 
+        if($user == null)
+        {
+            $response = [
+                'success' => true,
+                'message' => 'No User'
+            ];
+            return response()->json(['users'=>$response], 200);
+        }
         $response = [
             'success' => true,
             $user,
             'message' => 'User with phone '.$tel.' updated successfully.'
         ];
+
         return response()->json(['users'=>$response], 200);
     }
 
@@ -327,9 +544,22 @@ class UserController extends Controller
      *             maximum=8
      *         )
      *     ),
+     *     @OA\Parameter(
+     *         name="codeEtablissement",
+     *         in="path",
+     *         required=true,
+     *         description="Code de l'établissement de l'utilisateur connecté de l'établissement actuel ",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=400,
      *         description="Telephone invalide"
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Non autorisé"
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -345,8 +575,18 @@ class UserController extends Controller
      */
     public function destroy($tel)
     {
-        $this->userRepository->delete($tel,Auth::user()->codeEtablissement);
-        return response()->json(['success' => true ,
-            'message' => 'Utilisateur supprimée avec succès'], 200);
+
+        if($tel == Auth::user()->tel)
+        {
+            return response()->json([
+                'error' => 'Impossible de supprimer cet utilisateur'], 403);
+        }
+        $response = $this->userRepository->delete($tel,request()->codeEtablissement);
+        if($response == false){
+            return response()->json(['success' => $response ,
+                'message' => 'Operation end successfully'], 200);
+        }
+        return response()->json(['success' => $response ,
+            'message' => 'Operation end successfully'], 200);
     }
 }

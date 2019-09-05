@@ -26,9 +26,6 @@ class Create48C5MNiveauTable extends Migration
             $table->string('codeEtablissement', 45)->nullable(false);
             $table->unsignedInteger('periodesAnnee');
             $table->unsignedInteger('methodeCalculMoyennes');
-            $table->time('heureDebutCours');
-            $table->time('heureFinCours');
-
             $table->index(["codeEtablissement"], 'fk_48c5m_Niveau_48c5m_Etablissement1_idx');
 
 

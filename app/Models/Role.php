@@ -34,7 +34,7 @@ class Role extends Eloquent
 
 	public function droits()
 	{
-		return $this->hasMany(\App\Models\Droit::class, 'codeRole');
+		return $this->belongsToMany(\App\Models\Droit::class, 'codeRole');
 	}
 
 	public function profiles()

@@ -22,7 +22,6 @@ class Create48C5MUtilisateurTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('codeEtablissement', 45)->nullable(false);
             $table->string('nom', 45);
             $table->string('prenoms', 45);
             $table->char('sexe');
@@ -32,15 +31,8 @@ class Create48C5MUtilisateurTable extends Migration
             $table->string('password', 100);
             $table->binary('photo')->nullable();
             $table->rememberToken();
-            $table->index(["codeEtablissement"], 'fk_48c5m_Utilisateur_48c5m_Etablissement1_idx');
 
-
-            $table->foreign('codeEtablissement', 'fk_48c5m_Utilisateur_48c5m_Etablissement1_idx')
-                ->references('numeroAutorisation')->on('48c5m_Etablissement')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-
-            $table->primary(['codeEtablissement','tel']);
+            $table->primary('tel','id');
             $table->timestamps();
         });
     }

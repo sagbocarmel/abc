@@ -1,0 +1,532 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ABC School Managment  App API",
+        "description": "Ressource ABC API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/abc/new/user": {
+            "post": {
+                "tags": [
+                    "Register new User"
+                ],
+                "summary": "Register new user with User Resource",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "codeEtablissement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "codeEtablissementUtilisateur",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prenoms",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sexe",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "tel2",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "photo",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "image"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Enregistrement d'un nouvel utilisateur",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/abc/login": {
+            "post": {
+                "tags": [
+                    "Login user in"
+                ],
+                "summary": "Login user phone number and password to receive generated token",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "tel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "codeEtablissement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/abc/user/{tel}": {
+            "get": {
+                "tags": [
+                    "Find user using phone number"
+                ],
+                "summary": "Find in user resource a user with tel as id",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "codeEtablissement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "update in resource Utilisateur"
+                ],
+                "summary": "Update user using his phone number",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "codeEtablissement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prenoms",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sexe",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "tel2",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "photo",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "image"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Mis à jour d'un utilisateur",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "delUtilisateur"
+                ],
+                "summary": "Supprimer un utilisateur avec son numéros de téléphone",
+                "description": "Supprimer un utilisateur avec son numéros de téléphone",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "tel",
+                        "in": "path",
+                        "description": "tel de l'utilisateur à supprimer de l'établissement actuel ",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "maximum": 8,
+                            "minimum": 8
+                        }
+                    },
+                    {
+                        "name": "codeEtablissement",
+                        "in": "path",
+                        "description": "Code de l'établissement de l'utilisateur connecté de l'établissement actuel ",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Telephone invalide"
+                    },
+                    "403": {
+                        "description": "Non autorisé"
+                    },
+                    "404": {
+                        "description": "Utilisateur non existant"
+                    }
+                }
+            }
+        },
+        "/abc/etablissement/{id}": {
+            "get": {
+                "tags": [
+                    "Find Etablissement "
+                ],
+                "summary": "Find in Etablissement resource using numeroAutorisation as id",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "codeEtablissement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Update Existing Etablissement"
+                ],
+                "summary": "Update existing etablissement Ressource Établissement",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "codeEtablissement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "numeroAutorisation",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "logo",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "image"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "statut",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "adresse",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bp",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dateCreation",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Mis à jour d'un ;etablissement",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "OAUTH 2.0": {
+                "type": "http"
+            }
+        }
+    }
+}

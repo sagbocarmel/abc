@@ -9,7 +9,8 @@
 namespace App\Repositories;
 
 
-use App\Etablissement;
+use App\Models\Etablissement;
+use Carbon\Carbon;
 use PhpParser\Node\Expr\Array_;
 
 class EtablissementRepository implements EtablissementRepositoryInterface
@@ -27,41 +28,47 @@ class EtablissementRepository implements EtablissementRepositoryInterface
 
     public function save(Array $inputs)
     {
-        // TODO: Implement save() method.
-        $etablissement = new $this->etablissement;
-        $this->store($etablissement, $inputs);
-
-        return $etablissement;
+        return $this->store($this->etablissement, $inputs);
     }
 
     public function store(Etablissement $etablissement, Array $inputs)
     {
+        $etablissement->numeroAutorisation = $inputs['numeroAutorisation'];
         $etablissement->nom = $inputs['nom'];
-        $etablissement->description = $inputs['description'];
-        $etablissement->type = $inputs['type'];
-        $etablissement->nbPeriodesAnnee = $inputs['nbPeriodesAnnee'];
-        $etablissement->methodeCalculMoyennes = $inputs['methodeCalculMoyennes'];
         $etablissement->logo = $inputs['logo'];
-        $etablissement->dateCreation = $inputs['dateCreation'];
+        $etablissement->type = $inputs['type'];
+        $etablissement->statut = $inputs['statut'];
+        $etablissement->adresse = $inputs['adresse'];
+        $etablissement->bp = $inputs['bp'];
+        $etablissement->tel = $inputs['tel'];
+        $etablissement->email = $inputs['email'];
+        try {
+            $etablissement->dateCreation = new Carbon($inputs['dateCreation']);}
+            catch (\Exception $e) {
+        }
+        $etablissement->description = $inputs['description'];
         $etablissement->save();
+        return $etablissement;
     }
 
     public function find($id)
     {
-        // TODO: Implement find() method.
         return Etablissement::findOrFail($id);
     }
 
     public function update($id, Array $inputs)
     {
-        // TODO: Implement update() method.
         $etablissement_up = Etablissement::find($id);
         return $this->store($etablissement_up, $inputs);
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
          return Etablissement::destroy($id);
+    }
+
+    public function findAll()
+    {
+        return Etablissement::all();
     }
 }

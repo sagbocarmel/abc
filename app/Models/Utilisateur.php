@@ -7,11 +7,11 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
-use Reliese\Database\Eloquent\Model as Eloquent;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\HasApiTokens;
 /**
  * Class 48c5mUtilisateur
  * 
@@ -37,7 +37,8 @@ class Utilisateur extends  Authenticatable implements MustVerifyEmail
     use HasApiTokens, Notifiable;
 
 	protected $table = '48c5m_Utilisateur';
-	public $incrementing = false;
+    protected $primaryKey = 'tel';
+    public $incrementing = false;
 
 	protected $casts = [
 		'tel' => 'int',
@@ -46,7 +47,7 @@ class Utilisateur extends  Authenticatable implements MustVerifyEmail
 	];
 
 	protected $hidden = [
-		'password'
+		'password', 'remember_token'
 	];
 
 	protected $fillable = [
@@ -61,57 +62,36 @@ class Utilisateur extends  Authenticatable implements MustVerifyEmail
 		'photo'
 	];
 
-	public function etablissement()
+    public function utilisateur_etablissements()
 	{
-		return $this->belongsTo(\App\Models\Etablissement::class, 'codeEtablissement');
+		return $this->hasMany(\App\Models\UtilisateurEtablissement::class, 'tel');
 	}
 
-	public function profiles()
-	{
-		return $this->hasMany(\App\Models\Profile::class, 'codeEtablissement');
-	}
-
-	public function canCreate($element){
+	public function canCreate($etablissement, $element){
 	    $access = ['S', 'C', 'A','B'];
-	    return $this->getAccessState($element, $access);
+	    return $this->getAccessState($etablissement, $element, $access);
     }
 
-	public function canUpdate($element){
+	public function canUpdate($etablissement, $element){
         $access = ['S', 'U', 'A','E'];
-        return $this->getAccessState($element, $access);
+        return $this->getAccessState($etablissement,$element, $access);
     }
 
-    public function canRead($element){
+    public function canRead($etablissement, $element){
         $access = ['S', 'R', 'A','B', 'E'];
-        return $this->getAccessState($element, $access);
+        return $this->getAccessState($etablissement, $element, $access);
     }
 
-    public function canDelete($element){
+    public function canDelete($etablissement, $element){
         $access = ['S', 'D'];
-        return $this->getAccessState($element, $access);
+        return $this->getAccessState($etablissement,$element, $access);
     }
 
-    public function hasElement($element, $acces){
-        $profiles = $this->profiles();
-        foreach ($profiles as $profile){
-            $userRole =  $profile->role();
-            $droits = $userRole->droits();
-            foreach ($droits as $droit){
-                if($droit->element()->codeElement == $element &&
-                    $droit->droit == $acces)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public function getAccessState($element, $access)
+    public function getAccessState($etablissement,$element, $access)
     {
         foreach ($access as $acces)
         {
-            if($this->hasElement($element, $acces))
+            if($this->hasElement($etablissement ,$element, $acces))
             {
                 return true;
             }
@@ -119,6 +99,93 @@ class Utilisateur extends  Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function hasAllElementAccess($eta, $elements, $access){
+        $var = false;
+        foreach ($elements as $element)
+        {
+            if($this->hasElement($eta, $element, $access)){
+                $var = true;
+            }
+            else
+            {
+                $var = false;
+                break;
+            }
+        }
+        return $var;
+    }
+
+    public function hasElement($eta ,$element, $acces){
+        $ue = UtilisateurEtablissement::where('codeEtablissement', $eta)->
+        where('tel',$this->tel)->get();
+
+        if($ue != null)
+        {
+            $profiles = Profile::where('codeEtablissement', $eta)->
+            where('telUtilisateur',$this->tel)->get();
+            foreach ($profiles as $profile) {
+                // =  $profile->role();
+                $userRole = Role::where('codeRole',$profile->codeRole)->first();
+                $droits = Droit::where('codeRole',$userRole->codeRole)->where('codeElement',$element)->
+                    get();
+                foreach ($droits as $droit){
+                    if(is_array($acces))
+                    {
+                        foreach ($acces as $acce)
+                        {
+                            if($droit->droit == $acce)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    else{
+                        if($droit->droit == $acces)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public function hasAnyPermissions($role , $etablissement)
+    {
+        if(is_array($role))
+        {
+            foreach ($role as $permission)
+            {
+                if($this->hasRole($permission, $etablissement))
+                {
+                    return true;
+                }
+            }
+        }
+        else if ($this->hasRole($role, $etablissement))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function hasRole($role, $etablissement){
+        $ue = UtilisateurEtablissement::where('codeEtablissement', $etablissement)->
+        where('tel',$this->tel)->first();
+        if($ue != null)
+        {
+            $profiles = Profile::where('codeEtablissement', $etablissement)->
+            where('telUtilisateur',$this->tel)->get();
+            foreach ($profiles as $profile){
+                 if($profile->codeRole == $role)
+                 {
+                     return true;
+                 }
+            }
+        }
+        return false;
+    }
     /**
      * Determine if the user has verified their email address.
      *
@@ -147,5 +214,23 @@ class Utilisateur extends  Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         // TODO: Implement sendEmailVerificationNotification() method.
+    }
+
+
+    public function permissions()
+    {
+        $permis = DB::table('48c5m_permissions_de_roles')
+            ->join('48c5m_permissions', '48c5m_permissions_de_roles.idPermission', '=', '48c5m_permissions.id')
+            ->join('48c5m_roles', '48c5m_permissions_de_roles.idRole', '=', '48c5m_roles.id')
+            ->join('48c5m_profiles','48c5m_roles.id', '=', '48c5m_profiles.idRole')
+            ->select('48c5m_permissions.titre')->where('48c5m_profiles.id',$this->idProfile)
+            ->get();
+        return $permis;
+    }
+
+
+
+    public function profile(){
+        return $this->belongsTo('\App\Profile','idProfile');
     }
 }

@@ -17,4 +17,5 @@ interface EtablissementRepositoryInterface
     public function find($id);
     public function update($id, Array $inputs);
     public function delete($id);
+    public function findAll();
 }

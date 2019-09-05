@@ -44,8 +44,8 @@ class Create48C5MProfileTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('codeEtablissement', 'fk_48c5m_Profile_48c5m_Utilisateur1_idx')
-                ->references('codeEtablissement')->on('48c5m_Utilisateur')
+            $table->foreign(['codeEtablissement','telUtilisateur'], 'fk_48c5m_Profile_48c5m_Utilisateur1_idx')
+                ->references(['codeEtablissement','tel'])->on('48c5m_UtilisateurEtablissement')
                 ->onDelete('no action')
                 ->onUpdate('no action');
             $table->primary(['codeEtablissement', 'telUtilisateur'], 'idProfile');

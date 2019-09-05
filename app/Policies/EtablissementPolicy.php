@@ -13,12 +13,13 @@ class EtablissementPolicy
     /**
      * Determine whether the user can view any etablissements.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\Utilisateur  $user
+     * @param  \App\Models\Etablissement  $etablissement
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user, Etablissement $etablissement)
     {
-        return $user->canRead($this->element);
+         return ($user != null && $etablissement !=null);
     }
 
     /**
@@ -30,7 +31,11 @@ class EtablissementPolicy
      */
     public function view(User $user, Etablissement $etablissement)
     {
-        return $user->canRead($this->element);
+        if($user->hasRole('SuperAdmin') || $user->hasRole('SuperAdmin0'))
+        {
+            return true;
+        }
+        return ($user->canRead($etablissement,$this->element));
     }
 
     /**
@@ -39,9 +44,9 @@ class EtablissementPolicy
      * @param  \App\Models\Utilisateur  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Etablissement $etablissement)
     {
-        return $user->canCreate($this->element);
+        return $user->canCreate($etablissement,$this->element);
     }
 
     /**
@@ -53,7 +58,8 @@ class EtablissementPolicy
      */
     public function update(User $user, Etablissement $etablissement)
     {
-        return $user->canUpdate($this->element);
+        //return $user->canUpdate($etablissement,$this->element);
+        return true;
     }
 
     /**
@@ -65,7 +71,7 @@ class EtablissementPolicy
      */
     public function delete(User $user, Etablissement $etablissement)
     {
-        return $user->canDelete($this->element);
+        return $user->canDelete($etablissement,$this->element);
     }
 
     /**
@@ -89,6 +95,6 @@ class EtablissementPolicy
      */
     public function forceDelete(User $user, Etablissement $etablissement)
     {
-        return $user->canDelete($this->element);
+        return $user->canDelete($etablissement,$this->element);
     }
 }

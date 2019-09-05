@@ -13,19 +13,18 @@ class CheckPermission
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next){
         if($request->user() == null)
         {
             return response('Accès Reffusé', 401);
         }
         $actions = $request->route()->getAction();
-        $permissions = isset($actions['permissions']) ? $actions['permissions']: null;
+        $roles = isset($actions['roles']) ? $actions['roles']: null;
 
-        if($request->user()->hasAnyPermissions($permissions) || !$permissions)
+        if($request->user()->hasAnyPermissions($roles, $request->codeEtablissement) || !$roles)
         {
             return $next($request);
         }
-        return response('Accès Reffusé', 401);
+        return response()->json(["message"=>"Accès Reffusé"], 401);
     }
 }

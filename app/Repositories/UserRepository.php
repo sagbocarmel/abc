@@ -8,9 +8,8 @@
 
 namespace App\Repositories;
 
-
-use App\User;
 use App\Models\Utilisateur;
+use App\Models\UtilisateurEtablissement;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -27,7 +26,12 @@ class UserRepository implements UserRepositoryInterface
     public function find($tel, $etablissement)
     {
         // TODO: Implement find() method.
-        return $this->user->where('codeEtblissement',$etablissement)->where('tel',$tel)->firstOrFail();
+        $ue = UtilisateurEtablissement::where('codeEtablissement',$etablissement)->where('tel',$tel)->first();
+        if($ue == null)
+        {
+            return null;
+        }
+        return $this->user->where('tel',$tel)->firstOrFail();
     }
 
     public function findAll($etablissement)
@@ -38,7 +42,12 @@ class UserRepository implements UserRepositoryInterface
 
     public function update($tel, $etablissement, array $inputs)
     {
-        $this->user = $this->user->where('codeEtblissement',$etablissement)->where('tel',$tel)->firstOrFail();
+        $ue = UtilisateurEtablissement::where('codeEtablissement',$etablissement)->where('tel',$tel)->first();
+        if($ue == null)
+        {
+            return null;
+        }
+        $this->user = $this->user->where('tel',$tel)->firstOrFail();
         $this->user->nom = $inputs['nom'];
         $this->user->prenoms = $inputs['prenoms'];
         $this->user->sexe = $inputs['sexe'];
@@ -53,6 +62,11 @@ class UserRepository implements UserRepositoryInterface
 
     public function delete($tel, $etablissement)
     {
-        return $this->user->where('codeEtblissement',$etablissement)->where('tel',$tel)->delete();
+        $ue = UtilisateurEtablissement::where('codeEtablissement',$etablissement)->where('tel',$tel)->first();
+        if($ue == null)
+        {
+            return false;
+        }
+        return $this->user->where('tel',$tel)->delete();
     }
 }
