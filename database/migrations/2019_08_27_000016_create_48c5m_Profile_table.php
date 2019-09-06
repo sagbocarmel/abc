@@ -27,20 +27,13 @@ class Create48C5MProfileTable extends Migration
             $table->string('codeRole', 45)->nullable(false);
             $table->char('niveau');
 
-            $table->index(["codeEtablissement", "telUtilisateur"], 'fk_48c5m_Profile_48c5m_Utilisateur1_idx');
-
-            $table->index(["niveau"], 'fk_48c5m_Profile_48c5m_Niveau1_idx');
-
-            $table->index(["codeRole"], 'fk_48c5m_Role_has_48c5m_Etablissement_48c5m_Role1_idx');
-
-
             $table->foreign('codeRole', 'fk_48c5m_Role_has_48c5m_Etablissement_48c5m_Role1_idx')
                 ->references('codeRole')->on('48c5m_Role')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('niveau', 'fk_48c5m_Profile_48c5m_Niveau1_idx')
-                ->references('niveau')->on('48c5m_Niveau')
+            $table->foreign(['niveau','codeEtablissement'])
+                ->references(['niveau','codeEtablissement'])->on('48c5m_Niveau')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

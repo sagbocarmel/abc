@@ -2,45 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25dcaae7-73a3-44ed-8b26-0276ebc3b7ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/AnneeScolaireRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/AnneeScolaireRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CoursRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CoursRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/DroitsRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/DroitsRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/InscriptionRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/InscriptionRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/NiveauRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/NiveauRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_08_27_000001_create_sections_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AccessController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AccessController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaire.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClasseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClasseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CoursController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElevesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElevesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MatieresController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MatieresController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NiveauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NiveauController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClassesRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClassesRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ElevesRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ElevesRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/MatieresRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/MatieresRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AuthUtilisateur.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Cour.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ClasseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ClasseRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ClasseRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ClasseRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ElevesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ElevesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ElevesRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ElevesRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/MatieresRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/MatieresRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ProfileRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ProfileRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/RoleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_28_000015_create_48c5m_AnneeScolaireEtablissement_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_28_000015_create_48c5m_AnneeScolaireEtablissement_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/NiveauSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/NiveauSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,16 +54,18 @@
         <item name="abc_s_m: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="48c5m_Niveau: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="abc_s_m@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="abc_s_m: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="48c5m_Profile: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.editorconfig">
           <provider selected="true" editor-type-id="text-editor" />
@@ -149,11 +113,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="246">
               <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -181,7 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EtablissementController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaire.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Media/AnneeScolaireEtablissement.php" />
@@ -232,6 +204,7 @@
         <option value="$PROJECT_DIR$/app/Repositories/ElevesRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/InscriptionController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php" />
       </list>
     </option>
   </component>
@@ -500,18 +473,18 @@
       <workItem from="1567576200009" duration="29968000" />
       <workItem from="1567624069384" duration="23340000" />
       <workItem from="1567714937267" duration="10746000" />
-      <workItem from="1567750234266" duration="25469000" />
+      <workItem from="1567750234266" duration="25907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="548687000" />
+    <option name="totallyTimeSpent" value="549125000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="27" width="1326" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8388998" visible="true" weight="0.24375" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8388998" visible="true" weight="0.28671876" />
       <window_info id="Structure" order="1" sideWeight="0.1611002" side_tool="true" weight="0.2359375" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -531,16 +504,13 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.1953125" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.20625" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/seeds/ProfileSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementRepositoryInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -847,6 +817,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
         </state>
       </provider>
     </entry>
