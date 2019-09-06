@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AnneeScolaireEtablissementRequest;
-use App\Models\AnneeScolaireEtablissement;
-use App\Repositories\AnneeScolaireEtablissementRepository;
+use App\Http\Requests\AnneeScolaireRequest;
+use App\Models\AnneeScolaire;
+use App\Repositories\AnneeScolaireRepository;
 use Illuminate\Http\Request;
 
-class AnneeScolaireEtablissementController extends Controller
+class AnneeScolaireController extends Controller
 {
-    protected $anneScolaireEtablissementRepository;
-
+    protected $anneeScolaireRepository;
     /**
-     * AnneeScolaireEtablissementController constructor.
-     * @param $anneScolaireEtablissementRepository
+     * AnneeScolaireController constructor.
      */
-    public function __construct(AnneeScolaireEtablissementRepository $anneScolaireEtablissementRepository)
+    public function __construct(AnneeScolaireRepository $anneeScolaireRepository)
     {
-        $this->anneScolaireEtablissementRepository = $anneScolaireEtablissementRepository;
+        $this->anneeScolaireRepository = $anneeScolaireRepository;
     }
 
 
@@ -28,7 +26,7 @@ class AnneeScolaireEtablissementController extends Controller
      */
     public function index()
     {
-        $annee= $this->anneScolaireEtablissementRepository->findAll(request()->codeEtablissement);
+        $annee= $this->anneeScolaireRepository->findAll();
 
         $response = [
             'success' => true,
@@ -37,23 +35,19 @@ class AnneeScolaireEtablissementController extends Controller
         return response()->json(['data' => $response], 200);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AnneeScolaireEtablissementRequest $request)
+    public function store(AnneeScolaireRequest $request)
     {
         $data = [
             'codeAnnee' => $request->anneeScolaire,
-            'codeEtablissement' => $request->codeEtablissement,
-            'dateFermeture' => $request->dateFermeture,
-            'statut' => $request->statut
         ];
-        $annee = new AnneeScolaireEtablissement();
-        $annee = $this->anneScolaireEtablissementRepository->store($annee ,$data);
+
+        $annee= $this->anneeScolaireRepository->store($data['codeAnnee']);
 
         $response = [
             'success' => true,
@@ -70,7 +64,7 @@ class AnneeScolaireEtablissementController extends Controller
      */
     public function show($id)
     {
-        $annee = $this->anneScolaireEtablissementRepository->find(request()->codeEtablissement, $id);
+        $annee= $this->anneeScolaireRepository->find($id);
 
         $response = [
             'success' => true,
@@ -79,7 +73,6 @@ class AnneeScolaireEtablissementController extends Controller
         return response()->json(['data' => $response], 200);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -87,20 +80,16 @@ class AnneeScolaireEtablissementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $data = [
             'codeAnnee' => $request->anneeScolaire,
-            'codeEtablissement' => $request->codeEtablissement,
-            'dateFermeture' => $request->dateFermeture,
-            'statut' => $request->statut
         ];
-
-        $annee = $this->anneScolaireEtablissementRepository->update($request->codeEtablissement ,$id ,$data);
+        $annee= $this->anneeScolaireRepository->update($id,$data['codeAnnee']);
 
         $response = [
             'success' => true,
-            'anneScolaire' => $annee,
+            'anneScolaire' => $annee
         ];
         return response()->json(['data' => $response], 200);
     }
@@ -113,11 +102,11 @@ class AnneeScolaireEtablissementController extends Controller
      */
     public function destroy($id)
     {
-        $this->anneScolaireEtablissementRepository->delete(\request()->codeEtablissement,$id);
+        $this->anneeScolaireRepository->delete($id);
 
         $response = [
             'success' => true,
-            'message' => 'Deleted successfully',
+            'message' => 'Delete operation end successfully'
         ];
         return response()->json(['data' => $response], 200);
     }

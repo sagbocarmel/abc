@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 29 Aug 2019 06:59:44 +0000.
+ * Date: Fri, 06 Sep 2019 13:12:02 +0000.
  */
 
 namespace App\Models;
@@ -17,7 +17,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $codeAnnee
  * @property string $codeClasse
  * @property string $codeMatiere
- * @property \Carbon\Carbon $dateCours
+ * @property string $jourCours
  * @property \Carbon\Carbon $heureDebut
  * @property \Carbon\Carbon $heureFin
  * @property \Carbon\Carbon $created_at
@@ -33,7 +33,6 @@ class Cour extends Eloquent
 	public $incrementing = false;
 
 	protected $dates = [
-		'dateCours',
 		'heureDebut',
 		'heureFin'
 	];

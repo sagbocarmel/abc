@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Roles;
+use App\Models\Role;
 
 class RoleRepository implements RoleRepositoryInterface
 {
@@ -20,7 +20,7 @@ class RoleRepository implements RoleRepositoryInterface
      * RoleRepository constructor.
      * @param $role
      */
-    public function __construct(Roles $role)
+    public function __construct(Role $role)
     {
         $this->role = $role;
     }
@@ -28,8 +28,7 @@ class RoleRepository implements RoleRepositoryInterface
 
     public function store(array $inputs)
     {
-        // TODO: Implement store() method.
-        $this->role->titre = $inputs['titre'];
+        $this->role->codeRole = $inputs['titre'];
         $this->role->description = $inputs['description'];
         $this->role->save();
         $roles = $this->role;
@@ -37,35 +36,29 @@ class RoleRepository implements RoleRepositoryInterface
     }
     public function update($id, array $inputs)
     {
-        // TODO: Implement update() method.
-        $role = Roles::find($id);
-        $role ->titre = $inputs['titre'];
+        $role = Role::find($id);
+        $role ->codeRole = $inputs['titre'];
         $role ->description = $inputs['description'];
         $role->save();
     }
 
     public function find($id)
     {
-        // TODO: Implement find() method.
-        return Roles::findOrFail($id);
+        return Role::findOrFail($id);
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
-        Roles::destroy($id);
+        Role::destroy($id);
     }
 
     public function findAll()
     {
-        // TODO: Implement findAll() method.
-
-        return Roles::all();
+        return Role::all();
     }
 
     public function findByRoleName($name)
     {
-        // TODO: Implement findByRoleName() method.
-        return Roles::where('titre',$name)->first()->get();
+        //return Roles::where('titre',$name)->first()->get();
     }
 }

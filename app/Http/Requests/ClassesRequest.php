@@ -25,12 +25,12 @@ class ClassesRequest extends FormRequest
     {
         return [
             //
-            'nom'=> 'required',
-            'description' => '',
-            'section' => '',
-            'serie' => '',
-            'idSection' => 'required',
-            'idEtablissement' => 'required'
+            'codeEtablissement'=> 'required',
+            'niveau' => 'required',
+            'codeClasse' => 'required',
+            'anneEtude' => 'required',
+            'serie' => 'required',
+            'codeSection' => 'required'
         ];
     }
 }

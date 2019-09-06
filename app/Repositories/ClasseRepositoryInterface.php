@@ -12,10 +12,10 @@ namespace App\Repositories;
 interface ClasseRepositoryInterface
 {
     public function store(Array $inputs);
-    public function update($id, Array $inputs);
-    public function findAllByEtablissement($idEtablissement);
-    public function find($id);
-    public function delete($id);
-    public function findBySection($idSection);
-
+    public function update($codeEtablissement, $niveau, $codeClasse, Array $inputs);
+    public function findAllByEtablissement($codeEtablissement);
+    public function find($codeEtablissement, $niveau, $codeClasse);
+    public function delete($codeEtablissement, $niveau, $codeClasse);
+    public function findBySection($codeEtablissement,$codeSection);
+    public function findByNiveau($codeEtablissement, $niveau);
 }

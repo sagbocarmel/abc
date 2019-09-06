@@ -29,18 +29,9 @@ class Create48C5MClasseTable extends Migration
             $table->string('serie', 45)->nullable();
             $table->string('codeSection', 5)->nullable();
 
-            $table->index(["niveau"], 'fk_48c5m_Classe_48c5m_Niveau1_idx');
 
-            $table->index(["codeEtablissement"], 'fk_48c5m_Classe_48c5m_Etablissement1_idx');
-
-
-            $table->foreign('niveau', 'fk_48c5m_Classe_48c5m_Niveau1_idx')
-                ->references('niveau')->on('48c5m_Niveau')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-
-            $table->foreign('codeEtablissement', 'fk_48c5m_Classe_48c5m_Etablissement1_idx')
-                ->references('numeroAutorisation')->on('48c5m_Etablissement')
+            $table->foreign(['niveau','codeEtablissement'])
+                ->references(['niveau','codeEtablissement'])->on('48c5m_Niveau')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

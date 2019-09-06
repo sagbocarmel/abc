@@ -8,7 +8,7 @@
 
 namespace App\Repositories;
 
-use \App\Classe;
+use \App\Models\Classe;
 use Illuminate\Support\Facades\DB;
 
 class ClasseRepository implements ClasseRepositoryInterface
@@ -26,52 +26,61 @@ class ClasseRepository implements ClasseRepositoryInterface
 
     public function store(array $inputs)
     {
-        // TODO: Implement store() method.
-        $this->classe->nom = $inputs['nom'];
-        $this->classe->description = $inputs['description'];
-        $this->classe->section = $inputs['section'];
+        $this->classe = new Classe();
+        $this->classe->codeEtablissement = $inputs['codeEtablissement'];
+        $this->classe->codeClasse = $inputs['codeClasse'];
+        $this->classe->niveau = $inputs['niveau'];
+        $this->classe->anneEtude = $inputs['anneEtude'];
         $this->classe->serie = $inputs['serie'];
-        $this->classe->idSection = $inputs['idSection'];
-        $this->classe->idEtablissement = $inputs['idEtablissement'];
+        $this->classe->codeSection = $inputs['codeSection'];
         $this->classe->save();
-        $classe = $this->classe;
-        return $classe;
+        return $this->classe;
     }
 
-    public function update($id, array $inputs)
+    public function update($codeEtablissement, $niveau, $codeClasse, array $inputs)
     {
-        // TODO: Implement update() method.
-
-        $this->classe = Classe::find($id);
-        $this->classe->description = $inputs['description'];
-        $this->classe->section = $inputs['section'];
+        $this->classe = Classe::where('codeEtablissement',$codeEtablissement)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->firstOrFail();
+        $this->classe->codeEtablissement = $inputs['codeEtablissement'];
+        $this->classe->codeClasse = $inputs['codeClasse'];
+        $this->classe->niveau = $inputs['niveau'];
+        $this->classe->anneEtude = $inputs['anneEtude'];
         $this->classe->serie = $inputs['serie'];
-        $this->classe->idSection = $inputs['idSection'];
-        $this->classe->idEtablissement = $inputs['idEtablissement'];
+        $this->classe->codeSection = $inputs['codeSection'];
         $this->classe->save();
+        return $this->classe;
     }
 
-    public function findAllByEtablissement($idEtablissement)
+    public function findAllByEtablissement($codeEtablissement)
     {
-        // TODO: Implement findAllByEtablissement() method.
-        return Classe::where('idEtablissement', $idEtablissement)->get();
+        return Classe::where('codeEtablissement',$codeEtablissement)->
+        get();
     }
 
-    public function find($id)
+    public function find($codeEtablissement, $niveau, $codeClasse)
     {
-        // TODO: Implement find() method.
-        return Classe::findOrFail($id);
+        return Classe::where('codeEtablissement',$codeEtablissement)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->firstOrFail();
     }
 
-    public function delete($id)
+    public function delete($codeEtablissement, $niveau, $codeClasse)
     {
-        // TODO: Implement delete() method.
-        Classe::destroy($id);
+        Classe::where('codeEtablissement',$codeEtablissement)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->delete();
     }
 
-    public function findBySection($idSection)
+    public function findBySection($codeEtablissement, $codeSection)
     {
-        // TODO: Implement findBySection() method.
-        return Classe::where('idSection', $idSection)->get();
+        return Classe::where('codeEtablissement',$codeEtablissement)->
+        where('codeSection',$codeSection)->get();
+    }
+
+    public function findByNiveau($codeEtablissement, $niveau)
+    {
+        return Classe::where('codeEtablissement',$codeEtablissement)->
+        where('niveau',$niveau)->get();
     }
 }

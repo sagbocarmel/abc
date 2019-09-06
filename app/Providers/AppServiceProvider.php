@@ -19,6 +19,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(\Reliese\Coders\CodersServiceProvider::class);
 
         $this->app->bind(
+            \App\Repositories\AnneeScolaireEtablissementRepositoryInterface::class,
+            \App\Repositories\AnneeScolaireEtablissementRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\AnneeScolaireRepositoryInterface::class,
+            \App\Repositories\AnneeScolaireRepository::class
+        );
+
+        $this->app->bind(
             'App\Repositories\ClasseRepositoryInterface',
             'App\Repositories\ClasseRepository'
         );

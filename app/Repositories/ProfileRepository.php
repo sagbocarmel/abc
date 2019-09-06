@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Profile;
+use App\Models\Profile;
 use PhpParser\Node\Expr\Array_;
 
 class ProfileRepository implements ProfileRepositoryInterface
@@ -28,39 +28,47 @@ class ProfileRepository implements ProfileRepositoryInterface
 
     public function store(array $inputs)
     {
-        // TODO: Implement store() method.
-        $this->profile->idRole = $inputs['idRole'];
-        $this->profile->idEtablissement = $inputs['idEtablissement'];
+        $this->profile->codeEtablissement = $inputs['codeEtablissement'];
+        $this->profile->codeRole = $inputs['codeRole'];
+        $this->profile->telUtilisateur = $inputs['telUtilisateur'];
+        $this->profile->niveau = $inputs['niveau'];
         $this->profile->save();
-        $profile = $this->profile;
-        return $profile;
+        return $this->profile;
     }
 
-    public function update($id, Array_ $inputs)
+    public function update($codeEtablissement, $telUtilisateur, array $inputs)
     {
-        // TODO: Implement update() method.
-        $profile = Profile::find($id);
-        $profile->idRole = $inputs['idRole'];
-        $profile->idEtablissement = $inputs['idEtablissement'];
-        $profile->save();
-
+        $this->profile = Profile::where('codeEtablissement',$codeEtablissement)->
+            where('telUtilisateur',$telUtilisateur)->firstOrFail();
+        $this->profile->codeEtablissement = $inputs['codeEtablissement'];
+        $this->profile->codeRole = $inputs['codeRole'];
+        $this->profile->telUtilisateur = $inputs['telUtilisateur'];
+        $this->profile->niveau = $inputs['niveau'];
+        $this->profile->save();
+        return $this->profile;
     }
 
-    public function find($id)
+    public function find($codeEtablissement, $telUtilisateur)
     {
-        // TODO: Implement find() method.
-        return Profile::findOrFail($id);
+        return rofile::where('codeEtablissement',$codeEtablissement)->
+        where('telUtilisateur',$telUtilisateur)->firstOrFail();
     }
 
-    public function delete($id)
+    public function delete($codeEtablissement, $telUtilisateur)
     {
-        // TODO: Implement delete() method.
-        Profile::destroy($id);
+        $this->profile = Profile::where('codeEtablissement',$codeEtablissement)->
+        where('telUtilisateur',$telUtilisateur)->delete();
     }
 
-    public function findAll()
+    public function findAll($codeEtablissement)
     {
-        // TODO: Implement findAll() method.
-        return Profile::all();
+        return Profile::where('codeEtablissement',$codeEtablissement)->
+        get();
+    }
+
+    public function findAllByTel($telUtilisateur)
+    {
+        return Profile::where('telUtilisateur',$telUtilisateur)->
+        firstOFail();
     }
 }

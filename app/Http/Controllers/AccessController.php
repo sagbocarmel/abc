@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DroitsRequest;
 use App\Http\Requests\PermissionDeRoleRequest;
 use App\Http\Requests\PermissionsRequest;
+use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\RolesRequest;
 use App\Http\Resources\Role;
 use App\Http\Resources\Roles;
 use App\Permissions;
 use App\PermissionsDeRole;
+use App\Repositories\DroitsRepository;
 use App\Repositories\PermissionRepository;
 use App\Repositories\PermissionsDeRoleRepository;
 use App\Repositories\ProfileRepository;
 use App\Repositories\RoleRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AccessController extends Controller
@@ -22,21 +26,21 @@ class AccessController extends Controller
     //
 
     protected $roleRepository;
-    protected $permissionRepository;
-    protected $permissionDeRoleRepository;
+    protected $droitsRepository;
     protected $profilRepository;
 
     /**
      * AccessController constructor.
-     * @param $roleRepository
-     * @param $permissionRepository
-     * @param $profilRepository
+     * @param RoleRepository $roleRepository
+     * @param DroitsRepository $droitsRepository
+     * @param ProfileRepository $profilRepository
      */
-    public function __construct(PermissionsDeRoleRepository $permissionDeRoleRepository, RoleRepository $roleRepository,PermissionRepository $permissionRepository,ProfileRepository $profilRepository)
+    public function __construct(RoleRepository $roleRepository,
+                                DroitsRepository $droitsRepository,
+                                ProfileRepository $profilRepository)
     {
-        $this->permissionDeRoleRepository = $permissionDeRoleRepository;
         $this->roleRepository = $roleRepository;
-        $this->permissionRepository = $permissionRepository;
+        $this->droitsRepository = $droitsRepository;
         $this->profilRepository = $profilRepository;
     }
 
@@ -67,69 +71,88 @@ class AccessController extends Controller
     }
 
     public function getRoles(){
-        return response()->json(['data'=> new Roles($this->roleRepository->findAll())],200);
+        $profiles = $this->profilRepository->findAllByTel(Auth::user()->tel);
+        $roles  = $this->roleRepository->findAll();
+        if($profiles != null  && ($profiles->codeRole == 'SuperAdmin' || $profiles->codeRole == 'SuperAdmin0' ||
+                $profiles->codeRole == 'SuperAdmin1'))
+        {
+            return response()->json(['data'=> $roles],200);
+        }
+        foreach ($roles as $role)
+        {
+            if($role->codeRole == 'SuperAdmin' || $role->codeRole == 'SuperAdmin0'
+                || $role->codeRole == 'SuperAdmin1'
+                ||
+                $role->codeRole == 'SuperUser'){
+                if (($key = array_search($role, $roles)) !== false) {
+                    unset($roles[$key]);
+                }
+            }
+        }
+        return response()->json(['data'=> $roles],200);
     }
 
-    public function getRoleDetails(){
 
-    }
-
-    public function countRole(){
-
-    }
-
-    public function createPermission(PermissionsRequest $request){
+    public function createDroit(DroitsRequest $request){
         $data = [
-            'titre' => $request->titre,
-            'description' => $request->description
+            'codeRole' => $request->codeRole,
+            'codeElement' => $request->codeElement,
+            'droit' => $request->droit,
         ];
-        $permission = $this->permissionRepository->store($data);
+        $droit = $this->droitsRepository->store($data);
 
-        return response()->json(['data'=> new \App\Http\Resources\Permissions($permission)],200);
+        return response()->json(['data'=> $droit],200);
     }
 
-    public function updatePermission($id, PermissionsRequest $request){
-        $this->permissionRepository->update($id,$request->all());
+    public function updateDroit($codeRole,$codeElement, $droits, DroitsRequest $request){
+        $this->droitsRepository->update($codeRole,$codeElement,$droits, $request->all());
         return response()->json(['success' => true ,
-            'message' => 'Permission mis à jour avec succès'], 200);
+            'message' => 'Droit mis à jour avec succès'], 200);
     }
 
-    public function getPermission($id){
-        return response()->json(['data'=> new \App\Http\Resources\Permissions($this->permissionRepository->find($id))],200);
+    public function getDroit($codeRole,$codeElement, $droits){
+        return response()->json(['data'=>$this->droitsRepository->find($codeRole,$codeElement, $droits)],200);
     }
 
-    public function deletePermission($id){
-        $this->permissionRepository->delete($id);
+    public function deleteDroit($codeRole,$codeElement, $droits){
+        $this->droitsRepository->delete($codeRole,$codeElement, $droits);
         return response()->json(['success' => true ,
             'message' => 'Permission supprimée avec succès'], 200);
     }
 
-    public function getPermissions(){
-        return response()->json(['data'=> $this->permissionRepository->findAll()],200);
+    public function getPermissions($codeRole,$codeElement){
+        return response()->json(['data'=> $this->droitsRepository->findAll($codeRole,$codeElement)],200);
     }
 
-    public function getPermissionDetails(){
+    public function createProfile(ProfileRequest $request){
 
+        $profiles = $this->profilRepository->store($request->all());
+
+        return response()->json(['data'=> ['success' => true ,
+            'profile' => $profiles]],200);
     }
 
-    public function countPermission(){
-
-    }
-
-    public function createRolePermission(PermissionDeRoleRequest $request){
-        $data = [
-            'idPermission' => $request->idPermission,
-            'idRole' => $request->idRole
-        ];
-        $rolepermission = $this->permissionDeRoleRepository->store($data);
-
-        return response()->json(['data'=> $rolepermission],200);
-    }
-
-    public function deleteRolePermission($id, $id_permission){
-        $this->permissionDeRoleRepository->delete($id,$id_permission);
+    public function deleteProfile($codeEtablissement, $telUtilisateur){
+        $this->profilRepository->delete($codeEtablissement,$telUtilisateur);
         return response()->json(['success' => true ,
-            'message' => 'Accès supprimé avec succès'], 200);
+            'message' => 'Profile supprimé avec succès'], 200);
     }
 
+    public function updateProfile($codeEtablissement, $telUtilisateur, ProfileRequest $request){
+        $profiles = $this->profilRepository->update($codeEtablissement,$telUtilisateur,$request->all());
+        return response()->json(['data'=>['success' => true ,
+            'profile' => $profiles]], 200);
+    }
+
+    public function showProfile($codeEtablissement, $telUtilisateur){
+        $profile = $this->profilRepository->find($codeEtablissement, $telUtilisateur);
+        return response()->json(['data'=>['success' => true ,
+            'profile' => $profile]], 200);
+    }
+
+    public function indexProfile($codeEtablissement){
+        $profiles = $this->profilRepository->findAll($codeEtablissement);
+        return response()->json(['data'=>['success' => true ,
+            'profiles' => $profiles]], 200);
+    }
 }

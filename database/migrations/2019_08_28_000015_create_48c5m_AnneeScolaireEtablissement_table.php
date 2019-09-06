@@ -24,7 +24,7 @@ class Create48C5MAnneescolaireetablissementTable extends Migration
             $table->engine = 'InnoDB';
             $table->string('codeEtablissement',45)->nullable(false);
             $table->string('codeAnnee', 9)->nullable(false);
-            $table->dateTime('dateFermeture')->nullable(false);
+            $table->dateTime('dateFermeture')->nullable(true);
             $table->integer('statut')->default('1');
 
             $table->index(["codeEtablissement"], 'fk_48c5m_Etablissement_has_48c5m_AnneeScolaire_48c5m_Etabli_idx');

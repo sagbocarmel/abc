@@ -30,13 +30,12 @@ class MatieresController extends Controller
     {
         //
         $data = [
-            'nom' => $request->nom,
-            'description' => $request->description,
+            'codeMatiere' => $request->codeMatiere,
             'type' => $request->type
         ];
         $matiere = $this->matiereRepository->store($data);
 
-        return response()->json(['data'=> new Matiere($matiere)],200);
+        return response()->json(['data'=> ['matiere'=>new Matiere($matiere)]],200);
     }
 
 
@@ -46,10 +45,9 @@ class MatieresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($codeMatiere)
     {
-        //
-        return response()->json(['data'=> new Matiere($this->matiereRepository->find($id))],200);
+        return response()->json(['data'=> new Matiere($this->matiereRepository->find($codeMatiere))],200);
     }
 
     /**
@@ -59,12 +57,13 @@ class MatieresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $codeMatiere)
     {
-        //
-        $this->matiereRepository->update($id,$request->all());
-        return response()->json(['success' => true ,
-            'message' => 'Matière mis à jour avec succès'], 200);
+        $classe = $this->matiereRepository->update($codeMatiere,$request->all());
+        return response()->json(['data'=>[
+        ['success' => true ,
+            'matiere'=> $classe,
+            'message' => 'Matière mis à jour avec succès']]], 200);
     }
 
     /**
@@ -73,10 +72,10 @@ class MatieresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($codeMatiere)
     {
         //
-        $this->matiereRepository->delete($id);
+        $this->matiereRepository->delete($codeMatiere);
         return response()->json(['success' => true ,
             'message' => 'Matière supprimée avec succès'], 200);
     }

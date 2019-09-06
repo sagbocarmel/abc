@@ -24,20 +24,19 @@ class ElevesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'matriculeELeve' => 'required',
             'nom' => 'required',
             'prenoms' => 'required',
             'sexe' => 'required',
             'email' => '',
-            'tel1' => '',
+            'tel' => '',
             'tel2' => '',
             'dateNaissance'=> 'date',
             'adresse' => '',
             'nationalite' => '',
             'photo' => 'image',
             'infoSup' => '',
-            'matricule' => 'required',
-            'idClasse' => 'required'
+            'lieuNaissance' => ''
         ];
     }
 }

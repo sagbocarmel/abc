@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NiveauRequest;
+use App\Models\Niveau;
+use App\Repositories\NiveauRepository;
 use Illuminate\Http\Request;
 
 class NiveauController extends Controller
 {
+    protected $niveauRepository;
+
+    /**
+     * NiveauController constructor.
+     * @param $niveauRepository
+     */
+    public function __construct(NiveauRepository $niveauRepository)
+    {
+        $this->niveauRepository = $niveauRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,18 +27,14 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        //
+        $niveau =$this->niveauRepository->findAll(\request()->codeEtablissement);
+
+        return response()->json(['data'=> [
+            'niveau' => $niveau,
+            'success' =>  true
+        ]],200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -32,9 +42,23 @@ class NiveauController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NiveauRequest $request)
     {
-        //
+        $data = [
+            'codeEtablissement' => $request->codeEtablissement,
+            'niveau' => $request->niveau,
+            'periodesAnnee' => $request->periodesAnnee,
+            'methodeCalculMoyennes' => $request->methodeCalculMoyennes,
+            'heureDebutCours' => $request->heureDebutCours,
+            'heureFinCours' => $request->heureFinCours
+        ];
+
+        $niveau =$this->niveauRepository->store(new Niveau(),$data);
+
+        return response()->json(['data'=> [
+            'niveau' => $niveau,
+            'success' =>  true
+        ]],200);
     }
 
     /**
@@ -43,21 +67,16 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($codeEtablissement, $niveau)
     {
-        //
+        $niveau =$this->niveauRepository->find($codeEtablissement, $niveau);
+
+        return response()->json(['data'=> [
+            'niveau' => $niveau,
+            'success' =>  true
+        ]],200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -66,9 +85,23 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NiveauRequest $request, $niveau)
     {
-        //
+        $data = [
+            'codeEtablissement' => $request->codeEtablissement,
+            'niveau' => $request->niveau,
+            'periodesAnnee' => $request->periodesAnnee,
+            'methodeCalculMoyennes' => $request->methodeCalculMoyennes,
+            'heureDebutCours' => $request->heureDebutCours,
+            'heureFinCours' => $request->heureFinCours
+        ];
+
+        $niveau = $this->niveauRepository->update(request()->codeEtablissement, $niveau, $data);
+
+        return response()->json(['data'=> [
+            'niveau' => $niveau,
+            'success' =>  true
+        ]],200);
     }
 
     /**
@@ -77,8 +110,13 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($niveau)
     {
-        //
+        $this->niveauRepository->delete(request()->codeEtablissement, $niveau);
+
+        return response()->json(['data'=> [
+            'message' => 'Operation end',
+            'success' =>  true
+        ]],200);
     }
 }

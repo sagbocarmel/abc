@@ -31,12 +31,12 @@ class ClasseController extends Controller
     {
         //
         $data = [
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'section' => $request->section,
+            'codeEtablissement' => $request->codeEtablissement,
+            'niveau' => $request->niveau,
+            'codeClasse' => $request->codeClasse,
             'serie' => $request->serie,
-            'idSection' => $request->idSection,
-            'idEtablissement' => $request->idEtablissement
+            'anneEtude' => $request->anneEtude,
+            'codeSection' => $request->codeSection
         ];
         $classe = $this->classeRepository->store($data);
 
@@ -49,10 +49,11 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($codeEtablissement, $niveau, $codeClasse)
     {
-        //
-        return response()->json(['data'=> new Classe($this->classeRepository->find($id))],200);
+        return response()->json(['data'=>['success'=> true,
+            'classe'=> $this->classeRepository->find($codeEtablissement,$niveau,
+                $codeClasse)]],200);
     }
 
 
@@ -63,12 +64,13 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClassesRequest $request, $id)
+    public function update(ClassesRequest $request, $codeEtablissement, $niveau, $codeClasse)
     {
-        //
-        $this->classeRepository->update($id,$request->all());
-        return response()->json(['success' => true ,
-            'message' => 'Classe mis à jour avec succès'], 200);
+        $classe = $this->classeRepository->update($codeEtablissement, $niveau, $codeClasse,$request->all());
+        return response()->json(['data'=>
+            ['success' => true ,
+                'message' => 'Classe mis à jour avec succès',
+                'classe'=>$classe]], 200);
     }
 
     /**
@@ -77,15 +79,24 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($codeEtablissement, $niveau, $codeClasse)
     {
         //
-        $this->classeRepository->delete($id);
+        $this->classeRepository->delete($codeEtablissement, $niveau, $codeClasse);
         return response()->json(['success' => true ,
             'message' => 'Classe supprimée avec succès'], 200);
     }
 
     public function getClasses(){
-        return response()->json(['data'=> new Classes($this->classeRepository->findAll())],200);
+        return response()->json(['data'=> new Classes($this->classeRepository->findAllByEtablissement(request()->codeEtablissement))],200);
     }
+
+    public function getClassesByNiveau($codeEtablissement, $niveau){
+        return response()->json(['data'=> new Classes($this->classeRepository->findByNiveau($codeEtablissement, $niveau))],200);
+    }
+
+    public function getClassesBySection($codeEtablissement, $codeSection){
+        return response()->json(['data'=> new Classes($this->classeRepository->findBySection($codeEtablissement, $codeSection))],200);
+    }
+
 }

@@ -12,11 +12,17 @@ namespace App\Repositories;
 interface ElevesRepositoryInterface
 {
     public function store(Array $inputs);
-    public function updateByMatricule($matricule,$id,Array $inputs);
-    public function findById($id);
-    public function findByMatricule($matricule);
-    public function deleteById($id);
-    public function deleteByMatricule($matricule);
+    public function update($matriculeEleve,Array $inputs);
+    public function find($matriculeEleve);
+    public function delete($matriculeEleve);
     public function findAll();
-    public function findAllByIdClasse($id);
+
+    public function storeInscription(Array $inputs);
+    public function updateInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee,$matriculeEleve,Array $inputs);
+    public function findInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve);
+    public function deleteInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee,$matriculeEleve);
+    public function findAllInscription($codeEtablissement, $niveau, $codeClasse, $codeAnne);
+
+    public function findAllInscriptionByNiveau($codeEtablissement, $niveau, $codeAnne);
+    public function findAllInscriptionByAnnee($codeEtablissement, $codeAnne);
 }
