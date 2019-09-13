@@ -14,7 +14,7 @@ class MatieresController extends Controller
 
     /**
      * MatieresController constructor.
-     * @param $matiereRepository
+     * @param MatieresRepository $matiereRepository
      */
     public function __construct(MatieresRepository $matiereRepository)
     {
@@ -22,9 +22,8 @@ class MatieresController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param MatieresRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(MatieresRequest $request)
     {
@@ -40,10 +39,8 @@ class MatieresController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeMatiere
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($codeMatiere)
     {
@@ -51,15 +48,13 @@ class MatieresController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param MatieresRequest $request
+     * @param $codeMatierer
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $codeMatiere)
+    public function update(MatieresRequest $request, $codeMatierer)
     {
-        $classe = $this->matiereRepository->update($codeMatiere,$request->all());
+        $classe = $this->matiereRepository->update($codeMatierer,$request->all());
         return response()->json(['data'=>[
         ['success' => true ,
             'matiere'=> $classe,
@@ -67,10 +62,8 @@ class MatieresController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeMatiere
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($codeMatiere)
     {
@@ -80,6 +73,9 @@ class MatieresController extends Controller
             'message' => 'Matière supprimée avec succès'], 200);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getMatieres(){
         return response()->json(['data'=> new Matieres($this->matiereRepository->findAll())],200);
     }

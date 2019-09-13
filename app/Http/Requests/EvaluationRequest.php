@@ -24,13 +24,16 @@ class EvaluationRequest extends FormRequest
     public function rules()
     {
         return [
-            'titre' => 'required',
+            'codeEtablissement' => 'required',
+            'codeAnnee' => 'required',
+            'niveau' => 'required',
+            'codeClasse' => 'required',
+            'codeMatiere' => 'required',
+            'codeEvaluation' => 'required',
+            'periode' => 'required',
             'type' => 'required',
             'date' => 'required',
-            'duree' => 'required',
-            'periode' => 'required',
-            'idClasse' => 'required',
-            'idMatiere' => 'required'
+            'duree' => 'required'
         ];
     }
 }

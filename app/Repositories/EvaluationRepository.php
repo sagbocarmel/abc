@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Evaluation;
+use App\Models\Evaluation;
 
 class EvaluationRepository implements EvaluationRepositoryInterface
 {
@@ -27,54 +27,98 @@ class EvaluationRepository implements EvaluationRepositoryInterface
 
     public function store(array $inputs)
     {
-        // TODO: Implement store() method.
-        $this->evaluation->titre = $inputs['titre'];
+        $this->evaluation = new Evaluation();
+        $this->evaluation->codeEtablissement = $inputs['codeEtablissement'];
+        $this->evaluation->codeAnnee = $inputs['codeAnnee'];
+        $this->evaluation->codeMatiere = $inputs['codeMatiere'];
+        $this->evaluation->codeEvaluation = $inputs['codeEvaluation'];
+        $this->evaluation->niveau = $inputs['niveau'];
+        $this->evaluation->codeClasse = $inputs['codeClasse'];
+        $this->evaluation->periode = $inputs['periode'];
         $this->evaluation->type = $inputs['type'];
         $this->evaluation->date = $inputs['date'];
         $this->evaluation->duree = $inputs['duree'];
-        $this->evaluation->periode = $inputs['periode'];
-        $this->evaluation->idClasse = $inputs['idClasse'];
-        $this->evaluation->idMatiere = $inputs['idMatiere'];
         $this->evaluation->save();
-        $evaluation = $this->evaluation;
-        return $evaluation;
+        return $this->evaluation;
     }
 
-    public function update($id, array $inputs)
+    public function update($codeEtablissement, $codeAnnee, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode, array $inputs)
     {
-        // TODO: Implement update() method.
-        $this->evaluation = Evaluation::find($id);
-        $this->evaluation->titre = $inputs['titre'];
+        $this->evaluation = Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('codeMatiere',$codeMatiere)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('periode',$periode)->first();
+
+        $this->evaluation->codeEtablissement = $inputs['codeEtablissement'];
+        $this->evaluation->codeAnnee = $inputs['codeAnnee'];
+        $this->evaluation->codeMatiere = $inputs['codeMatiere'];
+        $this->evaluation->codeEvaluation = $inputs['codeEvaluation'];
+        $this->evaluation->niveau = $inputs['niveau'];
+        $this->evaluation->codeClasse = $inputs['codeClasse'];
+        $this->evaluation->periode = $inputs['periode'];
         $this->evaluation->type = $inputs['type'];
         $this->evaluation->date = $inputs['date'];
         $this->evaluation->duree = $inputs['duree'];
-        $this->evaluation->periode = $inputs['periode'];
-        $this->evaluation->idClasse = $inputs['idClasse'];
-        $this->evaluation->idMatiere = $inputs['idMatiere'];
         $this->evaluation->save();
+        return $this->evaluation;
     }
 
-    public function findAllByClasse($idClasse)
+    public function find($codeEtablissement, $codeAnnee, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode)
     {
-        // TODO: Implement findAllByClasse() method.
-        return Evaluation::where('idClasse', $idClasse)->get();
+        return Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('codeMatiere',$codeMatiere)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('periode',$periode)->firstOrFail();
     }
 
-    public function findAllByMatiere($idMatiere)
+    public function delete($codeEtablissement, $codeAnnee, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode)
     {
-        // TODO: Implement findAllByMatiere() method.
-        return Evaluation::where('idMatiere', $idMatiere)->get();
+        Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('codeMatiere',$codeMatiere)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('periode',$periode)->delete();
     }
 
-    public function find($id)
+    public function findAllEvaluationByMatiere($codeEtablissement, $codeAnnee, $niveau, $codeClasse, $codeMatiere, $periode)
     {
-        // TODO: Implement find() method.
-        return Evaluation::findOrFail($id);
+        return Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('codeMatiere',$codeMatiere)->
+        where('periode',$periode)->get();
     }
 
-    public function delete($id)
+    public function findAllEvaluationByClasse($codeEtablissement, $codeAnnee, $niveau, $codeClasse, $periode)
     {
-        // TODO: Implement delete() method.
-        Evaluation::destroy($id);
+        return Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->get();
+    }
+
+    public function findAllEvaluationByPeriode($codeEtablissement, $codeAnnee, $niveau, $periode)
+    {
+        return Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->
+        where('periode',$periode)->get();
+    }
+
+    public function findAllEvaluationByAnnee($codeEtablissement, $codeAnnee, $niveau)
+    {
+        return Evaluation::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('niveau',$niveau)->get();
     }
 }

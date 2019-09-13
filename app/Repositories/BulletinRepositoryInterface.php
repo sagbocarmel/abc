@@ -11,5 +11,9 @@ namespace App\Repositories;
 
 interface BulletinRepositoryInterface
 {
-
+    public function store($inputs);
+    public function update($codeEtablissement, $codeAnnee, $matriculeEleve, $periode, $input);
+    public function find($codeEtablissement, $codeAnnee, $matriculeEleve, $periode);
+    public function findAll($codeEtablissement, $codeAnnee, $periode);
+    public function delete($codeEtablissement, $codeAnnee, $matriculeEleve, $periode);
 }

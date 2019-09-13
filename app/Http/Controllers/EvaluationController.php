@@ -2,11 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\EvaluationRepository;
+use App\Repositories\NotesRepository;
 use Illuminate\Http\Request;
 
-class NotesController extends Controller
+class EvaluationController extends Controller
 {
+    protected $evaluationRepository;
+    protected $notesRepository;
 
+    /**
+     * EvaluationController constructor.
+     * @param $evaluationRepository
+     * @param $notesRepository
+     */
+    public function __construct(EvaluationRepository $evaluationRepository,NotesRepository $notesRepository)
+    {
+        $this->evaluationRepository = $evaluationRepository;
+        $this->notesRepository = $notesRepository;
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
@@ -20,7 +41,7 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

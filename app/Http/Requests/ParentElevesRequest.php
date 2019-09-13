@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NotesRequest extends FormRequest
+class ParentElevesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,9 @@ class NotesRequest extends FormRequest
     public function rules()
     {
         return [
-            'codeEtablissement' => 'required',
-            'codeAnnee' => 'required',
-            'codeMatiere' => 'required',
-            'codeEvaluation' => 'required',
-            'niveau' => 'required',
-            'codeClasse' => 'required',
-            'periode' => 'required',
+            'telParent' => 'required',
             'matriculeEleve' => 'required',
-            'note' => 'required',
-            'dateNote' => 'required',
-
+            'titre' => 'required',
         ];
     }
 }

@@ -25,7 +25,11 @@ class EtablissementController extends Controller
 
     /**
      * EtablissementController constructor.
-     * @param $etablissementRepository
+     * @param EtablissementRepository $etablissementRepository
+     * @param LogoRepository $logoRepository
+     * @param ClasseRepository $classeRepository
+     * @param Etablissement $etablissement
+     * @param Utilisateur $user
      */
     public function __construct(EtablissementRepository $etablissementRepository,
                                 LogoRepository $logoRepository,ClasseRepository $classeRepository,
@@ -39,9 +43,8 @@ class EtablissementController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param EtablissementsRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(EtablissementsRequest $request){
         // Get the file from the request
@@ -117,10 +120,8 @@ class EtablissementController extends Controller
         )
      **/
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -256,11 +257,9 @@ class EtablissementController extends Controller
      * )
      */
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param EtablissementsRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(EtablissementsRequest $request, $id)
     {
@@ -292,10 +291,8 @@ class EtablissementController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -306,6 +303,10 @@ class EtablissementController extends Controller
         ],200);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function allClasses($id){
         return response()->json([
             'data' => $this->classeRepository->findAllByEtablissement($id)

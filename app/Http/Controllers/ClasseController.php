@@ -14,7 +14,7 @@ class ClasseController extends Controller
 
     /**
      * ClasseController constructor.
-     * @param $classeRepository
+     * @param ClasseRepository $classeRepository
      */
     public function __construct(ClasseRepository $classeRepository)
     {
@@ -23,9 +23,8 @@ class ClasseController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param ClassesRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(ClassesRequest $request)
     {
@@ -44,10 +43,10 @@ class ClasseController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($codeEtablissement, $niveau, $codeClasse)
     {
@@ -58,11 +57,11 @@ class ClasseController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClassesRequest $request
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(ClassesRequest $request, $codeEtablissement, $niveau, $codeClasse)
     {
@@ -74,10 +73,10 @@ class ClasseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($codeEtablissement, $niveau, $codeClasse)
     {
@@ -87,14 +86,27 @@ class ClasseController extends Controller
             'message' => 'Classe supprimée avec succès'], 200);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getClasses(){
         return response()->json(['data'=> new Classes($this->classeRepository->findAllByEtablissement(request()->codeEtablissement))],200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $niveau
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getClassesByNiveau($codeEtablissement, $niveau){
         return response()->json(['data'=> new Classes($this->classeRepository->findByNiveau($codeEtablissement, $niveau))],200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $codeSection
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getClassesBySection($codeEtablissement, $codeSection){
         return response()->json(['data'=> new Classes($this->classeRepository->findBySection($codeEtablissement, $codeSection))],200);
     }

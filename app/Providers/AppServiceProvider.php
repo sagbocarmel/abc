@@ -29,13 +29,75 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \App\Repositories\AppreciationRepositoryInterface::class,
+            \App\Repositories\AppreciationRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\BulletinRepositoryInterface::class,
+            \App\Repositories\BulletinRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\CoursRepositoryInterface::class,
+            \App\Repositories\CoursRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\DroitsRepositoryInterface::class,
+            \App\Repositories\DroitsRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ElevesRepositoryInterface::class,
+            \App\Repositories\ElevesRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\EnseignantClasseRepositoryInterface::class,
+            \App\Repositories\EnseignantClasseRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\InscriptionRepositoryInterface::class,
+            \App\Repositories\InscriptionRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\MatieresDeClassesRepositoryInterface::class,
+            \App\Repositories\MatieresDeClassesRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\NiveauRepositoryInterface::class,
+            \App\Repositories\NiveauRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ParentEleveRepositoryInterface::class,
+            \App\Repositories\ParentEleveRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ProfileRepositoryInterface::class,
+            \App\Repositories\ProfileRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\RoleRepositoryInterface::class,
+            \App\Repositories\RoleRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\UtilisateurRepositoryInterface::class,
+            \App\Repositories\UtilisateurRepository::class
+        );
+
+        $this->app->bind(
             'App\Repositories\ClasseRepositoryInterface',
             'App\Repositories\ClasseRepository'
         );
-        $this->app->bind(
-            'App\Repositories\ElevesRepositoryInterface',
-            'App\Repositories\ElevesRepository'
-        );
+
         $this->app->bind(
             'App\Repositories\EnseignantRepositoryInterface',
             'App\Repositories\EnseignantRepository'

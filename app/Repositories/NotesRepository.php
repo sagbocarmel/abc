@@ -9,41 +9,129 @@
 namespace App\Repositories;
 
 
+use App\Models\Note;
+
 class NotesRepository implements NotesRepositoryInterface
 {
 
+    protected $note;
+
+    /**
+     * NotesRepository constructor.
+     * @param $note
+     */
+    public function __construct(Note $note)
+    {
+        $this->note = $note;
+    }
+
+
     public function store(array $inputs)
     {
-        // TODO: Implement store() method.
+        $this->note = new Note();
+        $this->note->codeEtablissement = $inputs['codeEtablissement'];
+        $this->note->codeAnnee = $inputs['codeAnnee'];
+        $this->note->codeMatiere = $inputs['codeMatiere'];
+        $this->note->codeEvaluation = $inputs['codeEvaluation'];
+        $this->note->niveau = $inputs['niveau'];
+        $this->note->codeClasse = $inputs['codeClasse'];
+        $this->note->periode = $inputs['periode'];
+        $this->note->matriculeEleve = $inputs['matriculeEleve'];
+        $this->note->note = $inputs['note'];
+        $this->note->dateNote = $inputs['dateNote'];
+        $this->note->save();
+        return $this->note;
     }
 
-    public function update($idEleve, $idEvaluation, $matriculeEleve, array $inputs)
+    public function update($codeEtablissement, $codeAnnee, $codeMatiere, $codeEvaluation, $niveau, $codeClasse, $periode, $matriculeEleve, array $inputs)
     {
-        // TODO: Implement update() method.
+        $this->note = Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->
+        where('matriculeEleve',$matriculeEleve)->first();
+
+        $this->note->codeEtablissement = $inputs['codeEtablissement'];
+        $this->note->codeAnnee = $inputs['codeAnnee'];
+        $this->note->codeMatiere = $inputs['codeMatiere'];
+        $this->note->codeEvaluation = $inputs['codeEvaluation'];
+        $this->note->niveau = $inputs['niveau'];
+        $this->note->codeClasse = $inputs['codeClasse'];
+        $this->note->periode = $inputs['periode'];
+        $this->note->matriculeEleve = $inputs['matriculeEleve'];
+        $this->note->note = $inputs['note'];
+        $this->note->dateNote = $inputs['dateNote'];
+        $this->note->save();
+        return $this->note;
     }
 
-    public function findAllByMatricule($idMatricule)
+    public function find($codeEtablissement, $codeAnnee, $codeMatiere, $codeEvaluation, $niveau, $codeClasse, $periode, $matriculeEleve)
     {
-        // TODO: Implement findAllByMatricule() method.
+        return Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->
+        where('matriculeEleve',$matriculeEleve)->firstOrFail();
     }
 
-    public function findAllByEvaluation($idEvaluation)
+    public function delete($codeEtablissement, $codeAnnee, $codeMatiere, $codeEvaluation, $niveau, $codeClasse, $periode, $matriculeEleve)
     {
-        // TODO: Implement findAllByEvaluation() method.
+        Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->
+        where('matriculeEleve',$matriculeEleve)->delete();
     }
 
-    public function findByIdAllEleve($idEleve)
+    public function findAllByMatriculeEleve($codeEtablissement, $codeAnnee, $codeMatiere, $niveau, $codeClasse, $periode, $matriculeEleve)
     {
-        // TODO: Implement findByIdAllEleve() method.
+        return Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->
+        where('matriculeEleve',$matriculeEleve)->get();
     }
 
-    public function find($idEleve, $idEvaluation, $matriculeEleve)
+    public function findAllByEvaluation($codeEtablissement, $codeAnnee, $codeMatiere, $codeEvaluation, $niveau, $codeClasse, $periode)
     {
-        // TODO: Implement find() method.
+        return Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('codeEvaluation',$codeEvaluation)->
+        where('periode',$periode)->get();
     }
 
-    public function delete($idEleve, $idEvaluation, $matriculeEleve)
+    public function findAllByMatriculeEleveAndMatiere($codeEtablissement, $codeAnnee, $codeMatiere, $niveau, $codeClasse, $periode, $matriculeEleve)
     {
-        // TODO: Implement delete() method.
+        return Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->
+        where('matriculeEleve',$matriculeEleve)->get();
+    }
+
+    public function findAllByClasseAndMatiere($codeEtablissement, $codeAnnee, $codeMatiere, $niveau, $codeClasse, $periode)
+    {
+        return Note::where('codeEtablissement',$codeEtablissement)->
+        where('codeAnnee',$codeAnnee)->
+        where('codeMatiere',$codeMatiere)->
+        where('niveau',$niveau)->
+        where('codeClasse',$codeClasse)->
+        where('periode',$periode)->get();
     }
 }

@@ -53,7 +53,6 @@ class ElevesRepository implements ElevesRepositoryInterface
 
     public function update($matricule, array $inputs)
     {
-        // TODO: Implement updateByMatricule() method.
         $this->eleve = Eleve::where('matriculeEleve',$matricule)->first();
         $this->eleve->nom = $inputs['nom'];
         $this->eleve->prenoms = $inputs['prenoms'];

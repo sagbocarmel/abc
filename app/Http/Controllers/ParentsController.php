@@ -2,83 +2,101 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ParentsRequest;
+use App\Repositories\ParentsRepository;
 use Illuminate\Http\Request;
 
 class ParentsController extends Controller
 {
+    protected $parentsRepository;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ParentsController constructor.
+     * @param ParentsRepository $parentsRepository
+     */
+    public function __construct(ParentsRepository $parentsRepository)
+    {
+        $this->parentsRepository = $parentsRepository;
+    }
+
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $parents = $this->parentsRepository->findAll();
+
+        $response = [
+            'success' => true,
+            'parents' => $parents
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param ParentsRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function store(ParentsRequest $request)
     {
-        //
+        $parentSaved = $this->parentsRepository->store($request->all());
+
+        $response = [
+            'success' => true,
+            'parent' => $parentSaved
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param $tel
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function show($tel)
     {
-        //
+        $parent = $this->parentsRepository->find($tel);
+
+        $response = [
+            'success' => true,
+            'parent' => $parent
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ParentsRequest $request
+     * @param $tel
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function update(ParentsRequest $request, $tel)
     {
-        //
+        $parentSaved = $this->parentsRepository->update($tel,$request->all());
+
+        $response = [
+            'success' => true,
+            'parent' => $parentSaved
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $tel
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function destroy($tel)
     {
-        //
-    }
+       $this->parentsRepository->delete($tel);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $response = [
+            'success' => true,
+            'message' => 'Operation end successfully'
+        ];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json(['data' => $response], 200);
     }
 }

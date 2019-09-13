@@ -62,9 +62,8 @@ class ElevesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param ElevesRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(ElevesRequest $request)
     {
@@ -79,10 +78,8 @@ class ElevesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $matriculeEleve
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($matriculeEleve)
     {
@@ -93,11 +90,9 @@ class ElevesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ElevesRequest $request
+     * @param $matriculeEleve
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(ElevesRequest $request, $matriculeEleve)
     {
@@ -113,10 +108,8 @@ class ElevesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $matriculeEleve
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($matriculeEleve)
     {
@@ -127,23 +120,41 @@ class ElevesController extends Controller
         ], 200);
     }
 
+    /**
+     * @param $id_classe
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getElevesByClasse($id_classe){
         return response()->json(['data'=> $this->eleveRepository->findAllByIdClasse($id_classe)],200);
     }
 
+    /**
+     * @param $matricule
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function showByMatricule($matricule){
         return response()->json(['data'=> new Eleve($this->eleveRepository->findByMatricule($matricule))],200);
     }
 
+    /**
+     * @param ElevesRequest $request
+     * @param $matricule
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateByMatricule(ElevesRequest$request, $matricule){
 
 
-        $this->eleveRepository->updateByMatricule($eleve['matricule'],$eleve);
+        $this->eleveRepository->updateByMatricule($matricule,$request->all());
 
         return response()->json(['success' => true ,
             'message' => 'Elève mis à jour avec succès'], 200);
     }
 
+    /**
+     * @param $paths
+     * @param $fileName
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function image($paths,$fileName){
         $path = $paths.$fileName;
         return Response::download($path);

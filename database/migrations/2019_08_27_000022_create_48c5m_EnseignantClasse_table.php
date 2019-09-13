@@ -25,7 +25,6 @@ class Create48C5MEnseignantclasseTable extends Migration
             $table->string('codeEtablissement', 45)->nullable(false);
             $table->string('matriculeEnseignant', 45)->nullable(false);
             $table->string('codeClasse', 45)->nullable(false);
-            $table->string('classe', 45)->nullable(false);
             $table->char('niveau')->nullable(false);
 
             $table->index(["matriculeEnseignant"], 'fk_48c5m_Enseignant_has_48c5m_Classe_48c5m_Enseignant1_idx');
@@ -38,7 +37,7 @@ class Create48C5MEnseignantclasseTable extends Migration
                 ->onUpdate('no action');
 
             $table->timestamps();
-            $table->primary(['codeEtablissement', 'matriculeEnseignant', 'classe', 'niveau'], 'idEnseignantClasse');
+            $table->primary(['codeEtablissement', 'matriculeEnseignant', 'codeClasse', 'niveau'], 'idEnseignantClasse');
         });
     }
 

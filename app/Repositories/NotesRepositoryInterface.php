@@ -12,10 +12,12 @@ namespace App\Repositories;
 interface NotesRepositoryInterface
 {
     public function store(Array $inputs);
-    public function update($idEleve,$idEvaluation,$matriculeEleve, Array $inputs);
-    public function findAllByMatricule($idMatricule);
-    public function findAllByEvaluation($idEvaluation);
-    public function findByIdAllEleve($idEleve);
-    public function find($idEleve,$idEvaluation,$matriculeEleve);
-    public function delete($idEleve,$idEvaluation,$matriculeEleve);
+    public function update($codeEtablissement,$codeAnnee,$codeMatiere,$codeEvaluation,$niveau,$codeClasse,$periode,$matriculeEleve, Array $inputs);
+    public function find($codeEtablissement,$codeAnnee,$codeMatiere,$codeEvaluation,$niveau,$codeClasse,$periode,$matriculeEleve);
+    public function delete($codeEtablissement,$codeAnnee,$codeMatiere,$codeEvaluation,$niveau,$codeClasse,$periode,$matriculeEleve);
+
+    public function findAllByMatriculeEleve($codeEtablissement,$codeAnnee,$codeMatiere,$niveau,$codeClasse,$periode,$matriculeEleve);
+    public function findAllByEvaluation($codeEtablissement,$codeAnnee,$codeMatiere,$codeEvaluation,$niveau,$codeClasse,$periode);
+    public function findAllByMatriculeEleveAndMatiere($codeEtablissement,$codeAnnee,$codeMatiere,$niveau,$codeClasse,$periode,$matriculeEleve);
+    public function findAllByClasseAndMatiere($codeEtablissement,$codeAnnee,$codeMatiere,$niveau,$codeClasse,$periode);
 }

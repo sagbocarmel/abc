@@ -233,4 +233,8 @@ class Utilisateur extends  Authenticatable implements MustVerifyEmail
     public function profile(){
         return $this->belongsTo('\App\Profile','idProfile');
     }
+
+    public function AauthAcessToken(){
+        return $this->hasMany('\App\Models\OauthAccessToken');
+    }
 }

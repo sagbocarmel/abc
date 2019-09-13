@@ -24,9 +24,16 @@ class AppreciationRequest extends FormRequest
     public function rules()
     {
         return [
-            'idEvaluation' => 'required',
-            'idEleve' => 'required',
-            'matricule' => 'required',
+            'codeEtablissement' => 'required',
+            'codeAnnee' => 'required',
+            'matriculeEleve' => 'required',
+            'niveau' => 'required',
+            'codeClasse' => 'required',
+            'codeMatiere' => 'required',
+            'codeEvaluation' => 'required',
+            'periode' => 'required',
+            'appreciation' => 'required',
+            'dateAppreciation' => 'required'
         ];
     }
 }

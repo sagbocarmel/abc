@@ -12,7 +12,7 @@ class InscriptionController extends Controller
 
     /**
      * InscriptionController constructor.
-     * @param $eleveRepository
+     * @param ElevesRepository $eleveRepository
      */
     public function __construct(ElevesRepository $eleveRepository)
     {
@@ -21,21 +21,57 @@ class InscriptionController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @return \Illuminate\Http\JsonResponse
      */
-//    public function storeInscription(Array $inputs);
-//    public function updateInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee,$matriculeEleve,Array $inputs);
-//    public function findInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve);
-//    public function deleteInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee,$matriculeEleve);
-//    public function findAllInscription($codeEtablissement, $niveau, $codeClasse, $codeAnne);
-//
-//    public function findAllInscriptionByNiveau($codeEtablissement, $niveau, $codeAnne);
-//    public function findAllInscriptionByAnnee($codeEtablissement, $codeAnne);
-    public function index()
+    public function index($codeEtablissement, $niveau, $codeClasse, $codeAnnee)
     {
+        $inscrit = $this->eleveRepository->findAllInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee);
 
+        $response = [
+            'success' => true,
+            'eleveInscrits' => $inscrit
+        ];
+
+        return response()->json(['data' => $response], 200);
+    }
+
+    /**
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeAnnee
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function indexByNiveau($codeEtablissement, $niveau, $codeAnnee)
+    {
+        $inscrit = $this->eleveRepository->findAllInscriptionByNiveau($codeEtablissement, $niveau, $codeAnnee);
+
+        $response = [
+            'success' => true,
+            'eleveInscrits' => $inscrit
+        ];
+
+        return response()->json(['data' => $response], 200);
+    }
+
+    /**
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function indexByAnnee($codeEtablissement, $codeAnnee)
+    {
+        $inscrit = $this->eleveRepository->findAllInscriptionByAnnee($codeEtablissement, $codeAnnee);
+
+        $response = [
+            'success' => true,
+            'eleveInscrits' => $inscrit
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
@@ -55,36 +91,63 @@ class InscriptionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve)
     {
-        //
+        $inscrit = $this->eleveRepository->findInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve);
+
+        $response = [
+            'success' => true,
+            'eleveInscrit' => $inscrit
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param InscriptionRequest $request
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(InscriptionRequest  $request, $codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve)
     {
-        //
+        $inscrit = $this->eleveRepository->updateInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve,  $request->all());
+
+        $response = [
+            'success' => true,
+            'eleveInscrit' => $inscrit
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve)
     {
-        //
+        $this->eleveRepository->deleteInscription($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $matriculeEleve);
+
+        $response = [
+            'success' => true,
+            'message' => 'Deleted'
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 }

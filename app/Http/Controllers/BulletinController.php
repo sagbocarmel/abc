@@ -2,83 +2,114 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\BulletinRepository;
 use Illuminate\Http\Request;
 
 class BulletinController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    protected $bulletinRepository;
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * BulletinController constructor.
+     * @param BulletinRepository $bulletinRepository
      */
-    public function create()
+    public function __construct(BulletinRepository $bulletinRepository)
     {
-        //
+        $this->bulletinRepository = $bulletinRepository;
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @param $periode
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index($codeEtablissement, $codeAnnee, $periode)
+    {
+        $bulletins = $this->bulletinRepository->findAll($codeEtablissement, $codeAnnee, $periode);
+
+        $response = [
+            'success' => true,
+            'bulletins' => $bulletins
+        ];
+
+        return response()->json(['data' => $response], 200);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $bulletin = $this->bulletinRepository->store($request->all());
+
+        $response = [
+            'success' => true,
+            'bulletin' => $bulletin
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @param $periode
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($codeEtablissement, $codeAnnee, $matriculeEleve, $periode)
     {
-        //
+        $bulletin = $this->bulletinRepository->find($codeEtablissement, $codeAnnee, $matriculeEleve, $periode);
+
+        $response = [
+            'success' => true,
+            'bulletin' => $bulletin
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $codeEtablissementr
+     * @param $codeAnneer
+     * @param $matriculeElever
+     * @param $perioder
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function update(Request $request, $codeEtablissementr, $codeAnneer, $matriculeElever, $perioder)
     {
-        //
+        $bulletin = $this->bulletinRepository->update($codeEtablissementr, $codeAnneer, $matriculeElever, $perioder, $request->all());
+
+        $response = [
+            'success' => true,
+            'bulletin' => $bulletin,
+            'message' => 'Update end succesfully'
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @param $periode
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function destroy($codeEtablissement, $codeAnnee, $matriculeEleve, $periode)
     {
-        //
-    }
+        $this->bulletinRepository->delete($codeEtablissement, $codeAnnee, $matriculeEleve, $periode);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $response = [
+            'success' => true,
+            'message' => 'Operation end'
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 }

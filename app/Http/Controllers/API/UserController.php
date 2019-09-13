@@ -589,4 +589,12 @@ class UserController extends Controller
         return response()->json(['success' => $response ,
             'message' => 'Operation end successfully'], 200);
     }
+
+
+    public function logoutApi()
+    {
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+        }
+    }
 }

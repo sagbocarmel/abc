@@ -24,9 +24,11 @@ class BulletinRequest extends FormRequest
     public function rules()
     {
         return [
-            'idEleve' => 'required',
-            'matricule' => 'required',
-            'idEtablissement'=>'required'
+            'codeAnnee' => 'required',
+            'codeEtablissement' => 'required',
+            'matriculeEleve'=>'required',
+            'periode' => 'required',
+            'bulletin' => 'required'
         ];
     }
 }

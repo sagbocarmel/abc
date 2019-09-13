@@ -28,7 +28,7 @@ class EnseignantRequest extends FormRequest
             'prenoms' => 'required',
             'sexe' => 'required',
             'email' => '',
-            'tel1' => 'required',
+            'tel' => 'required',
             'tel2' => '',
             'dateNaissance' => '',
             'adresse' => '',
@@ -38,7 +38,8 @@ class EnseignantRequest extends FormRequest
             'contactUrgence' => '',
             'mode' => '',
             'cv' => '',
-            'idUtilisateur' => 'required'
+            'diplome' => '',
+            'matriculeEnseignant' => 'required'
         ];
     }
 }

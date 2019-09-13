@@ -44,6 +44,10 @@ class AccessController extends Controller
         $this->profilRepository = $profilRepository;
     }
 
+    /**
+     * @param RolesRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createRole(RolesRequest $request){
         $data = [
             'titre' => $request->titre,
@@ -54,22 +58,38 @@ class AccessController extends Controller
         return response()->json(['data'=> new Role($role)],200);
     }
 
+    /**
+     * @param $id
+     * @param RolesRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateRole($id, RolesRequest $request){
         $this->roleRepository->update($id,$request->all());
         return response()->json(['success' => true ,
             'message' => 'Role mis à jour avec succès'], 200);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getRole($id){
         return response()->json(['data'=> new Role($this->roleRepository->find($id))],200);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteRole($id){
         $this->roleRepository->delete($id);
         return response()->json(['success' => true ,
             'message' => 'Role supprimée avec succès'], 200);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getRoles(){
         $profiles = $this->profilRepository->findAllByTel(Auth::user()->tel);
         $roles  = $this->roleRepository->findAll();
@@ -92,7 +112,10 @@ class AccessController extends Controller
         return response()->json(['data'=> $roles],200);
     }
 
-
+    /**
+     * @param DroitsRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createDroit(DroitsRequest $request){
         $data = [
             'codeRole' => $request->codeRole,
@@ -104,8 +127,15 @@ class AccessController extends Controller
         return response()->json(['data'=> $droit],200);
     }
 
-    public function updateDroit($codeRole,$codeElement, $droits, DroitsRequest $request){
-        $this->droitsRepository->update($codeRole,$codeElement,$droits, $request->all());
+    /**
+     * @param $codeRole
+     * @param $codeElement
+     * @param $droits
+     * @param DroitsRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateDroit($codeRole,$codeElement, $droit, DroitsRequest $request){
+        $this->droitsRepository->update($codeRole,$codeElement,$droit, $request->all());
         return response()->json(['success' => true ,
             'message' => 'Droit mis à jour avec succès'], 200);
     }
@@ -114,16 +144,31 @@ class AccessController extends Controller
         return response()->json(['data'=>$this->droitsRepository->find($codeRole,$codeElement, $droits)],200);
     }
 
+    /**
+     * @param $codeRole
+     * @param $codeElement
+     * @param $droits
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteDroit($codeRole,$codeElement, $droits){
         $this->droitsRepository->delete($codeRole,$codeElement, $droits);
         return response()->json(['success' => true ,
             'message' => 'Permission supprimée avec succès'], 200);
     }
 
-    public function getPermissions($codeRole,$codeElement){
+    /**
+     * @param $codeRole
+     * @param $codeElement
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDroits($codeRole,$codeElement){
         return response()->json(['data'=> $this->droitsRepository->findAll($codeRole,$codeElement)],200);
     }
 
+    /**
+     * @param ProfileRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createProfile(ProfileRequest $request){
 
         $profiles = $this->profilRepository->store($request->all());
@@ -132,24 +177,44 @@ class AccessController extends Controller
             'profile' => $profiles]],200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $telUtilisateur
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteProfile($codeEtablissement, $telUtilisateur){
         $this->profilRepository->delete($codeEtablissement,$telUtilisateur);
         return response()->json(['success' => true ,
             'message' => 'Profile supprimé avec succès'], 200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $telUtilisateur
+     * @param ProfileRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateProfile($codeEtablissement, $telUtilisateur, ProfileRequest $request){
         $profiles = $this->profilRepository->update($codeEtablissement,$telUtilisateur,$request->all());
         return response()->json(['data'=>['success' => true ,
             'profile' => $profiles]], 200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $telUtilisateur
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function showProfile($codeEtablissement, $telUtilisateur){
         $profile = $this->profilRepository->find($codeEtablissement, $telUtilisateur);
         return response()->json(['data'=>['success' => true ,
             'profile' => $profile]], 200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function indexProfile($codeEtablissement){
         $profiles = $this->profilRepository->findAll($codeEtablissement);
         return response()->json(['data'=>['success' => true ,

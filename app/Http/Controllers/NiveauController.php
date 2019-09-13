@@ -13,7 +13,7 @@ class NiveauController extends Controller
 
     /**
      * NiveauController constructor.
-     * @param $niveauRepository
+     * @param NiveauRepository $niveauRepository
      */
     public function __construct(NiveauRepository $niveauRepository)
     {
@@ -21,9 +21,7 @@ class NiveauController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -37,10 +35,8 @@ class NiveauController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param NiveauRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(NiveauRequest $request)
     {
@@ -62,10 +58,9 @@ class NiveauController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($codeEtablissement, $niveau)
     {
@@ -79,11 +74,9 @@ class NiveauController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param NiveauRequest $request
+     * @param $niveau
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(NiveauRequest $request, $niveau)
     {
@@ -105,10 +98,8 @@ class NiveauController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $niveau
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($niveau)
     {

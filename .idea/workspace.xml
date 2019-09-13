@@ -2,7 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25dcaae7-73a3-44ed-8b26-0276ebc3b7ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/EnseignantClasseRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/EnseignantClasseRepositoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/MatieresDeClassesRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/MatieresDeClassesRepositoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/ParentEleveRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/ParentEleveRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AccessController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AccessController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AppreciationController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BulletinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BulletinController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClasseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClasseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CoursController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CoursController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElevesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElevesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EnseignantsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EtablissementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EtablissementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EvaluationsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InscriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MatieresController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MatieresController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NiveauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NiveauController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParentsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SectionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SectionsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AppreciationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/AppreciationRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/BulletinRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/BulletinRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/EnseignantRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/EnseignantRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/EvaluationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/EvaluationRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/InscriptionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/InscriptionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NotesRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NotesRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ParentsRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ParentsRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/OauthAccessToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OauthAccessToken.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Utilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/AppreciationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/AppreciationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/AppreciationRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/AppreciationRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/BulletinRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/BulletinRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/BulletinRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/BulletinRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ElevesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ElevesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/EnseignantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/EnseignantRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/EnseignantRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/EnseignantRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/EvaluationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/EvaluationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/EvaluationRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/EvaluationRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/NotesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/NotesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/NotesRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/NotesRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ParentsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ParentsRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ParentsRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ParentsRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_27_000022_create_48c5m_EnseignantClasse_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_27_000022_create_48c5m_EnseignantClasse_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,98 +89,105 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="abc_s_m: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="abc_s_m@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="abc_s_m: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="48c5m_Eleve: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="abc_s_m@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="abc_s_m: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="48c5m_Niveau: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="abc_s_m@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="abc_s_m: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="48c5m_Profile: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.editorconfig">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Procfile">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/readme.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-35" />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/phpunit.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000011_create_48c5m_Niveau_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-133" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5141037">
+      <split-first>
+        <splitter split-orientation="vertical" split-proportion="0.5">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/routes/api.php">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="181">
+                      <caret line="82" column="38" lean-forward="true" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/routes/api.php">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="166">
+                      <caret line="81" column="12" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-first>
+      <split-second>
+        <splitter split-orientation="vertical" split-proportion="0.4626087">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AppreciationController.php">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="15">
+                      <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="165">
+                      <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/database/seeds/AnneeScolaire.php">
+                  <provider selected="true" editor-type-id="text-editor" />
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/database/seeds/ElementSeeder.php">
+                  <provider selected="true" editor-type-id="text-editor" />
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/database/seeds/DroitsSeeder.php">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="136">
+                      <caret line="31" column="56" lean-forward="true" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/database/seeds/ProfileSeeder.php">
+                  <provider selected="true" editor-type-id="text-editor" />
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/database/seeds/RolesTableSeeder.php">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="372">
+                      <caret line="39" column="39" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="39" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -146,6 +202,7 @@
     <replaceStrings>
       <replace>Role</replace>
       <replace>codeRole</replace>
+      <replace>enseignant</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -154,57 +211,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/EtablissementController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaire.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Media/AnneeScolaireEtablissement.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Media/AnneeScolaireEtablissementInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/AnneeScolaireRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/AnneeScolaireRepository.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissement.php" />
-        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/AnneeScolaireRequest.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_28_000015_create_48c5m_AnneeScolaireEtablissement_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/AnneeScolaireEtablissementRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/InscriptionRepository.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/InscriptionRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_27_000001_create_sections_table.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/DroitsRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/DroitsRepository.php" />
-        <option value="$PROJECT_DIR$/database/seeds/NiveauSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/NiveauRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/NiveauRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/NiveauRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/DroitsRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/NiveauController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/ProfileRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/RoleRepository.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/ProfileRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AccessController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/ClasseRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/ClasseRepository.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/MatieresRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MatieresController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/MatieresRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/CoursRequest.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/CoursRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Models/48c5mCour.php" />
-        <option value="$PROJECT_DIR$/app/Models/Cour.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/CoursRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ClasseController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/ClassesRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CoursController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/ElevesRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ElevesController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/ElevesRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/EnseignantRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/EnseignantRequest.php" />
         <option value="$PROJECT_DIR$/app/Repositories/ElevesRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/EnseignantRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/ParentsRequest.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/ParentsRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/ParentsRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/ParentElevesRequest.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/ParentEleveRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/ParentEleveRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ParentElevesController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_08_27_000022_create_48c5m_EnseignantClasse_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/EnseignantClasseRequest.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/EnseignantClasseRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/EnseignantClasseRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EnseignantClasseController.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/MatieresDeClassesRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/MatieresDeClassesRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/MatiereDeClasseRequest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MatiereDeClasseController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/EvaluationRequest.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/EvaluationRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/EvaluationRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EvaluationController.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/NotesRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/NotesRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/NotesRequest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/AppreciationRequest.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/AppreciationRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/AppreciationRepository.php" />
+        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AppreciationController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BulletinController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ClasseController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CoursController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ElevesController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EnseignantsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EtablissementController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/InscriptionController.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MatieresController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/NiveauController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/NotesController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ParentsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SectionsController.php" />
+        <option value="$PROJECT_DIR$/app/Models/OauthAccessToken.php" />
+        <option value="$PROJECT_DIR$/app/Models/Utilisateur.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AccessController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
       </list>
     </option>
   </component>
@@ -328,6 +385,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -357,18 +415,12 @@
               <item name="abc" type="b2602c69:ProjectViewProjectNode" />
               <item name="abc" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="abc" type="b2602c69:ProjectViewProjectNode" />
               <item name="abc" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="abc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="abc" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="abc" type="b2602c69:ProjectViewProjectNode" />
@@ -376,23 +428,17 @@
               <item name="database" type="462c0819:PsiDirectoryNode" />
               <item name="seeds" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="abc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="abc" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -473,18 +519,28 @@
       <workItem from="1567576200009" duration="29968000" />
       <workItem from="1567624069384" duration="23340000" />
       <workItem from="1567714937267" duration="10746000" />
-      <workItem from="1567750234266" duration="25907000" />
+      <workItem from="1567750234266" duration="31133000" />
+      <workItem from="1567966043258" duration="68000" />
+      <workItem from="1568016826943" duration="7641000" />
+      <workItem from="1568093231247" duration="29146000" />
+      <workItem from="1568147694773" duration="889000" />
+      <workItem from="1568148754127" duration="672000" />
+      <workItem from="1568190960199" duration="2063000" />
+      <workItem from="1568227915378" duration="3516000" />
+      <workItem from="1568303270443" duration="208000" />
+      <workItem from="1568359444029" duration="9679000" />
+      <workItem from="1568385197619" duration="1082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="549125000" />
+    <option name="totallyTimeSpent" value="609107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="27" width="1326" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8388998" visible="true" weight="0.28671876" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8388998" visible="true" weight="0.11953125" />
       <window_info id="Structure" order="1" sideWeight="0.1611002" side_tool="true" weight="0.2359375" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -499,331 +555,338 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.15867768" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.049586777" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.3289256" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.20625" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.0234375" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Repositories/AnneeScolaireEtablissementRepositoryInterface.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/NotesRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="28" selection-start-line="15" selection-start-column="4" selection-end-line="19" selection-end-column="57" />
+        <state relative-caret-position="450">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/NiveauRepositoryInterface.php">
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="55" selection-start-line="15" selection-start-column="4" selection-end-line="19" selection-end-column="55" />
+        <state relative-caret-position="-1891">
+          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/DroitsRequest.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClasseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AnneeScolaireRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AnneeScolaireEtablissementRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/NiveauRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/NiveauRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NiveauController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-844">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ProfileRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-          <folding>
-            <element signature="e#118#141#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/RolesTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AccessController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
-          <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/MatieresRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/MatieresRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MatieresController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/MatieresRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ClasseRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ClasseRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
-          <folding>
-            <element signature="e#117#140#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/BulletinRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/BulletinRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/AppreciationRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/RoleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ProfileRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="20" selection-start-line="15" selection-start-column="4" selection-end-line="19" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/CoursRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="105" selection-start-line="20" selection-start-column="105" selection-end-line="20" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Cour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/ClassesRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="32" column="39" lean-forward="true" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/CoursRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/CoursRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="101" column="103" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/ElevesRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        <state relative-caret-position="178">
+          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CoursController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="32" column="40" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="32" selection-end-column="40" />
+        <state relative-caret-position="133">
+          <caret line="144" column="44" selection-start-line="144" selection-start-column="44" selection-end-line="144" selection-end-column="44" />
           <folding>
             <element signature="e#40#75#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SectionsController.php">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EvaluationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="18" column="90" selection-start-line="18" selection-start-column="90" selection-end-line="18" selection-end-column="90" />
+          <folding>
+            <element signature="e#40#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ParentsController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MatiereDeClasseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding>
+            <element signature="e#40#85#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MatieresController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MoyennesController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NotesController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClasseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="72" selection-end-column="42" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ParentElevesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="44" selection-end-column="58" />
+          <folding>
+            <element signature="e#40#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ParentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
           <folding>
             <element signature="e#40#77#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ElevesRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NiveauController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="156" column="15" lean-forward="true" selection-start-line="156" selection-start-column="15" selection-end-line="156" selection-end-column="15" />
-          <folding>
-            <element signature="e#118#135#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="1470">
+          <caret line="101" column="44" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/ElevesRepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="26" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ElevesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="77" column="60" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="77" selection-end-column="60" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InscriptionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="42" column="44" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
+        <state relative-caret-position="180">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding>
             <element signature="e#40#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitattributes">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.editorconfig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-35" />
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SectionsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="79" column="10" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpunit.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000011_create_48c5m_Niveau_table.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BulletinController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000013_create_48c5m_Classe_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+        <state relative-caret-position="15">
+          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_000016_create_48c5m_Profile_table.php">
+    <entry file="das://b8dbd80e-67a9-4d29-9366-34e8eddba431/schema/abc_s_m/table/oauth_personal_access_clients">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b8dbd80e-67a9-4d29-9366-34e8eddba431/schema/abc_s_m/table/oauth_clients">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b8dbd80e-67a9-4d29-9366-34e8eddba431/schema/abc_s_m/table/oauth_auth_codes">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b8dbd80e-67a9-4d29-9366-34e8eddba431/schema/abc_s_m/table/oauth_access_tokens">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b8dbd80e-67a9-4d29-9366-34e8eddba431/schema/abc_s_m/table/oauth_refresh_tokens">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ElevesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
+        <state relative-caret-position="178">
+          <caret line="155" column="67" selection-start-line="155" selection-start-column="67" selection-end-line="155" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EnseignantsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+          <folding>
+            <element signature="e#40#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/UtilisateurRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/UserRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-413" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/SectionsRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/RoleRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/ProfileRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/PermissionsDeRoleRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/NotesRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1905">
+          <caret line="132" column="33" selection-start-line="132" selection-start-column="33" selection-end-line="132" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AppreciationRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EnseignantClasseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="56" column="7" selection-start-line="56" selection-start-column="7" selection-end-line="60" selection-end-column="22" />
+          <folding>
+            <element signature="e#40#86#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/ProfileRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EtablissementController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="143" column="18" selection-start-line="143" selection-start-column="18" selection-end-line="143" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/OauthAccessToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/OauthRefreshToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-145" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/OauthPersonalAccessClient.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/OauthClient.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Utilisateur.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="237" column="60" selection-start-line="237" selection-start-column="60" selection-end-line="237" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="600" lean-forward="true" selection-start-line="600" selection-end-line="600" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AccessController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireEtablissementController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="95" column="10" lean-forward="true" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AppreciationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AnneeScolaireController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/AnneeScolaire.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/ElementSeeder.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/ProfileSeeder.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DroitsSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="31" column="56" lean-forward="true" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/RolesTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="81" column="12" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
         </state>
       </provider>
     </entry>

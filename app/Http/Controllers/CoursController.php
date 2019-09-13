@@ -12,7 +12,7 @@ class CoursController extends Controller
 
     /**
      * CoursController constructor.
-     * @param $coursRepository
+     * @param CoursRepository $coursRepository
      */
     public function __construct(CoursRepository $coursRepository)
     {
@@ -21,9 +21,11 @@ class CoursController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index($codeEtablissement, $niveau, $codeClasse, $codeAnnee)
     {
@@ -34,10 +36,8 @@ class CoursController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CoursRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CoursRequest $request)
     {
@@ -57,10 +57,13 @@ class CoursController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $codeMatiere
+     * @param $jourCours
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $codeMatiere, $jourCours)
     {
@@ -71,11 +74,14 @@ class CoursController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CoursRequest $request
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $codeMatiere
+     * @param $jourCours
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(CoursRequest $request, $codeEtablissement, $niveau, $codeClasse, $codeAnnee, $codeMatiere, $jourCours)
     {
@@ -87,10 +93,13 @@ class CoursController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $codeMatiere
+     * @param $jourCours
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $codeMatiere, $jourCours)
     {
@@ -100,6 +109,11 @@ class CoursController extends Controller
                 'message' => 'Cours supprimé avec succès']], 200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllByEtablissement($codeEtablissement, $codeAnnee)
     {
         $cours = $this->coursRepository->findAll($codeEtablissement, $codeAnnee);
@@ -108,6 +122,12 @@ class CoursController extends Controller
                 'cours'=>$cours]], 200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeAnnee
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllByNiveau($codeEtablissement, $niveau, $codeAnnee)
     {
         $cours = $this->coursRepository->findAllByNiveau($codeEtablissement, $niveau, $codeAnnee);
@@ -116,6 +136,14 @@ class CoursController extends Controller
                 'cours'=>$cours]], 200);
     }
 
+    /**
+     * @param $codeEtablissement
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeAnnee
+     * @param $codeMatiere
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllByMatiere($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $codeMatiere)
     {
         $cours = $this->coursRepository->findAllByMatiere($codeEtablissement, $niveau, $codeClasse, $codeAnnee, $codeMatiere);

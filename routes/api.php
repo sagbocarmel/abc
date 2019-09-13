@@ -45,35 +45,60 @@ Route::middleware('auth:api')->group( function () {
     |
     |
     */
+    Route::post('logout','API\UserController@logoutApi');
+
     Route::get('abc/users',[
         'uses' => 'API\UserController@getList',
-        'as' => 'list_users'
+        'as' => 'list_users',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S','R','A','B','E'],
+        'elts' => ['48c5m_Utilisateur']
     ]);
 
     Route::get('abc/user/{tel}',[
         'uses' => 'API\UserController@show',
-        'as' => 'user_with_tel'
+        'as' => 'user_with_tel',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'elts' => ['48c5m_Utilisateur']
     ]);
 
     Route::get('abc/users/count',[
         'uses' => 'API\UserController@countUser',
-        'as' => 'user_number'
+        'as' => 'user_number',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S','R','A','B','E'],
+        'elts' => ['48c5m_Utilisateur']
     ]);
 
     Route::post('abc/new/user',[
         'uses' => 'API\UserController@registerNewUser',
-        'as' => 'new_user'
+        'as' => 'new_user',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1','SuperAdmin2'],
+        'acces' => ['S','C','A','B'],
+        'elts' => ['48c5m_Utilisateur']
     ]);
 
     Route::put('abc/user/{tel}',[
             'uses' => 'API\UserController@update',
-            'as' => 'update_user'
+            'as' => 'update_user',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S','U','A','E'],
+            'elts' => ['48c5m_Utilisateur']
         ]
     );
 
     Route::delete('abc/user/{tel}',[
             'uses' => 'API\UserController@delete',
-            'as' => 'delete_user'
+            'as' => 'delete_user',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S','D'],
+            'elts' => ['48c5m_Utilisateur']
         ]
     );
 
@@ -89,36 +114,46 @@ Route::middleware('auth:api')->group( function () {
     Route::get('abc/access/roles',[
             'uses' => 'AccessController@getRoles',
             'as' => 'user_roles',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Role']
         ]
     );
     Route::get('abc/access/role/{id}',[
             'uses' => 'AccessController@getRole',
             'as' => 'user_role_with_id',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Role']
         ]
     );
     Route::put('abc/access/role/{id}',[
             'uses' => 'AccessController@updateRole',
             'as' => 'update_role',
-            'middleware'=>'permissions',
-            'permissions' => ['UPDATE']
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Role']
         ]
     );
     Route::post('abc/access/role',[
         'uses' => 'AccessController@createRole',
         'as' => 'new_role',
-        'middleware'=>'permissions',
-        'permissions' => ['CREATE']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Role']
     ]);
 
     Route::delete('abc/access/role/{id}',[
         'uses' => 'AccessController@deleteRole',
         'as' => 'delete_role',
-        'middleware'=>'permissions',
-        'permissions' => ['DELETE']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Role']
     ]);
 
     /*
@@ -126,44 +161,54 @@ Route::middleware('auth:api')->group( function () {
     | API Routes
     |--------------------------------------------------------------------------
     |
-    | Permissions ressources Routes
+    | Droits ressources Routes
     |
     |
     */
 
-    Route::get('abc/access/permissions',[
-            'uses' => 'AccessController@getPermissions',
-            'as' => 'user_permission',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+    Route::get('abc/access/droits',[
+            'uses' => 'AccessController@getDroits',
+            'as' => 'user_droit',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
         ]
     );
-    Route::get('abc/access/permission/{id}',[
-            'uses' => 'AccessController@getPermission',
-            'as' => 'permission_with_id',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+    Route::get('abc/access/droit/{codeRole}/{codeElement}/{droit}',[
+            'uses' => 'AccessController@getDroit',
+            'as' => 'droit_with_id',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
         ]
     );
-    Route::put('abc/access/permission/{id}',[
-            'uses' => 'AccessController@updatePermission',
-            'as' => 'update_permission',
-            'middleware'=>'permissions',
-            'permissions' => ['UPDATE']
+    Route::put('abc/access/droit/{codeRole}/{codeElement}/{droit}',[
+            'uses' => 'AccessController@updateDroit',
+            'as' => 'update_droit',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
         ]
     );
-    Route::post('abc/access/permission',[
-        'uses' => 'AccessController@createPermission',
-        'as' => 'new_permission',
-        'middleware'=>'permissions',
-        'permissions' => ['CREATE']
+    Route::post('abc/access/droit',[
+        'uses' => 'AccessController@createDroit',
+        'as' => 'new_droit',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
     ]);
 
-    Route::delete('abc/access/permission/{id}',[
-        'uses' => 'AccessController@deletePermission',
+    Route::delete('abc/access/droit/{codeRole}/{codeElement}/{droit}',[
+        'uses' => 'AccessController@deleteDroit',
         'as' => 'delete_permission',
-        'middleware'=>'permissions',
-        'permissions' => ['DELETE']
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
     ]);
 
     /*
@@ -171,41 +216,370 @@ Route::middleware('auth:api')->group( function () {
     | API Routes
     |--------------------------------------------------------------------------
     |
-    |Permissions and Roles ressources Routes
+    |Profile ressources Routes
     |
     |
     */
-    Route::get('abc/access/roles/permissions',[
-            'uses' => 'AccessController@getRolesPermissions',
-            'as' => 'access',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+    Route::get('abc/access/profiles',[
+            'uses' => 'AccessController@indexProfile',
+            'as' => 'profiles',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Profile','48c5m_Role']
         ]
     );
 
-    Route::get('abc/access/role/{id}/permissions',[
-            'uses' => 'AccessController@getRolePermission',
-            'as' => 'access_with_id',
-            'middleware'=>'permissions',
-            'permissions' => ['READ']
+    Route::get('abc/access/profile/{codeEtablissement}/{telUtilisateur}',[
+            'uses' => 'AccessController@showProfile',
+            'as' => 'show_profile',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S'],
+            'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
         ]
     );
 
-    Route::post('abc/access/role/permission',[
-        'uses' => 'AccessController@createRolePermission',
-        'as' => 'new_access',
-        'middleware'=>'permissions',
-        'permissions' => ['CREATE']
+    Route::post('abc/access/profile',[
+        'uses' => 'AccessController@createProfile',
+        'as' => 'new_profile',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
     ]);
 
-    Route::delete('abc/access/role/{id}/permission/{id_permission}',[
+    Route::delete('abc/access/profile/{codeEtablissement}/{telUtilisateur}',[
         'uses' => 'AccessController@deleteRolePermission',
-        'as' => 'delete_access',
-        'middleware'=>'permissions',
-        'permissions' => ['DELETE']
+        'as' => 'delete_profile',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S'],
+        'elts' => ['48c5m_Droits','48c5m_Role','48c5m_Element']
     ]);
 
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Annee Scolaire  ressources Routes
+    |
+    |
+    */
+    Route::get('abc/annees-scolaires',[
+            'uses' => 'AnneeScolaireController@index',
+            'as' => 'list_annee_scolaire',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S','R','A','B','E'],
+            'elts' => ['48c5m_AnneeScolaire']
+        ]
+    );
 
+    Route::get('abc/annees-scolaire/{id}',[
+            'uses' => 'AnneeScolaireController@show',
+            'as' => 'show_annee_scolaire',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S','R','A','B','E'],
+            'elts' => ['48c5m_AnneeScolaire']
+        ]
+    );
+
+    Route::put('abc/annees-scolaire/{id}',[
+            'uses' => 'AnneeScolaireController@update',
+            'as' => 'update_annee_scolaire',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+            'acces' => ['S','U','A','B','E'],
+            'elts' => ['48c5m_AnneeScolaire']
+        ]
+    );
+    Route::post('abc/annees-scolaire',[
+        'uses' => 'AnneeScolaireController@store',
+        'as' => 'new_anneee_scolaire',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S','C','A','B'],
+        'elts' => ['48c5m_AnneeScolaire']
+    ]);
+
+    Route::delete('abc/annees-scolaire',[
+        'uses' => 'AnneeScolaireController@destroy',
+        'as' => 'delete_annee_scolaire',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => ['SuperAdmin','SuperAdmin0','SuperAdmin1'],
+        'acces' => ['S','D',],
+        'elts' => ['48c5m_AnneeScolaire']
+    ]);
+
+    /*
+   |--------------------------------------------------------------------------
+   | API Routes
+   |--------------------------------------------------------------------------
+   |
+   | Annee Scolaire Etablissement  ressources Routes
+   |
+   |
+   */
+
+    Route::get('abc/annees-scolaire/etablissements',[
+            'uses' => 'AnneeScolaireEtablissementController@index',
+            'as' => 'list_annee_scolaire_etablissement',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','R','A','B','E'],
+            'elts' => ['48c5m_AnneeScolaire']
+        ]
+    );
+
+    Route::get('abc/annees-scolaire/etablissement/{id}',[
+            'uses' => 'AnneeScolaireEtablissementController@show',
+            'as' => 'show_annee_scolaire_etablissement',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','R','A','B','E'],
+            'elts' => ['48c5m_AnneeScolaire']
+        ]
+    );
+
+    Route::put('abc/annees-scolaire/etablissement/{id}',[
+            'uses' => 'AnneeScolaireEtablissementController@update',
+            'as' => 'update_annee_scolaire_etablissement',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','U','A','B','E'],
+            'elts' => ['48c5m_AnneeScolaire']
+        ]
+    );
+    Route::post('abc/annees-scolaire/etablissement',[
+        'uses' => 'AnneeScolaireEtablissementController@store',
+        'as' => 'new_anneee_scolaire_etablissement',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => [
+            'SuperAdmin',
+            'SuperAdmin0',
+            'SuperAdmin1',
+            'SuperUser',
+            'User0',
+            'User1',
+            'User2',
+            'User3',
+            'Parent'],
+        'acces' => ['S','C','A','B'],
+        'elts' => ['48c5m_AnneeScolaire']
+    ]);
+
+    Route::delete('abc/annees-scolaire/etablissement/{id}',[
+        'uses' => 'AnneeScolaireEtablissementController@destroy',
+        'as' => 'delete_annee_scolaire_etablissement',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => [
+            'SuperAdmin',
+            'SuperAdmin0',
+            'SuperAdmin1',
+            'SuperUser',
+            'User0',
+            'User1',
+            'User2',
+            'User3',
+            'Parent'],
+        'acces' => ['S','D',],
+        'elts' => ['48c5m_AnneeScolaire']
+    ]);
+
+    /*
+  |--------------------------------------------------------------------------
+  | API Routes
+  |--------------------------------------------------------------------------
+  |
+  | Appréciation  ressources Routes
+  |
+  |
+  */
+
+    Route::get('abc/appreciation/{codeEtablissement}/{codeAnnee}/{matriculeEleve/{niveau}/{codeClasse}/{codeMatiere}/{codeEvaluation}/{periode}',[
+            'uses' => 'AppreciationController@show',
+            'as' => 'show_appreciation',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','R','A','B','E'],
+            'elts' => ['48c5m_Appreciations']
+        ]
+    );
+
+    Route::put('abc/appreciation/{codeEtablissement}/{codeAnnee}/{matriculeEleve/{niveau}/{codeClasse}/{codeMatiere}/{codeEvaluation}/{periode}',[
+            'uses' => 'AppreciationController@update',
+            'as' => 'update_appreciation',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','U','A','B','E'],
+            'elts' => ['48c5m_Appreciations']
+        ]
+    );
+    Route::post('abc/annees-scolaire/etablissement',[
+        'uses' => 'AppreciationController@store',
+        'as' => 'new_appreciation',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => [
+            'SuperAdmin',
+            'SuperAdmin0',
+            'SuperAdmin1',
+            'SuperUser',
+            'User0',
+            'User1',
+            'User2',
+            'User3',
+            'Parent'],
+        'acces' => ['S','C','A','B'],
+        'elts' => ['48c5m_Appreciations']
+    ]);
+
+    Route::delete('abc/appreciation/{codeEtablissement}/{codeAnnee}/{matriculeEleve/{niveau}/{codeClasse}/{codeMatiere}/{codeEvaluation}/{periode}',[
+        'uses' => 'AppreciationController@destroy',
+        'as' => 'delete_appreciation',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => [
+            'SuperAdmin',
+            'SuperAdmin0',
+            'SuperAdmin1',
+            'SuperUser',
+            'User0',
+            'User1',
+            'User2',
+            'User3',
+            'Parent'],
+        'acces' => ['S','D',],
+        'elts' => ['48c5m_Appreciations']
+    ]);
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    |
+    | Bulletins  ressources Routes
+    |
+    |
+    */
+    Route::get('abc/appreciation/{codeEtablissement}/{codeAnnee}/{matriculeEleve/{niveau}/{codeClasse}/{codeMatiere}/{codeEvaluation}/{periode}',[
+            'uses' => 'BulletinController@show',
+            'as' => 'show_appreciation',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','R','A','B','E'],
+            'elts' => ['48c5m_Appreciations']
+        ]
+    );
+
+    Route::put('abc/appreciation/{codeEtablissement}/{codeAnnee}/{matriculeEleve/{niveau}/{codeClasse}/{codeMatiere}/{codeEvaluation}/{periode}',[
+            'uses' => 'BulletinController@update',
+            'as' => 'update_appreciation',
+            'middleware'=>['permissions', 'elements'],
+            'roles' => [
+                'SuperAdmin',
+                'SuperAdmin0',
+                'SuperAdmin1',
+                'SuperUser',
+                'User0',
+                'User1',
+                'User2',
+                'User3',
+                'Parent'],
+            'acces' => ['S','U','A','B','E'],
+            'elts' => ['48c5m_Appreciations']
+        ]
+    );
+    Route::post('abc/annees-scolaire/etablissement',[
+        'uses' => 'BulletinController@store',
+        'as' => 'new_appreciation',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => [
+            'SuperAdmin',
+            'SuperAdmin0',
+            'SuperAdmin1',
+            'SuperUser',
+            'User0',
+            'User1',
+            'User2',
+            'User3',
+            'Parent'],
+        'acces' => ['S','C','A','B'],
+        'elts' => ['48c5m_Appreciations']
+    ]);
+
+    Route::delete('abc/appreciation/{codeEtablissement}/{codeAnnee}/{matriculeEleve/{niveau}/{codeClasse}/{codeMatiere}/{codeEvaluation}/{periode}',[
+        'uses' => 'BulletinController@destroy',
+        'as' => 'delete_appreciation',
+        'middleware'=>['permissions', 'elements'],
+        'roles' => [
+            'SuperAdmin',
+            'SuperAdmin0',
+            'SuperAdmin1',
+            'SuperUser',
+            'User0',
+            'User1',
+            'User2',
+            'User3',
+            'Parent'],
+        'acces' => ['S','D',],
+        'elts' => ['48c5m_Bulletins']
+    ]);
     /*
     |--------------------------------------------------------------------------
     | API Routes

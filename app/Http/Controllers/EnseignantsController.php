@@ -2,83 +2,101 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EnseignantRequest;
+use App\Repositories\EnseignantRepository;
 use Illuminate\Http\Request;
 
 class EnseignantsController extends Controller
 {
+    protected $enseignantsRepository;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * EnseignantsController constructor.
+     * @param EnseignantRepository $enseignantsRepository
+     */
+    public function __construct(EnseignantRepository $enseignantsRepository)
+    {
+        $this->enseignantsRepository = $enseignantsRepository;
+    }
+
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $enseignants = $this->enseignantsRepository->findAll();
+
+        $response = [
+            'success' => true,
+            'enseigants' => $enseignants
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $enseignantSaved = $this->enseignantsRepository->store($request->all());
+
+        $response = [
+            'success' => true,
+            'enseigant_data' => $enseignantSaved
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $matricule
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($matricule)
     {
-        //
+        $enseignant = $this->enseignantsRepository->find($matricule);
+
+        $response = [
+            'success' => true,
+            'enseigant_data' => $enseignant
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param EnseignantRequest $request
+     * @param $matriculeEnseignant
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function update(EnseignantRequest $request, $matriculeEnseignant)
     {
-        //
+        $enseignantSaved = $this->enseignantsRepository->update($matriculeEnseignant,$request->all());
+
+        $response = [
+            'success' => true,
+            'enseigant_data' => $enseignantSaved
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $matriculeEnseignant
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function destroy($matriculeEnseignant)
     {
-        //
-    }
+        $this->enseignantsRepository->delete($matriculeEnseignant);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $response = [
+            'success' => true,
+            'message' => 'Operation end successfully'
+        ];
+
+        return response()->json(['data' => $response], 200);
     }
 }

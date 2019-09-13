@@ -13,7 +13,7 @@ class InscriptionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class InscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'codeEtablissement' => 'required',
+            'niveau' => 'required',
+            'codeClasse' => 'required',
+            'codeAnnee' => 'required',
+            'matriculeEleve' => 'required',
+            'dateInscription' => 'required'
         ];
     }
 }

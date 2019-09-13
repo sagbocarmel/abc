@@ -12,9 +12,9 @@ namespace App\Repositories;
 interface ParentsRepositoryInterface
 {
     public function store(Array $inputs);
-    public function update($id, Array $inputs);
-    public function findByIdUtilisateur($idUtilisateur);
-    public function find($id);
-    public function delete($id);
+    public function update($tel, Array $inputs);
+    public function find($tel);
+    public function delete($tel);
     public function findAll();
+
 }

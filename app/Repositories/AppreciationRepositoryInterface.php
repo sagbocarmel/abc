@@ -14,10 +14,7 @@ use PhpParser\Node\Expr\Array_;
 interface AppreciationRepositoryInterface
 {
     public function store(Array $inputs);
-    public function update($idEvaluation, $idEleve,$matricule, Array $inputs);
-    public function findAllByIdEvaluation($idEvaluation);
-    public function findAllByIdEleve($idEleve);
-    public function findAllByMatricule($matricule);
-    public function find($idEvaluation, $idEleve, $matricule);
-    public function delete($idEvaluation, $idEleve, $matricule);
+    public function update($codeEtablissement,$codeAnnee,$matriculeEleve,$niveau,$codeClasse,$codeMatiere, $codeEvaluation,$periode, Array $inputs);
+    public function find($codeEtablissement,$codeAnnee,$matriculeEleve,$niveau,$codeClasse,$codeMatiere, $codeEvaluation,$periode);
+    public function delete($codeEtablissement,$codeAnnee,$matriculeEleve,$niveau,$codeClasse,$codeMatiere, $codeEvaluation,$periode);
 }

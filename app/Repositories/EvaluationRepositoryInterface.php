@@ -12,9 +12,12 @@ namespace App\Repositories;
 interface EvaluationRepositoryInterface
 {
     public function store(Array $inputs);
-    public function update($id, Array $inputs);
-    public function findAllByClasse($idClasse);
-    public function findAllByMatiere($idMatiere);
-    public function find($id);
-    public function delete($id);
+    public function update($codeEtablissement,$codeAnnee, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode,Array $inputs);
+    public function find($codeEtablissement,$codeAnnee, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode);
+    public function delete($codeEtablissement,$codeAnnee, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode);
+
+    public function findAllEvaluationByMatiere($codeEtablissement,$codeAnnee, $niveau, $codeClasse, $codeMatiere, $periode);
+    public function findAllEvaluationByClasse($codeEtablissement,$codeAnnee, $niveau, $codeClasse, $periode);
+    public function findAllEvaluationByPeriode($codeEtablissement,$codeAnnee, $niveau, $periode);
+    public function findAllEvaluationByAnnee($codeEtablissement,$codeAnnee, $niveau);
 }

@@ -46,4 +46,7 @@ class OauthAccessToken extends Eloquent
 		'revoked',
 		'expires_at'
 	];
+
+
+
 }

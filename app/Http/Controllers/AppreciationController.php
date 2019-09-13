@@ -2,83 +2,96 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppreciationRequest;
+use App\Repositories\AppreciationRepository;
 use Illuminate\Http\Request;
 
 class AppreciationController extends Controller
 {
+    protected $appreciationRepository;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * AppreciationController constructor.
+     * @param AppreciationRepository $appreciationRepository
      */
-    public function index()
+    public function __construct(AppreciationRepository $appreciationRepository)
     {
-        //
+        $this->appreciationRepository = $appreciationRepository;
+    }
+
+
+    /**
+     * @param AppreciationRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(AppreciationRequest $request)
+    {
+        $appreciation= $this->appreciationRepository->store($request->all());
+        return response()->json(['data'=>[
+            ['success' => true ,
+                'appeciation'=> $appreciation
+            ]]], 200);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeMatiere
+     * @param $codeEvaluation
+     * @param $periode
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function show($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode)
     {
-        //
+        $appreciation= $this->appreciationRepository->find($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode);
+        return response()->json(['data'=>[
+            ['success' => true ,
+                'appeciation'=> $appreciation
+            ]]], 200);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AppreciationRequest $request
+     * @param $codeEtablissementr
+     * @param $codeAnneer
+     * @param $matriculeElever
+     * @param $niveaur
+     * @param $codeClasser
+     * @param $codeMatierer
+     * @param $codeEvaluationr
+     * @param $perioder
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function update(AppreciationRequest $request, $codeEtablissementr, $codeAnneer, $matriculeElever, $niveaur, $codeClasser, $codeMatierer, $codeEvaluationr, $perioder)
     {
-        //
+        $appreciation= $this->appreciationRepository->update($codeEtablissementr, $codeAnneer, $matriculeElever, $niveaur, $codeClasser, $codeMatierer, $codeEvaluationr, $perioder, $request->all());
+        return response()->json(['data'=>[
+            ['success' => true ,
+                'appeciation'=> $appreciation,
+                'message' => 'Mis à jour effectué avec sucsès'
+            ]]], 200);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $codeEtablissement
+     * @param $codeAnnee
+     * @param $matriculeEleve
+     * @param $niveau
+     * @param $codeClasse
+     * @param $codeMatiere
+     * @param $codeEvaluation
+     * @param $periode
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function destroy($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->appreciationRepository->delete($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode);
+        return response()->json(['data'=>[
+            ['success' => true ,
+                'message' => 'Operation end successfully'
+            ]]], 200);
     }
 }

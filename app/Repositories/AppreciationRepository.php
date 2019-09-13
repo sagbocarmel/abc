@@ -9,41 +9,85 @@
 namespace App\Repositories;
 
 
+use App\Models\Appreciation;
+
 class AppreciationRepository implements AppreciationRepositoryInterface
 {
+    protected $appreciation;
+
+    /**
+     * AppreciationRepository constructor.
+     * @param $appreciation
+     */
+    public function __construct(Appreciation $appreciation)
+    {
+        $this->appreciation = $appreciation;
+    }
+
 
     public function store(array $inputs)
     {
-        // TODO: Implement store() method.
+        $this->appreciation = new Appreciation();
+        $this->appreciation->codeEtablissement = $inputs['codeEtablissement'];
+        $this->appreciation->codeAnnee = $inputs['codeAnnee'];
+        $this->appreciation->matriculeEleve = $inputs['matriculeEleve'];
+        $this->appreciation->niveau = $inputs['niveau'];
+        $this->appreciation->codeClasse = $inputs['codeClasse'];
+        $this->appreciation->codeMatiere = $inputs['codeMatiere'];
+        $this->appreciation->codeEvaluation = $inputs['codeEvaluation'];
+        $this->appreciation->periode = $inputs['periode'];
+        $this->appreciation->appreciation = $inputs['appreciation'];
+        $this->appreciation->dateAppreciation = $inputs['dateAppreciation'];
+        $this->appreciation->save();
+        return  $this->appreciation;
     }
 
-    public function update($idEvaluation, $idEleve, $matricule, array $inputs)
+    public function update($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode, array $inputs)
     {
-        // TODO: Implement update() method.
+        $this->appreciation = Appreciation::where('codeEtablissement', $codeEtablissement)->
+        where('codeAnnee',$codeAnnee )->
+        where('matriculeEleve', $matriculeEleve)->
+        where('niveau', $niveau)->
+        where('codeClasse',$codeClasse )->
+        where('codeMatiere', $codeMatiere)->
+        where('codeEvaluation', $codeEvaluation)->
+        where('periode', $periode)->first();
+
+        $this->appreciation->codeEtablissement = $inputs['codeEtablissement'];
+        $this->appreciation->codeAnnee = $inputs['codeAnnee'];
+        $this->appreciation->matriculeEleve = $inputs['matriculeEleve'];
+        $this->appreciation->niveau = $inputs['niveau'];
+        $this->appreciation->codeClasse = $inputs['codeClasse'];
+        $this->appreciation->codeMatiere = $inputs['codeMatiere'];
+        $this->appreciation->codeEvaluation = $inputs['codeEvaluation'];
+        $this->appreciation->periode = $inputs['periode'];
+        $this->appreciation->appreciation = $inputs['appreciation'];
+        $this->appreciation->dateAppreciation = $inputs['dateAppreciation'];
+        $this->appreciation->save();
+        return  $this->appreciation;
     }
 
-    public function findAllByIdEvaluation($idEvaluation)
+    public function find($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode)
     {
-        // TODO: Implement findAllByIdEvaluation() method.
+        return Appreciation::where('codeEtablissement', $codeEtablissement)->
+        where('codeAnnee',$codeAnnee )->
+        where('matriculeEleve', $matriculeEleve)->
+        where('niveau', $niveau)->
+        where('codeClasse',$codeClasse )->
+        where('codeMatiere', $codeMatiere)->
+        where('codeEvaluation', $codeEvaluation)->
+        where('periode', $periode)->firstOrFail();
     }
 
-    public function findAllByIdEleve($idEleve)
+    public function delete($codeEtablissement, $codeAnnee, $matriculeEleve, $niveau, $codeClasse, $codeMatiere, $codeEvaluation, $periode)
     {
-        // TODO: Implement findAllByIdEleve() method.
-    }
-
-    public function findAllByMatricule($matricule)
-    {
-        // TODO: Implement findAllByMatricule() method.
-    }
-
-    public function find($idEvaluation, $idEleve, $matricule)
-    {
-        // TODO: Implement find() method.
-    }
-
-    public function delete($idEvaluation, $idEleve, $matricule)
-    {
-        // TODO: Implement delete() method.
+        Appreciation::where('codeEtablissement', $codeEtablissement)->
+        where('codeAnnee', $codeAnnee)->
+        where('matriculeEleve', $matriculeEleve)->
+        where('niveau', $niveau)->
+        where('codeClasse',$codeClasse )->
+        where('codeMatiere', $codeMatiere)->
+        where('codeEvaluation', $codeEvaluation)->
+        where('periode', $periode)->delete();
     }
 }
