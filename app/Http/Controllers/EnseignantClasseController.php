@@ -63,15 +63,15 @@ class EnseignantClasseController extends Controller
 
     /**
      * @param EnseignantClasseRequest $request
-     * @param $codeEtablissementr
-     * @param $matriculeEnseignantr
-     * @param $codeClasser
-     * @param $niveaur
+     * @param $codeEtablissement
+     * @param $matriculeEnseignant
+     * @param $codeClasse
+     * @param $niveau
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(EnseignantClasseRequest $request, $codeEtablissementr,$matriculeEnseignantr,$codeClasser, $niveaur)
+    public function update(EnseignantClasseRequest $request, $codeEtablissement,$matriculeEnseignant,$codeClasse, $niveau)
     {
-        $enseignantClasse = $this->enseignantClasseRepostory->update($codeEtablissementr,$matriculeEnseignantr,$codeClasser, $niveaur,$request->all());
+        $enseignantClasse = $this->enseignantClasseRepostory->update($codeEtablissement,$matriculeEnseignant,$codeClasse, $niveau,$request->all());
         return response()->json(['data'=>[
             ['success' => true ,
                 'enseignantClasse'=> $enseignantClasse,

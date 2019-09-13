@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BulletinRequest;
 use App\Repositories\BulletinRepository;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class BulletinController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(BulletinRequest $request)
     {
         $bulletin = $this->bulletinRepository->store($request->all());
 
